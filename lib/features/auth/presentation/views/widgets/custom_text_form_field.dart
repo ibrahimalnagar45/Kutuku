@@ -8,9 +8,15 @@ class CustomFormTextFiled extends StatefulWidget {
     super.key,
     this.validator,
     required this.hintText,
+    required this.prefixIcon,
+    this.isObsucure = false,
+    this.withSuffixIcon = false,
   });
   final String Function(String?)? validator;
   final String hintText;
+  final Icon prefixIcon;
+  final bool isObsucure;
+  final bool withSuffixIcon;
 
   @override
   State<CustomFormTextFiled> createState() => _CustomFormTextFiledState();
@@ -19,15 +25,15 @@ class CustomFormTextFiled extends StatefulWidget {
 class _CustomFormTextFiledState extends State<CustomFormTextFiled> {
   late FocusNode _focusNode;
   bool isFocused = false;
+  bool showPassword = false;
   @override
   void initState() {
     _focusNode = FocusNode();
     _focusNode.addListener(() {
       _handleFocusChange();
     });
+    showPassword = widget.isObsucure;
     super.initState();
-
-  
   }
 
   @override
@@ -35,7 +41,6 @@ class _CustomFormTextFiledState extends State<CustomFormTextFiled> {
     _focusNode.removeListener(_handleFocusChange);
     _focusNode.dispose();
 
-    // TODO: implement dispose
     super.dispose();
   }
 
@@ -53,19 +58,37 @@ class _CustomFormTextFiledState extends State<CustomFormTextFiled> {
         borderRadius: BorderRadius.circular(kPrimaryPadding),
       ),
       child: TextFormField(
+        obscureText: showPassword,
+        obscuringCharacter: '*',
         focusNode: _focusNode,
         validator: widget.validator,
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.symmetric(vertical: -5),
-          hintFadeDuration: const Duration(seconds: 2),
-          prefixIcon: const Icon(Icons.person),
-          prefixIconColor: isFocused ? kPrimaryColor : Colors.grey,
           hintText: widget.hintText,
+          hintFadeDuration: const Duration(milliseconds: 500),
+          hintStyle: TextStyle(color: Colors.grey.withOpacity(.8)),
+          prefixIcon: widget.prefixIcon,
+          prefixIconColor:
+              isFocused ? kPrimaryColor : Colors.grey.withOpacity(.4),
+          suffixIcon: widget.withSuffixIcon == true
+              ? IconButton(
+                  onPressed: () async {
+                    setState(() {
+                      showPassword = false;
+                    });
+                    await Future.delayed(
+                      const Duration(seconds: 1),
+                    );
+
+                    setState(() {
+                      showPassword = true;
+                    });
+                  },
+                  icon: const Icon(Icons.remove_red_eye),
+                  color: Colors.grey.withOpacity(.4),
+                )
+              : null,
           border: BuildOutLineInputBorder(),
-          // disabledBorder: BuildOutLineInputBorder(),
-          // enabledBorder: BuildOutLineInputBorder(
-          //   color: kPrimaryColor,
-          // ),
           focusedBorder:
               BuildOutLineInputBorder(color: kPrimaryColor, enabled: true),
         ),
