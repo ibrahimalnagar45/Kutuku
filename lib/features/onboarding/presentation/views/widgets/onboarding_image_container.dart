@@ -7,20 +7,19 @@ class OnboardingImageContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.5,
-      width: MediaQuery.of(context).size.width * .8,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(50),
-        image: DecorationImage(
-          image: AssetImage(image),
-          fit: BoxFit.fill,
+        // height: MediaQuery.of(context).size.height * 0.5,
+        // width: MediaQuery.of(context).size.width * .8,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(50),
+          //   image: DecorationImage(
+          //     image: AssetImage(image),
+          //     fit: BoxFit.fill,
+          //   ),
+          //
         ),
-      ),
-      // child: Image.asset(
-      //   'assets/images/onboarding1.jpeg',
-      //   fit: BoxFit.cover,
-      // )
-    );
+        child: Image.asset(
+          'assets/images/onboarding1.jpeg',
+          fit: BoxFit.fill,
+        ));
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kutuku/constants.dart';
 import 'package:kutuku/core/utils/styles.dart';
 
 class CustomButton extends StatelessWidget {
@@ -7,13 +8,23 @@ class CustomButton extends StatelessWidget {
   final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () {},
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(15),
-        child: Text(
-          text,
-          style: Styles.decStyle,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: TextButton(
+        onPressed: onPressed,
+        child: Container(
+          width: double.infinity,
+          height: 50,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+            color: kPrimaryColor,
+          ),
+          child: Center(
+            child: Text(
+              text,
+              style: Styles.titleStyle.copyWith(color: Colors.white),
+            ),
+          ),
         ),
       ),
     );
