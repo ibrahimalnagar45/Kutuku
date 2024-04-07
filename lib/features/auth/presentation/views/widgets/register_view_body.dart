@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:kutuku/core/utils/styles.dart';
-import 'package:kutuku/core/utils/widgets/custom_button.dart';
 import 'package:kutuku/features/auth/presentation/views/widgets/custom_text_field.dart';
 
 class RegisterViewBody extends StatelessWidget {
@@ -20,7 +19,13 @@ class RegisterViewBody extends StatelessWidget {
           'start shopping with create an acount',
           style: Styles.desStyle,
         ),
-        CustomFormTextFiled(),
+        CustomFormTextFiled(
+          validator: (value) {
+            return value ?? 'please enter your email';
+          },
+          hintText: 'ibrahimkamal',
+          // label: 'username',
+        ),
       ],
     );
   }
