@@ -6,6 +6,8 @@ import 'package:kutuku/constants.dart';
 import 'package:kutuku/core/utils/styles.dart';
 import 'package:kutuku/features/auth/presentation/views/widgets/verification_code_bloc.dart';
 
+import '../../../../../core/utils/widgets/custom_button.dart';
+
 class VerificationViewBody extends StatefulWidget {
   const VerificationViewBody({super.key});
 
@@ -52,6 +54,9 @@ class _VerificationViewBodyState extends State<VerificationViewBody> {
             )
           ],
         ),
+        const SizedBox(
+          height: 30,
+        ),
         SizedBox(
           height: 80,
           child: ListView.builder(
@@ -71,6 +76,29 @@ class _VerificationViewBodyState extends State<VerificationViewBody> {
                       ),
                     ));
               }),
+        ),
+        const SizedBox(
+          height: 30,
+        ),
+        const CustomButton(
+          text: 'Submit',
+        ),
+        const SizedBox(
+          height: 30,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('Didn\'t recieve the code?'),
+            Text(
+              'Resend',
+              style: Styles.desStyle.copyWith(color: kPrimaryColor),
+            ),
+            //  const   Icon(
+            //       FontAwesomeIcons.chevronRight,
+            //       size: 20,
+            //     )
+          ],
         )
       ],
     );
