@@ -35,7 +35,6 @@ class _CustomFormTextFiledState extends State<CustomFormTextFiled> {
     showPassword = widget.isObsucure;
     super.initState();
   }
-
   @override
   void dispose() {
     _focusNode.removeListener(_handleFocusChange);
@@ -43,7 +42,6 @@ class _CustomFormTextFiledState extends State<CustomFormTextFiled> {
 
     super.dispose();
   }
-
   void _handleFocusChange() {
     setState(() {
       isFocused = _focusNode.hasFocus;
@@ -70,7 +68,7 @@ class _CustomFormTextFiledState extends State<CustomFormTextFiled> {
           prefixIcon: widget.prefixIcon,
           prefixIconColor:
               isFocused ? kPrimaryColor : Colors.grey.withOpacity(.4),
-          suffixIcon: widget.withSuffixIcon == true
+          suffixIcon: widget.withSuffixIcon 
               ? IconButton(
                   onPressed: () async {
                     setState(() {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kutuku/constants.dart';
 import 'package:kutuku/core/utils/styles.dart';
+import 'icon_text_button.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({
@@ -27,32 +28,7 @@ class CustomButton extends StatelessWidget {
           color: colored ? kPrimaryColor : Colors.white,
         ),
         child: prefixIcon != null
-            ? Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  color: colored ? kPrimaryColor : Colors.grey.withOpacity(.25),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      prefixIcon!,
-                      scale: 7,
-                    ),
-                    IconButton(
-                      onPressed: onPressed,
-                      icon: Center(
-                        child: Text(
-                          text,
-                          style: colored
-                              ? Styles.titleStyle.copyWith(color: Colors.white)
-                              : Styles.titleStyle,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              )
+            ? IconTextButton(colored: colored, prefixIcon: prefixIcon, onPressed: onPressed, text: text)
             : IconButton(
                 onPressed: onPressed,
                 icon: Container(

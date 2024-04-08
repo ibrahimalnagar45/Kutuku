@@ -1,5 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:kutuku/features/auth/presentation/views/widgets/input_sections.dart';
 
 import 'view_title.dart';
 
@@ -14,6 +14,10 @@ class LoginViewBody extends StatelessWidget {
           title: 'Login',
           subTitle: 'Login with your email',
         ),
+          SizedBox(
+            height: 30,
+          ),
+        InputSections(),
       ],
     );
   }

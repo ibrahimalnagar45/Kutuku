@@ -1,16 +1,11 @@
-import 'package:awesome_icons/awesome_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kutuku/core/utils/routes.dart';
 import 'package:kutuku/core/utils/styles.dart';
 import 'package:kutuku/core/utils/widgets/custom_button.dart';
 import 'package:kutuku/features/auth/presentation/views/widgets/addtional_auth_function.dart';
-import 'package:kutuku/features/auth/presentation/views/widgets/custom_text_form_field.dart';
-import 'package:kutuku/features/auth/presentation/views/widgets/input_section.dart';
-
 import 'input_sections.dart';
 import 'view_title.dart';
 
@@ -38,11 +33,8 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
             height: 30,
           ),
           const InputSections(),
-          const SizedBox(
-            height: 30,
-          ),
           SizedBox(
-            height: MediaQuery.of(context).size.height * .07,
+            height: MediaQuery.of(context).size.height * .08,
           ),
           CustomButton(
             text: 'Create Your Account',
@@ -79,7 +71,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
           const Expanded(
             child: Center(
               child: Text(
-                'Already Have An Email !',
+                'Already have an email !',
                 style: Styles.desStyle,
               ),
             ),

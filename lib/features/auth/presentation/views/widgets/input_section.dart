@@ -32,6 +32,9 @@ class InputSection extends StatelessWidget {
               fontWeight: FontWeight.w400,
             ),
           ),
+          const SizedBox(
+            height: 5,
+          ),
           CustomFormTextFiled(
             isObsucure: isObscure,
             hintText: hintText,
