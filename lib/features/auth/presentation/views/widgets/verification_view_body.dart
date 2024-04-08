@@ -5,6 +5,8 @@ import 'package:kutuku/core/utils/styles.dart';
 import 'package:kutuku/features/auth/presentation/views/widgets/verification_code_bloc.dart';
 
 import '../../../../../core/utils/widgets/custom_button.dart';
+import 'custom_check_icon.dart';
+import 'custom_model_bottom_sheet.dart';
 
 class VerificationViewBody extends StatefulWidget {
   const VerificationViewBody({super.key});
@@ -39,19 +41,12 @@ class _VerificationViewBodyState extends State<VerificationViewBody> {
         const SizedBox(
           height: 20,
         ),
-        CircleAvatar(
-          minRadius: 75,
-          backgroundColor: Colors.grey.withBlue(255).withOpacity(.2),
-          child: CircleAvatar(
-            minRadius: 55,
-            backgroundColor: kPrimaryColor,
-            child: Center(
-              child: SvgPicture.asset(
-                'assets/icons/envelope-circle-check-solid.svg',
-                height: 35,
-                colorFilter:
-                    const ColorFilter.mode(Colors.white, BlendMode.srcIn),
-              ),
+          CustomCheckIcon(
+          icon: Center(
+            child: SvgPicture.asset(
+             'assets/icons/envelope-circle-check-solid.svg',
+              height: 35,
+              colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
             ),
           ),
         ),
@@ -122,17 +117,11 @@ class _VerificationViewBodyState extends State<VerificationViewBody> {
         CustomButton(
           text: 'Submit',
           onPressed: () {
-            // Submit logic goes here
-            // For now, just move focus to the next field
-            if (_controller.text.length < 5) {
-              return; // Don't proceed if code length is less than 5
-            }
-            for (var i = 0; i < focusNodes.length; i++) {
-              if (!focusNodes[i].hasFocus && i < focusNodes.length - 1) {
-                focusNodes[i + 1].requestFocus();
-                break;
-              }
-            }
+            showModalBottomSheet(
+                context: context,
+                builder: (context) {
+                  return const CustomBottomModelSheet();
+                });
           },
         ),
         const SizedBox(
