@@ -1,31 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:kutuku/constants.dart';
 
 class VerificationCodeBloc extends StatefulWidget {
-  const VerificationCodeBloc(
-      {super.key, this.isFocused = false, this.onsubmitted});
+  const VerificationCodeBloc({
+    super.key,
+    this.isFocused = false,
+    this.onsubmitted,
+    required this.focusNode,
+  });
   final bool isFocused;
-  final Function(String)? onsubmitted;
+  final FocusNode focusNode;
+  // final FocusNode? nextFocus;
+  final void Function(String)? onsubmitted;
   @override
   State<VerificationCodeBloc> createState() => _VerificationCodeBlocState();
 }
 
 class _VerificationCodeBlocState extends State<VerificationCodeBloc> {
-  late FocusNode _focusNode;
   bool isFocused = false;
+
   @override
   void initState() {
-    _focusNode = FocusNode();
-    _focusNode.addListener(() {
+    widget.focusNode.addListener(() {
       _handleFocusChange();
     });
 
     super.initState();
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+     widget.focusNode.removeListener(_handleFocusChange);
+  }
+
   void _handleFocusChange() {
     setState(() {
-      isFocused = _focusNode.hasFocus;
+      isFocused = widget.focusNode.hasFocus;
     });
   }
 
@@ -42,12 +54,22 @@ class _VerificationCodeBlocState extends State<VerificationCodeBloc> {
       ),
       child: Center(
         child: TextField(
+          inputFormatters: [
+            LengthLimitingTextInputFormatter(1),
+          ],
           onSubmitted: widget.onsubmitted,
           autofocus: widget.isFocused,
-          focusNode: _focusNode,
+          focusNode: widget.focusNode,
           textAlign: TextAlign.center,
-          cursorColor: kPrimaryColor.withOpacity(.4),
-          decoration: const InputDecoration.collapsed(hintText: ''),
+          cursorColor: kPrimaryColor.withOpacity(.8),
+          style: const TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+          ),
+          decoration: const InputDecoration(
+            border: InputBorder.none,
+          ),
         ),
       ),
     );
