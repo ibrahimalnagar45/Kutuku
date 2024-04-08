@@ -41,6 +41,9 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
           const SizedBox(
             height: 30,
           ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * .07,
+          ),
           CustomButton(
             text: 'Create Your Account',
             onPressed: () {
