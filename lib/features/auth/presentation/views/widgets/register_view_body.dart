@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
@@ -82,7 +83,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
           CustomButton(
             text: 'LogIn',
             onPressed: () {
-              GoRouter.of(context).push(AppRoutes.kLogin);
+              GoRouter.of(context).push(AppRoutes.kVerfication);
             },
           ),
         ],

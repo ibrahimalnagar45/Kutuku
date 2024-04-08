@@ -1,6 +1,4 @@
-
 import 'package:flutter/material.dart';
-
 import '../../../constants.dart';
 import '../styles.dart';
 
@@ -21,30 +19,30 @@ class IconTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30),
-          color: colored ? kPrimaryColor : Colors.grey.withOpacity(.25),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              prefixIcon!,
-              scale: 7,
-            ),
-            IconButton(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(30),
+        color: colored ? kPrimaryColor : Colors.grey.withOpacity(.25),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            prefixIcon!,
+            scale: 7,
+          ),
+          Center(
+            child: IconButton(
               onPressed: onPressed,
-              icon: Center(
-                child: Text(
-                  text,
-                  style: colored
-                      ? Styles.titleStyle.copyWith(color: Colors.white)
-                      : Styles.titleStyle,
-                ),
+              icon: Text(
+                text,
+                style: colored
+                    ? Styles.titleStyle.copyWith(color: Colors.white)
+                    : Styles.titleStyle,
               ),
             ),
-          ],
-        ),
-      );
+          ),
+        ],
+      ),
+    );
   }
 }

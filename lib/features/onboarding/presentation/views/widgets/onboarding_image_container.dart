@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
+ 
 class OnboardingImageContainer extends StatelessWidget {
   const OnboardingImageContainer({super.key, required this.image});
   final String image;

@@ -78,11 +78,14 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
         const SizedBox(
           height: 10,
         ),
-        Text(
-          'Already Have An Account?',
-          textAlign: TextAlign.center,
-          style: Styles.desStyle
-              .copyWith(color: kPrimaryColor, fontWeight: FontWeight.bold),
+        TextButton(
+          onPressed: () => GoRouter.of(context).push(AppRoutes.kLogin),
+          child: Text(
+            'Already Have An Account?',
+            textAlign: TextAlign.center,
+            style: Styles.desStyle
+                .copyWith(color: kPrimaryColor, fontWeight: FontWeight.bold),
+          ),
         ),
       ],
     );
