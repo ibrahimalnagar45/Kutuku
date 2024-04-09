@@ -1,38 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:kutuku/constants.dart';
 import 'package:kutuku/core/utils/styles.dart';
-import 'package:kutuku/features/auth/presentation/views/widgets/verification_code_bloc.dart';
-
 import '../../../../../core/utils/widgets/custom_button.dart';
 import 'custom_check_icon.dart';
 import 'custom_model_bottom_sheet.dart';
+import 'verification_code_bloc.dart';
 
-class VerificationViewBody extends StatefulWidget {
+class VerificationViewBody extends StatelessWidget {
   const VerificationViewBody({super.key});
 
-  @override
-  State<VerificationViewBody> createState() => _VerificationViewBodyState();
-}
-
-class _VerificationViewBodyState extends State<VerificationViewBody> {
-  int currentIndex = 0;
-  late List<FocusNode> focusNodes;
-  late TextEditingController _controller;
-  @override
-  void initState() {
-    focusNodes = List.generate(5, (index) => FocusNode());
-    _controller = TextEditingController();
-    super.initState();
-  }
-
-  void depose() {
-    _controller.dispose();
-    focusNodes.forEach((node) {
-      node.dispose();
-    });
-  }
-
+  // int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -41,12 +20,13 @@ class _VerificationViewBodyState extends State<VerificationViewBody> {
         const SizedBox(
           height: 20,
         ),
-          CustomCheckIcon(
+        CustomCheckIcon(
           icon: Center(
             child: SvgPicture.asset(
-             'assets/icons/envelope-circle-check-solid.svg',
+              'assets/icons/envelope-circle-check-solid.svg',
               height: 35,
-              colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+              colorFilter:
+                  const ColorFilter.mode(Colors.white, BlendMode.srcIn),
             ),
           ),
         ),
@@ -71,46 +51,62 @@ class _VerificationViewBodyState extends State<VerificationViewBody> {
         const SizedBox(
           height: 30,
         ),
-        SizedBox(
-          height: 80,
-          child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: 5,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        currentIndex = index;
-                      });
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 4),
-                      child: VerificationCodeBloc(
-                        onsubmitted: (value) {
-                          {
-                            // Submit logic goes here
-                            // For now, just move focus to the next field
-                            if (_controller.text.length < 5) {
-                              return; // Don't proceed if code length is less than 5
-                            }
-                            for (var i = 0; i < focusNodes.length; i++) {
-                              if (!focusNodes[i].hasFocus &&
-                                  i < focusNodes.length - 1) {
-                                focusNodes[i + 1].requestFocus();
-                                break;
-                              }
-                            }
-                          }
-                        },
-                        focusNode: focusNodes[index],
-                        // nextFocus: currentIndex == index
-                        //     ? focusNodes[index + 1]
-                        //     : null,
-                        isFocused: currentIndex == index,
-                      ),
-                    ));
-              }),
+        // SizedBox(
+        //   height: 80,
+        //   child: ListView.builder(
+        //       scrollDirection: Axis.horizontal,
+        //       itemCount: 5,
+        //       itemBuilder: (context, index) {
+        //         return GestureDetector(
+        //             child: Padding(
+        //           padding: const EdgeInsets.only(right: 4),
+        //           child: VerificationCodeBloc(),
+        //         ));
+        //       }),
+        // ),
+        OtpTextField(
+          numberOfFields: 4,
+          borderColor: kSecondaryColor,
+          fieldHeight: 100,
+          fieldWidth: 65,
+
+          borderWidth: 1.5,
+          margin: EdgeInsets.only(right: 4),
+          borderRadius: BorderRadius.circular(15),
+
+          cursorColor: kPrimaryColor.withOpacity(.5),
+          //set to true to show as box or false to show as dash
+          showFieldAsBox: true,
+          //runs when a code is typed in
+          // onCodeChanged: (String code) {
+
+          //  },
+          //runs when every textfield is filled
+          onSubmit: (String verificationCode) {
+            showModalBottomSheet(
+                context: context,
+                builder: (context) {
+                  return const CustomBottomModelSheet();
+                });
+          }, // end onSubmit
         ),
+
+        // OtpTextField(
+        //   numberOfFields: 5,
+        //   fieldHeight: 80,
+        //   fieldWidth : 70,
+        //   borderColor: kSecondaryColor,
+        //   onSubmit: (String verificationCode) {
+        //     showDialog(
+        //         context: context,
+        //         builder: (context) {
+        //           return AlertDialog(
+        //             title: const Text("Verification Code"),
+        //             content: Text('Code entered is $verificationCode'),
+        //           );
+        //         });
+        //   }, // end
+        // ),
         const SizedBox(
           height: 30,
         ),

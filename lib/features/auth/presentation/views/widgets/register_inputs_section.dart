@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'input_section.dart';
 
-class RegisterInputSections extends StatelessWidget {
-  const RegisterInputSections({super.key});
+class LoginInputSections extends StatelessWidget {
+  const LoginInputSections({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -21,7 +21,12 @@ class IconTextButton extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
-        color: colored ? kPrimaryColor : Colors.grey.withOpacity(.25),
+        color: colored ? kPrimaryColor : Colors.white,
+        border: colored
+            ? null
+            : Border.all(
+                color: Colors.grey.withOpacity(.3),
+              ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,

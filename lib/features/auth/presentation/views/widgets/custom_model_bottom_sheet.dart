@@ -4,12 +4,10 @@ import 'package:go_router/go_router.dart';
 import 'package:kutuku/core/utils/routes.dart';
 import 'package:kutuku/core/utils/widgets/custom_button.dart';
 import 'package:kutuku/features/auth/presentation/views/widgets/custom_check_icon.dart';
-
 import '../../../../../core/utils/styles.dart';
 
 class CustomBottomModelSheet extends StatelessWidget {
   const CustomBottomModelSheet({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Column(

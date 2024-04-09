@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
@@ -33,7 +31,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
           const SizedBox(
             height: 30,
           ),
-          const InputSections(),
+          const RegisterInputSections(),
           SizedBox(
             height: MediaQuery.of(context).size.height * .08,
           ),
@@ -65,7 +63,9 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
           const SizedBox(
             height: 10,
           ),
-          const AddtionalAuthFunction(),
+          const AddtionalAuthFunction(
+            text: 'Sing Up',
+          ),
           const SizedBox(
             height: 10,
           ),
@@ -83,7 +83,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
           CustomButton(
             text: 'LogIn',
             onPressed: () {
-              GoRouter.of(context).push(AppRoutes.kVerfication);
+              GoRouter.of(context).push(AppRoutes.kLogin);
             },
           ),
         ],

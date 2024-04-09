@@ -5,14 +5,14 @@ import 'package:kutuku/constants.dart';
 class VerificationCodeBloc extends StatefulWidget {
   const VerificationCodeBloc({
     super.key,
-    this.isFocused = false,
-    this.onsubmitted,
-    required this.focusNode,
+    // this.isFocused = false,
+    // this.onsubmitted,
+    // required this.focusNode,
   });
-  final bool isFocused;
-  final FocusNode focusNode;
+  // final bool isFocused;
+  // final FocusNode focusNode;
   // final FocusNode? nextFocus;
-  final void Function(String)? onsubmitted;
+  // final void Function(String)? onsubmitted;
   @override
   State<VerificationCodeBloc> createState() => _VerificationCodeBlocState();
 }
@@ -21,25 +21,25 @@ class _VerificationCodeBlocState extends State<VerificationCodeBloc> {
   bool isFocused = false;
 
   @override
-  void initState() {
-    widget.focusNode.addListener(() {
-      _handleFocusChange();
-    });
+  // void initState() {
+  //   widget.focusNode.addListener(() {
+  //     _handleFocusChange();
+  //   });
 
-    super.initState();
-  }
+  //   super.initState();
+  // }
 
-  @override
-  void dispose() {
-    super.dispose();
-     widget.focusNode.removeListener(_handleFocusChange);
-  }
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  //    widget.focusNode.removeListener(_handleFocusChange);
+  // }
 
-  void _handleFocusChange() {
-    setState(() {
-      isFocused = widget.focusNode.hasFocus;
-    });
-  }
+  // void _handleFocusChange() {
+  //   setState(() {
+  //     isFocused = widget.focusNode.hasFocus;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -57,9 +57,9 @@ class _VerificationCodeBlocState extends State<VerificationCodeBloc> {
           inputFormatters: [
             LengthLimitingTextInputFormatter(1),
           ],
-          onSubmitted: widget.onsubmitted,
-          autofocus: widget.isFocused,
-          focusNode: widget.focusNode,
+          // onSubmitted: widget.onsubmitted,
+          // autofocus: widget.isFocused,
+          // focusNode: widget.focusNode,
           textAlign: TextAlign.center,
           cursorColor: kPrimaryColor.withOpacity(.8),
           style: const TextStyle(

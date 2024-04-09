@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
 import 'input_section.dart';
 
-class RegisterInputSections extends StatelessWidget {
-  const RegisterInputSections({super.key});
+class LoginInputSections extends StatelessWidget {
+  const LoginInputSections({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        InputSection(
-            prefixIicon: const Icon(Icons.person),
-            title: 'Username',
-            hintText: 'Create your name',
-            validator: (data) {
-              if (data!.isEmpty || data == "") {
-                return "required feild";
-              } else if (data.length < 3) {
-                return "the name must be more than 3 letters";
-              } else {
-                return '';
-              }
+        // InputSection(
+        //     prefixIicon: const Icon(Icons.person),
+        //     title: 'Username',
+        //     hintText: 'Create your name',
+        //     validator: (data) {
+        //       if (data!.isEmpty || data == "") {
+        //         return "required feild";
+        //       } else if (data.length < 3) {
+        //         return "the name must be more than 3 letters";
+        //       } else {
+        //         return '';
+        //       }
 
-              // validator: (value) => value ?? 'please enter your name',
-            }),
+        //       // validator: (value) => value ?? 'please enter your name',
+        //     }),
         InputSection(
           prefixIicon: const Icon(Icons.email_outlined),
           title: 'Email or Phone Number',

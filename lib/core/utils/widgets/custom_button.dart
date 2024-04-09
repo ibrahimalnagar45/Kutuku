@@ -28,7 +28,12 @@ class CustomButton extends StatelessWidget {
           color: colored ? kPrimaryColor : Colors.white,
         ),
         child: prefixIcon != null
-            ? IconTextButton(colored: colored, prefixIcon: prefixIcon, onPressed: onPressed, text: text)
+            ? IconTextButton(
+                colored: colored,
+                prefixIcon: prefixIcon,
+                onPressed: onPressed,
+                text: text,
+              )
             : IconButton(
                 onPressed: onPressed,
                 icon: Container(

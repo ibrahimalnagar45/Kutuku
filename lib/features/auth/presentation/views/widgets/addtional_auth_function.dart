@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 import '../../../../../core/utils/widgets/custom_button.dart';
 
 class AddtionalAuthFunction extends StatelessWidget {
-  const AddtionalAuthFunction({super.key});
-
+  const AddtionalAuthFunction({super.key, required this.text});
+  final String text;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         CustomButton(
           colored: false,
-          text: 'SingUp With Google',
+          text: '$text With Google',
           prefixIcon: 'assets/icons/1.png',
           onPressed: () {},
         ),
@@ -21,7 +21,7 @@ class AddtionalAuthFunction extends StatelessWidget {
         ),
         CustomButton(
           colored: false,
-          text: 'SingUp With Facbook',
+          text: '$text With Facbook',
           prefixIcon: 'assets/icons/facebookIcon.jpeg',
           onPressed: () {},
         ),
