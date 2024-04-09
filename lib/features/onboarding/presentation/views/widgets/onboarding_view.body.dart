@@ -102,7 +102,8 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
         );
       },
       itemCount: sliders!.length,
-      itemBuilder: (context, index) {
+      itemBuilder: (context, index)  {
+      
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: ClipRRect(
@@ -120,3 +121,9 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
     );
   }
 }
+
+// Future<int> goTONext(int index) async {
+//   return await Future.delayed(const Duration(seconds: 2), () {
+//     return index++;
+//   });
+// }

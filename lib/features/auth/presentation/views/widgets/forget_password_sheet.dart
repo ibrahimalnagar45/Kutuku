@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kutuku/constants.dart';
 import 'package:kutuku/core/utils/widgets/custom_button.dart';
+import 'package:kutuku/features/auth/presentation/views/widgets/create_new_password_sheet.dart';
 import 'package:kutuku/features/auth/presentation/views/widgets/input_section.dart';
 import 'package:kutuku/features/auth/presentation/views/widgets/view_title.dart';
 
@@ -51,7 +52,16 @@ class ForgetPasswordSheet extends StatelessWidget {
             const Spacer(
               flex: 2,
             ),
-            CustomButton(text: 'Send Code '),
+            CustomButton(
+              text: 'Send Code ',
+              onPressed: () {
+                Navigator.pop(context);
+                showModalBottomSheet(
+                    isScrollControlled: true,
+                    context: context,
+                    builder: (context) => const CreateNewPasswordSheet());
+              },
+            ),
             const Spacer(
               flex: 1,
             ),
