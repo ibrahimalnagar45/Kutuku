@@ -3,6 +3,7 @@ import 'package:kutuku/constants.dart';
 import 'package:kutuku/core/utils/styles.dart';
 import 'package:kutuku/core/utils/widgets/custom_button.dart';
 import 'package:kutuku/features/auth/presentation/views/widgets/custom_verification_model_bottom_sheet.dart';
+import 'package:kutuku/features/auth/presentation/views/widgets/forget_password_sheet.dart';
 
 import 'addtional_auth_function.dart';
 import 'login_inputs_section.dart';
@@ -28,9 +29,10 @@ class LoginViewBody extends StatelessWidget {
           child: TextButton(
             onPressed: () {
               showModalBottomSheet(
+                  isScrollControlled: true,
                   context: context,
                   builder: (context) {
-                    return const CustomVerificationBottomModelSheet();
+                    return const ForgetPasswordSheet();
                   });
             },
             child: const Text(
