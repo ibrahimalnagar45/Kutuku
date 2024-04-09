@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -20,11 +22,12 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
   List<SliderModel>? sliders;
   int currentIndex = 0;
   late PageController _pageController;
-
+  
   @override
   void initState() {
     sliders = kSliders;
     _pageController = PageController(initialPage: 0);
+    _startAutoScroll();
     super.initState();
   }
 
@@ -32,6 +35,33 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
   void dispose() {
     _pageController.dispose();
     super.dispose();
+  }
+
+  void _startAutoScroll() {
+    bool isForward =true;
+    // Auto scroll every 5 seconds
+    Timer _timer = Timer.periodic(const Duration(seconds: 2), (timer) {
+      if (isForward) {
+        if (currentIndex < sliders!.length - 1) {
+          currentIndex++;
+        } else {
+          isForward = false;
+          currentIndex--;
+        }
+      } else {
+        if (currentIndex > 0) {
+          currentIndex--;
+        } else {
+          isForward = true;
+          currentIndex++;
+        }
+      }
+      _pageController.animateToPage(
+        currentIndex,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeInOut,
+      );
+    });
   }
 
   @override
@@ -94,6 +124,7 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
   PageView buildOnboardingPageViews() {
     return PageView.builder(
       scrollDirection: Axis.horizontal,
+      controller: _pageController,
       onPageChanged: (value) {
         setState(
           () {
@@ -102,8 +133,7 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
         );
       },
       itemCount: sliders!.length,
-      itemBuilder: (context, index)  {
-      
+      itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: ClipRRect(
