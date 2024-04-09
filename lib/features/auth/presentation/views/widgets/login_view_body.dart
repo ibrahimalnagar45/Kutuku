@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:kutuku/constants.dart';
 import 'package:kutuku/core/utils/styles.dart';
 import 'package:kutuku/core/utils/widgets/custom_button.dart';
+import 'package:kutuku/features/auth/presentation/views/widgets/custom_verification_model_bottom_sheet.dart';
 
 import 'addtional_auth_function.dart';
 import 'login_inputs_section.dart';
@@ -16,7 +16,7 @@ class LoginViewBody extends StatelessWidget {
     return ListView(
       children: [
         const ViewTitle(
-          title: 'Login',
+          title: 'Login Account',
           subTitle: 'Login with your email',
         ),
         const SizedBox(
@@ -26,7 +26,13 @@ class LoginViewBody extends StatelessWidget {
         Align(
           alignment: Alignment.centerRight,
           child: TextButton(
-            onPressed: () {},
+            onPressed: () {
+              showModalBottomSheet(
+                  context: context,
+                  builder: (context) {
+                    return const CustomVerificationBottomModelSheet();
+                  });
+            },
             child: const Text(
               'Forgot Password?',
               style: TextStyle(color: kPrimaryColor),

@@ -5,8 +5,8 @@ import 'package:kutuku/constants.dart';
 import 'package:kutuku/core/utils/styles.dart';
 import '../../../../../core/utils/widgets/custom_button.dart';
 import 'custom_check_icon.dart';
-import 'custom_model_bottom_sheet.dart';
-import 'verification_code_bloc.dart';
+import 'custom_verification_model_bottom_sheet.dart';
+ 
 
 class VerificationViewBody extends StatelessWidget {
   const VerificationViewBody({super.key});
@@ -71,7 +71,7 @@ class VerificationViewBody extends StatelessWidget {
           fieldWidth: 65,
 
           borderWidth: 1.5,
-          margin: EdgeInsets.only(right: 4),
+          margin: const EdgeInsets.only(right: 4),
           borderRadius: BorderRadius.circular(15),
 
           cursorColor: kPrimaryColor.withOpacity(.5),
@@ -86,7 +86,7 @@ class VerificationViewBody extends StatelessWidget {
             showModalBottomSheet(
                 context: context,
                 builder: (context) {
-                  return const CustomBottomModelSheet();
+                  return const CustomVerificationBottomModelSheet();
                 });
           }, // end onSubmit
         ),
@@ -116,7 +116,7 @@ class VerificationViewBody extends StatelessWidget {
             showModalBottomSheet(
                 context: context,
                 builder: (context) {
-                  return const CustomBottomModelSheet();
+                  return const CustomVerificationBottomModelSheet();
                 });
           },
         ),

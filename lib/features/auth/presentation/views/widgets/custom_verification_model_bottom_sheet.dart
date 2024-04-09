@@ -6,8 +6,8 @@ import 'package:kutuku/core/utils/widgets/custom_button.dart';
 import 'package:kutuku/features/auth/presentation/views/widgets/custom_check_icon.dart';
 import '../../../../../core/utils/styles.dart';
 
-class CustomBottomModelSheet extends StatelessWidget {
-  const CustomBottomModelSheet({super.key});
+class CustomVerificationBottomModelSheet extends StatelessWidget {
+  const CustomVerificationBottomModelSheet({super.key});
   @override
   Widget build(BuildContext context) {
     return Column(
