@@ -15,45 +15,48 @@ class ForgetPasswordSheet extends StatelessWidget {
           left: 20,
           top: 20,
           bottom: MediaQuery.of(context).viewInsets.bottom),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                height: 5,
-                width: 60,
-                decoration: BoxDecoration(
-                    color: kSecondaryColor,
-                    borderRadius: BorderRadius.circular(10)),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          const ViewTitle(
-            title: 'Forget Password ',
-            subTitle: 'Enter you  email or phone number ',
-          ),
-          const SizedBox(
-            height: 40,
-          ),
-          InputSection(
-            title: 'Email or Phone Numeber',
-            hintText: 'enter you email or phone',
-            prefixIicon: Icon(Icons.email_outlined),
-          ),
-          const Spacer(
-            flex: 2,
-          ),
-          CustomButton(text: 'Send Code '),
-          const Spacer(
-            flex: 1,
-          ),
-        ],
+      child: SizedBox(
+        height: 400,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: 5,
+                  width: 60,
+                  decoration: BoxDecoration(
+                      color: kSecondaryColor,
+                      borderRadius: BorderRadius.circular(10)),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const ViewTitle(
+              title: 'Forget Password ',
+              subTitle: 'Enter you  email or phone number ',
+            ),
+            const SizedBox(
+              height: 40,
+            ),
+            const InputSection(
+              title: 'Email or Phone Numeber',
+              hintText: 'enter you email or phone',
+              prefixIicon: Icon(Icons.email_outlined),
+            ),
+            const Spacer(
+              flex: 2,
+            ),
+            CustomButton(text: 'Send Code '),
+            const Spacer(
+              flex: 1,
+            ),
+          ],
+        ),
       ),
     );
   }
