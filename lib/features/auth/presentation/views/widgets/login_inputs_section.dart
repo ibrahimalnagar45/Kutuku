@@ -38,7 +38,7 @@ class LoginInputSections extends StatelessWidget {
             if (!regex.hasMatch(data)) {
               return 'Enter Valid Email';
             } else {
-              return '';
+              return null;
             }
           },
           // validator: (value) => value ?? 'please enter your name',
@@ -61,7 +61,7 @@ class LoginInputSections extends StatelessWidget {
                 !data.contains(r'$')) {
               return "weak password the password must contain _ or special sing as # or * ";
             } else {
-              return '';
+              return null;
             }
             // validator: (value) => value ?? 'please enter your name',
           },
