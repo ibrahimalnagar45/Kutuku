@@ -12,56 +12,64 @@ import 'view_title.dart';
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key});
 
+//    GlobalKey<FormState> globalFormKey = GlobalKey();
+// final  AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
+//   String? email, password, name;
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        const ViewTitle(
-          title: 'Login Account',
-          subTitle: 'Login with your email',
-        ),
-        const SizedBox(
-          height: 30,
-        ),
-        const LoginInputSections(),
-        Align(
-          alignment: Alignment.centerRight,
-          child: TextButton(
-            onPressed: () {
-              showModalBottomSheet(
-                  isScrollControlled: true,
-                  context: context,
-                  builder: (context) {
-                    return const ForgetPasswordSheet();
-                  });
-            },
-            child: const Text(
-              'Forgot Password?',
-              style: TextStyle(color: kPrimaryColor),
+    return Form(
+      child: ListView(
+        children: [
+          const ViewTitle(
+            title: 'Login Account',
+            subTitle: 'Login with your email',
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          const LoginInputSections(),
+          Align(
+            alignment: Alignment.centerRight,
+            child: TextButton(
+              onPressed: () {
+                showModalBottomSheet(
+                    isScrollControlled: true,
+                    context: context,
+                    builder: (context) {
+                      return const ForgetPasswordSheet();
+                    });
+              },
+              child: const Text(
+                'Forgot Password?',
+                style: TextStyle(color: kPrimaryColor),
+              ),
             ),
           ),
-        ),
-        const SizedBox(
-          height: 30,
-        ),
-        const CustomButton(text: 'Login'),
-        const SizedBox(
-          height: 15,
-        ),
-        const Align(
-          alignment: Alignment.center,
-          child: Text(
-            'or using other methods',
-            style: Styles.desStyle,
+          const SizedBox(
+            height: 30,
           ),
-        ),
-        const SizedBox(
-          height: 15,
-        ),
-        const AddtionalAuthFunction(
-          text: 'LogIn',
-        ),
-      ],
+          CustomButton(
+            text: 'Login',
+            onPressed: () {},
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          const Align(
+            alignment: Alignment.center,
+            child: Text(
+              'or using other methods',
+              style: Styles.desStyle,
+            ),
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          const AddtionalAuthFunction(
+            text: 'LogIn',
+          ),
+        ],
+      ),
     );
   }
 }

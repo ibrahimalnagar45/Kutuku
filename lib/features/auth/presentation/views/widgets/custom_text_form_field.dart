@@ -11,12 +11,16 @@ class CustomFormTextFiled extends StatefulWidget {
     required this.prefixIcon,
     this.isObsucure = false,
     this.withSuffixIcon = false,
+    this.keyboardType,
+    this.onSaved,
   });
-  final String Function(String?)? validator;
+  final String? Function(String?)? validator;
   final String hintText;
   final Icon prefixIcon;
   final bool isObsucure;
   final bool withSuffixIcon;
+  final TextInputType? keyboardType;
+  final void Function(String?)? onSaved;
 
   @override
   State<CustomFormTextFiled> createState() => _CustomFormTextFiledState();
@@ -35,6 +39,7 @@ class _CustomFormTextFiledState extends State<CustomFormTextFiled> {
     showPassword = widget.isObsucure;
     super.initState();
   }
+
   @override
   void dispose() {
     _focusNode.removeListener(_handleFocusChange);
@@ -42,6 +47,7 @@ class _CustomFormTextFiledState extends State<CustomFormTextFiled> {
 
     super.dispose();
   }
+
   void _handleFocusChange() {
     setState(() {
       isFocused = _focusNode.hasFocus;
@@ -56,6 +62,8 @@ class _CustomFormTextFiledState extends State<CustomFormTextFiled> {
         borderRadius: BorderRadius.circular(kPrimaryPadding),
       ),
       child: TextFormField(
+        onSaved:widget. onSaved,
+        keyboardType: widget.keyboardType,
         obscureText: showPassword,
         obscuringCharacter: '*',
         focusNode: _focusNode,
@@ -68,9 +76,9 @@ class _CustomFormTextFiledState extends State<CustomFormTextFiled> {
           prefixIcon: widget.prefixIcon,
           prefixIconColor:
               isFocused ? kPrimaryColor : Colors.grey.withOpacity(.4),
-          suffixIcon: widget.withSuffixIcon 
-              ? IconButton(
-                  onPressed: () async {
+          suffixIcon: widget.withSuffixIcon
+              ? GestureDetector(
+                  onTap: () async {
                     setState(() {
                       showPassword = false;
                     });
@@ -82,8 +90,12 @@ class _CustomFormTextFiledState extends State<CustomFormTextFiled> {
                       showPassword = true;
                     });
                   },
-                  icon: const Icon(Icons.remove_red_eye),
-                  color: Colors.grey.withOpacity(.4),
+                  onLongPress: () => showPassword = true,
+                  onLongPressCancel: () => showPassword = false,
+                  child: Icon(
+                    Icons.remove_red_eye,
+                    color: Colors.grey.withOpacity(.4),
+                  ),
                 )
               : null,
           border: BuildOutLineInputBorder(),

@@ -11,14 +11,16 @@ class InputSection extends StatelessWidget {
     required this.prefixIicon,
     this.isObscure = false,
     this.withSuffixicon = false,
+    this.keyboardType, this.onSaved,
   });
   final String title;
   final String hintText;
-  final String Function(String?)? validator;
+  final String? Function(String?)? validator;
   final Icon prefixIicon;
   final bool isObscure;
   final bool withSuffixicon;
-
+  final void Function(String?)? onSaved;
+  final TextInputType? keyboardType;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -36,6 +38,8 @@ class InputSection extends StatelessWidget {
             height: 5,
           ),
           CustomFormTextFiled(
+            onSaved: onSaved,
+            keyboardType: keyboardType,
             isObsucure: isObscure,
             hintText: hintText,
             validator: validator,
