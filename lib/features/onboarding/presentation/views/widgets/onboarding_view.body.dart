@@ -22,7 +22,7 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
   List<SliderModel>? sliders;
   int currentIndex = 0;
   late PageController _pageController;
-  
+  late Timer _timer;
   @override
   void initState() {
     sliders = kSliders;
@@ -34,13 +34,14 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
   @override
   void dispose() {
     _pageController.dispose();
+    _timer.cancel();
     super.dispose();
   }
 
   void _startAutoScroll() {
-    bool isForward =true;
+    bool isForward = true;
     // Auto scroll every 5 seconds
-    Timer _timer = Timer.periodic(const Duration(seconds: 2), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 2), (timer) {
       if (isForward) {
         if (currentIndex < sliders!.length - 1) {
           currentIndex++;

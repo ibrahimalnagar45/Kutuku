@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:kutuku/constants.dart';
 import 'package:kutuku/core/utils/routes.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  await intializeFirebase();
   runApp(const Kutuku());
 }
+
+Future<void> intializeFirebase() async {
+  WidgetsFlutterBinding.ensureInitialized();
+   await Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+  );
+}
+
+ 
 
 class Kutuku extends StatelessWidget {
   const Kutuku({super.key});

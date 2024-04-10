@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "314826956376",
+    "project_id": "kutuku-c6dc6",
+    "storage_bucket": "kutuku-c6dc6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:314826956376:android:705f39a70d1f26a413f42d",
+        "android_client_info": {
+          "package_name": "com.example.kutuku"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbSzXOKpTuncdUr1CUqZUESNiORZ1_HmY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
