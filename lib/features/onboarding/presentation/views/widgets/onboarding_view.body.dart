@@ -1,11 +1,8 @@
-import 'dart:async';
-
-import 'package:flutter/cupertino.dart';
+import 'dart:async'; 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kutuku/constants.dart';
-import 'package:kutuku/core/utils/routes.dart';
+import 'package:kutuku/core/utils/app_routes.dart';
 import 'package:kutuku/core/utils/styles.dart';
 import 'package:kutuku/core/utils/widgets/custom_button.dart';
 import 'package:kutuku/features/onboarding/data/models/slider_model.dart';

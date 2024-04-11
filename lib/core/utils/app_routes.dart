@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:kutuku/features/Home/presentation/views/home_view.dart';
 import 'package:kutuku/features/auth/presentation/views/register_view.dart';
 import 'package:kutuku/features/auth/presentation/views/login_view.dart';
 import 'package:kutuku/features/auth/presentation/views/verification_view.dart';
@@ -11,6 +12,7 @@ abstract class AppRoutes {
   static const String kRgister = '/registerView';
   static const String kLogin = '/LoginView';
   static const String kVerfication = '/verificationView';
+  static const String kHome = '/HomeView';
 
   static final routes = GoRouter(
     initialLocation: '/splash',
@@ -34,7 +36,9 @@ abstract class AppRoutes {
       GoRoute(
         path: kVerfication,
         builder: (context, state) => const VerificationView(),
-      )
+      ),
+      GoRoute(path: kHome,
+      builder: (context, state) => const HomeView(),)
     ],
   );
 }

@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kutuku/core/services/firebase_service.dart';
 import 'package:kutuku/core/utils/helpers/store_user_info.dart';
-import 'package:kutuku/core/utils/routes.dart';
+import 'package:kutuku/core/utils/app_routes.dart';
 import 'package:kutuku/core/utils/styles.dart';
 import 'package:kutuku/core/utils/widgets/custom_button.dart';
 import 'package:kutuku/features/auth/presentation/views/widgets/addtional_auth_function.dart';
- 
+
 import 'input_section.dart';
 import 'view_title.dart';
 
@@ -37,7 +37,6 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
           const SizedBox(
             height: 30,
           ),
-         
           registerInputsTextFeilds(),
           SizedBox(
             height: MediaQuery.of(context).size.height * .03,
@@ -51,16 +50,15 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                   _autovalidateMode = AutovalidateMode.onUserInteraction;
                 });
                 FirebaseService().registerUsingEmailAndPassword(
-                    email: email,
-                    password: password);
+                  email: email,
+                  password: password,
+                  context: context,
+                );
                 log('registeration success');
                 GoRouter.of(context).push(AppRoutes.kLogin);
               }
 
               log('registeration failed');
-              setState(() {
-                _autovalidateMode = AutovalidateMode.disabled;
-              });
             },
           ),
           const SizedBox(
@@ -204,4 +202,4 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
       ],
     );
   }
- }
+}

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kutuku/constants.dart';
-import 'package:kutuku/core/utils/routes.dart';
+import 'package:kutuku/core/utils/app_routes.dart';
 import 'package:kutuku/core/utils/styles.dart';
 
 class SplahViewBody extends StatefulWidget {
