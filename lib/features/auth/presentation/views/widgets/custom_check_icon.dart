@@ -1,12 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter/material.dart'; 
 
 import '../../../../../constants.dart';
 
 class CustomCheckIcon extends StatelessWidget {
   const CustomCheckIcon(
-      {super.key, required this.icon, this.color = kPrimaryColor});
+      {super.key, required this.icon, this.color = kPrimaryColor,});
   final Widget icon;
   final Color color;
 

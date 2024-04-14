@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../constants.dart';
 
-OutlineInputBorder BuildOutLineInputBorder(
+OutlineInputBorder buildOutLineInputBorder(
     {Color color = Colors.grey, bool enabled = false}) {
   return OutlineInputBorder(
     borderRadius: BorderRadius.circular(kPrimaryPadding),

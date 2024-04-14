@@ -3,8 +3,8 @@ import 'package:kutuku/features/onboarding/data/models/slider_model.dart';
 
 const String kAppName = "Kutuku";
 const Color kPrimaryColor = Color(0xff514eb7);
-  Color kSecondaryColor = Colors.grey.withOpacity(.5);
-const double kPrimaryPadding = 15;
+Color kSecondaryColor = Colors.grey.withOpacity(.5);
+const double kPrimaryPadding = 20;
 
 const List<SliderModel> kSliders = [
   SliderModel(

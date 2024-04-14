@@ -6,7 +6,6 @@ import 'package:kutuku/core/utils/styles.dart';
 import '../../../../../core/utils/widgets/custom_button.dart';
 import 'custom_check_icon.dart';
 import 'custom_verification_model_bottom_sheet.dart';
- 
 
 class VerificationViewBody extends StatelessWidget {
   const VerificationViewBody({super.key});
@@ -51,19 +50,6 @@ class VerificationViewBody extends StatelessWidget {
         const SizedBox(
           height: 30,
         ),
-        // SizedBox(
-        //   height: 80,
-        //   child: ListView.builder(
-        //       scrollDirection: Axis.horizontal,
-        //       itemCount: 5,
-        //       itemBuilder: (context, index) {
-        //         return GestureDetector(
-        //             child: Padding(
-        //           padding: const EdgeInsets.only(right: 4),
-        //           child: VerificationCodeBloc(),
-        //         ));
-        //       }),
-        // ),
         OtpTextField(
           numberOfFields: 4,
           borderColor: kSecondaryColor,
@@ -77,11 +63,7 @@ class VerificationViewBody extends StatelessWidget {
           cursorColor: kPrimaryColor.withOpacity(.5),
           //set to true to show as box or false to show as dash
           showFieldAsBox: true,
-          //runs when a code is typed in
-          // onCodeChanged: (String code) {
 
-          //  },
-          //runs when every textfield is filled
           onSubmit: (String verificationCode) {
             showModalBottomSheet(
                 context: context,
@@ -90,23 +72,6 @@ class VerificationViewBody extends StatelessWidget {
                 });
           }, // end onSubmit
         ),
-
-        // OtpTextField(
-        //   numberOfFields: 5,
-        //   fieldHeight: 80,
-        //   fieldWidth : 70,
-        //   borderColor: kSecondaryColor,
-        //   onSubmit: (String verificationCode) {
-        //     showDialog(
-        //         context: context,
-        //         builder: (context) {
-        //           return AlertDialog(
-        //             title: const Text("Verification Code"),
-        //             content: Text('Code entered is $verificationCode'),
-        //           );
-        //         });
-        //   }, // end
-        // ),
         const SizedBox(
           height: 30,
         ),
@@ -135,10 +100,6 @@ class VerificationViewBody extends StatelessWidget {
               style:
                   Styles.desStyle.copyWith(color: kPrimaryColor, fontSize: 18),
             ),
-            //  const   Icon(
-            //       FontAwesomeIcons.chevronRight,
-            //       size: 20,
-            //     )
           ],
         )
       ],

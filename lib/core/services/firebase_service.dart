@@ -1,15 +1,16 @@
 import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:kutuku/core/utils/helpers/show_snake_bar.dart';
+ import 'package:kutuku/core/utils/helpers/show_snake_bar.dart';
 
 class FirebaseService {
+// firebasema
   Future<void> registerUsingEmailAndPassword({
     required context,
     required String? email,
     required String? password,
   }) async {
     try {
-      final Credential = await FirebaseAuth.instance
+      final credential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email!, password: password!);
       showSnakeBar(context: context, message: 'the registeration process success');
 
@@ -36,7 +37,7 @@ class FirebaseService {
     required context,
   }) async {
     try {
-      final Credential = await FirebaseAuth.instance
+      final credential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email!, password: password!);
       showSnakeBar(context: context, message: 'the login process success');
     } on FirebaseAuthException catch (e) {

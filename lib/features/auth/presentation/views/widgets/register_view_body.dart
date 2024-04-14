@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:kutuku/core/services/firebase_service.dart';
-import 'package:kutuku/core/utils/helpers/store_user_info.dart';
 import 'package:kutuku/core/utils/app_routes.dart';
 import 'package:kutuku/core/utils/styles.dart';
 import 'package:kutuku/core/utils/widgets/custom_button.dart';
@@ -118,16 +117,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                       ? 'the name must be more than 3 letters'
                       : null);
 
-              // if (data!.isEmpty || data == " ") {
-              //   return "required feild";
-              // } else if (data.length < 3) {
-              //   return "the name must be more than 3 letters";
-              // } else {
-              //   return null;
-              // }
-// data!.runtimeType
-              // validator: (value) => value ?? 'please enter your name',
-            }),
+              }),
         InputSection(
           onSaved: (value) {
             email = value;
@@ -146,17 +136,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                 ? "required feild"
                 : (!regex.hasMatch(data) ? 'Enter Valid Email' : null);
 
-            // if (data!.isEmpty) {
-            //   return "required feild";
-            // }
-            // String pattern =
-            //     r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-            // RegExp regex = RegExp(pattern);
-            // if (!regex.hasMatch(data)) {
-            //   return 'Enter Valid Email';
-            // } else {
-            //   return 'please enter right email';
-            // }
+          
           },
           // validator: (value) => value ?? 'please enter your name',
         ),
@@ -182,22 +162,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                             !data.contains(r'$')
                         ? 'weak password try add _ or special sing as # or *'
                         : null));
-
-            // if (data!.isEmpty) {
-            //   return "required feild";
-            // } else if (data.length < 8) {
-            //   return "the password must be more than 8 letters ";
-            // } else if (!data.contains('@') &&
-            //     !data.contains('*') &&
-            //     !data.contains('_') &&
-            //     !data.contains('#') &&
-            //     !data.contains(r'$')) {
-            //   return "weak password the password must contain _ or special sing as # or * ";
-            // } else {
-            //   return 'please enter vaild password';
-            // }
-            // validator: (value) => value ?? 'please enter your name',
-          },
+    },
         )
       ],
     );

@@ -11,7 +11,8 @@ class InputSection extends StatelessWidget {
     required this.prefixIicon,
     this.isObscure = false,
     this.withSuffixicon = false,
-    this.keyboardType, this.onSaved,
+    this.keyboardType,
+    this.onSaved,
   });
   final String title;
   final String hintText;
@@ -38,6 +39,7 @@ class InputSection extends StatelessWidget {
             height: 5,
           ),
           CustomFormTextFiled(
+            
             onSaved: onSaved,
             keyboardType: keyboardType,
             isObsucure: isObscure,
@@ -50,4 +52,6 @@ class InputSection extends StatelessWidget {
       ),
     );
   }
+
+  
 }

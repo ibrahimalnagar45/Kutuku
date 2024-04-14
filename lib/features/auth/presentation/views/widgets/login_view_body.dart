@@ -5,12 +5,9 @@ import 'package:kutuku/core/services/firebase_service.dart';
 import 'package:kutuku/core/utils/app_routes.dart';
 import 'package:kutuku/core/utils/styles.dart';
 import 'package:kutuku/core/utils/widgets/custom_button.dart';
-import 'package:kutuku/features/auth/presentation/views/widgets/custom_verification_model_bottom_sheet.dart';
 import 'package:kutuku/features/auth/presentation/views/widgets/forget_password_sheet.dart';
-
 import 'addtional_auth_function.dart';
 import 'input_section.dart';
-import 'login_inputs_section.dart';
 import 'view_title.dart';
 
 class LoginViewBody extends StatefulWidget {
@@ -64,23 +61,26 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             height: 30,
           ),
           CustomButton(
-            text: 'Login',
-            onPressed: () {
-              globalFormKey.currentState!.save();
-              if (globalFormKey.currentState!.validate()) {
-                setState(() {
-                  _autovalidateMode = AutovalidateMode.always;
-                });
-
-                FirebaseService().singinWithEmailAndPasswordP(
-                  email: email,
-                  password: password,
-                  context: context,
-                );
+              text: 'Login',
+              onPressed: () {
                 GoRouter.of(context).push(AppRoutes.kHome);
               }
-            },
-          ),
+              // onPressed: () {
+              //   globalFormKey.currentState!.save();
+              //   if (globalFormKey.currentState!.validate()) {
+              //     setState(() {
+              //       _autovalidateMode = AutovalidateMode.always;
+              //     });
+
+              //     FirebaseService().singinWithEmailAndPasswordP(
+              //       email: email,
+              //       password: password,
+              //       context: context,
+              //     );
+              //     GoRouter.of(context).push(AppRoutes.kHome);
+              //   }
+              // },
+              ),
           const SizedBox(
             height: 15,
           ),
@@ -101,32 +101,10 @@ class _LoginViewBodyState extends State<LoginViewBody> {
       ),
     );
   }
- Column loginInputsTextFeilds() {
+
+  Column loginInputsTextFeilds() {
     return Column(
       children: [
-        // InputSection(
-        //     keyboardType: TextInputType.text,
-        //     prefixIicon: const Icon(Icons.person),
-        //     title: 'Username',
-        //     hintText: 'Create your name',
-        //     validator: (data) {
-        //       return (data!.isEmpty)
-        //           ? "required feild"
-        //           : (data.length < 3
-        //               ? 'the name must be more than 3 letters'
-        //               : null);        
-        // // }),
-
-              // if (data!.isEmpty || data == " ") {
-              //   return "required feild";
-              // } else if (data.length < 3) {
-              //   return "the name must be more than 3 letters";
-              // } else {
-              //   return null;
-              // }
-// data!.runtimeType
-              // validator: (value) => value ?? 'please enter your name',
-   
         InputSection(
           onSaved: (value) {
             email = value;
@@ -144,18 +122,6 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             return data!.isEmpty
                 ? "required feild"
                 : (!regex.hasMatch(data) ? 'Enter Valid Email' : null);
-
-            // if (data!.isEmpty) {
-            //   return "required feild";
-            // }
-            // String pattern =
-            //     r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-            // RegExp regex = RegExp(pattern);
-            // if (!regex.hasMatch(data)) {
-            //   return 'Enter Valid Email';
-            // } else {
-            //   return 'please enter right email';
-            // }
           },
           // validator: (value) => value ?? 'please enter your name',
         ),
@@ -181,26 +147,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                             !data.contains(r'$')
                         ? 'weak password try add _ or special sing as # or *'
                         : null));
-
-            // if (data!.isEmpty) {
-            //   return "required feild";
-            // } else if (data.length < 8) {
-            //   return "the password must be more than 8 letters ";
-            // } else if (!data.contains('@') &&
-            //     !data.contains('*') &&
-            //     !data.contains('_') &&
-            //     !data.contains('#') &&
-            //     !data.contains(r'$')) {
-            //   return "weak password the password must contain _ or special sing as # or * ";
-            // } else {
-            //   return 'please enter vaild password';
-            // }
-            // validator: (value) => value ?? 'please enter your name',
           },
         )
       ],
     );
   }
-
-
 }

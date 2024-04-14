@@ -15,12 +15,12 @@ class OnboardingImagesList extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       itemCount: images.length,
       separatorBuilder: (context, index) => Padding(
-          padding: EdgeInsets.symmetric(horizontal: 30),
+          padding:const EdgeInsets.symmetric(horizontal: 30),
           child: Container(
             color: Colors.white,
           )),
       itemBuilder: (context, index) => Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20),
+        padding:const  EdgeInsets.symmetric(horizontal: 20),
         child: OnboardingImageContainer(
           image: images[index],
         ),

@@ -37,7 +37,7 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
 
   void _startAutoScroll() {
     bool isForward = true;
-    // Auto scroll every 5 seconds
+    // Auto scroll every 2 seconds
     _timer = Timer.periodic(const Duration(seconds: 2), (timer) {
       if (isForward) {
         if (currentIndex < sliders!.length - 1) {
@@ -149,9 +149,4 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
     );
   }
 }
-
-// Future<int> goTONext(int index) async {
-//   return await Future.delayed(const Duration(seconds: 2), () {
-//     return index++;
-//   });
-// }
+ 
