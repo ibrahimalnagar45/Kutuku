@@ -7,6 +7,7 @@ import 'package:kutuku/core/services/firebase_service.dart';
 import 'package:kutuku/core/utils/app_routes.dart';
 import 'package:kutuku/core/utils/styles.dart';
 import 'package:kutuku/core/utils/widgets/custom_button.dart';
+import 'package:kutuku/features/auth/presentation/views/register_inputs_sections.dart';
 import 'package:kutuku/features/auth/presentation/views/widgets/addtional_auth_function.dart';
 
 import 'input_section.dart';
@@ -36,7 +37,15 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
           const SizedBox(
             height: 30,
           ),
-          registerInputsTextFeilds(),
+          // registerInputsTextFeilds(),
+          RegisterInputSections(
+            emailOnSaved: (data) {
+              email = data;
+            },
+            passwordOnSaved: (data) {
+              password = data;
+            },
+          ),
           SizedBox(
             height: MediaQuery.of(context).size.height * .03,
           ),
@@ -102,69 +111,66 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
     );
   }
 
-  Column registerInputsTextFeilds() {
-    return Column(
-      children: [
-        InputSection(
-            keyboardType: TextInputType.text,
-            prefixIicon: const Icon(Icons.person),
-            title: 'Username',
-            hintText: 'Create your name',
-            validator: (data) {
-              return (data!.isEmpty)
-                  ? "required feild"
-                  : (data.length < 3
-                      ? 'the name must be more than 3 letters'
-                      : null);
+  // Column registerInputsTextFeilds() {
+  //   return Column(
+  //     children: [
+  //       InputSection(
+  //           keyboardType: TextInputType.text,
+  //           prefixIicon: const Icon(Icons.person),
+  //           title: 'Username',
+  //           hintText: 'Create your name',
+  //           validator: (data) {
+  //             return (data!.isEmpty)
+  //                 ? "required feild"
+  //                 : (data.length < 3
+  //                     ? 'the name must be more than 3 letters'
+  //                     : null);
+  //           }),
+  //       InputSection(
+  //         onSaved: (value) {
+  //           email = value;
+  //         },
+  //         keyboardType: TextInputType.emailAddress,
+  //         prefixIicon: const Icon(Icons.email_outlined),
+  //         title: 'Email or Phone Number',
+  //         hintText: 'Enter your email or Phome Number',
 
-              }),
-        InputSection(
-          onSaved: (value) {
-            email = value;
-          },
-          keyboardType: TextInputType.emailAddress,
-          prefixIicon: const Icon(Icons.email_outlined),
-          title: 'Email or Phone Number',
-          hintText: 'Enter your email or Phome Number',
+  //         validator: (data) {
+  //           String pattern =
+  //               r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+  //           RegExp regex = RegExp(pattern);
 
-          validator: (data) {
-            String pattern =
-                r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-            RegExp regex = RegExp(pattern);
-
-            return data!.isEmpty
-                ? "required feild"
-                : (!regex.hasMatch(data) ? 'Enter Valid Email' : null);
-
-          
-          },
-          // validator: (value) => value ?? 'please enter your name',
-        ),
-        InputSection(
-          onSaved: (value) {
-            password = value;
-          },
-          keyboardType: TextInputType.visiblePassword,
-          prefixIicon: const Icon(Icons.password),
-          withSuffixicon: true,
-          title: 'Password',
-          isObscure: true,
-          hintText: 'Create your Password',
-          validator: (data) {
-            return data!.isEmpty
-                ? "required feild"
-                : (data.length < 8
-                    ? 'the password must be more than 8 letters '
-                    : (!data.contains('@') &&
-                            !data.contains('*') &&
-                            !data.contains('_') &&
-                            !data.contains('#') &&
-                            !data.contains(r'$')
-                        ? 'weak password try add _ or special sing as # or *'
-                        : null));
-    },
-        )
-      ],
-    );
-  }
+  //           return data!.isEmpty
+  //               ? "required feild"
+  //               : (!regex.hasMatch(data) ? 'Enter Valid Email' : null);
+  //         },
+  //         // validator: (value) => value ?? 'please enter your name',
+  //       ),
+  //       InputSection(
+  //         onSaved: (value) {
+  //           password = value;
+  //         },
+  //         keyboardType: TextInputType.visiblePassword,
+  //         prefixIicon: const Icon(Icons.password),
+  //         withSuffixicon: true,
+  //         title: 'Password',
+  //         isObscure: true,
+  //         hintText: 'Create your Password',
+  //         validator: (data) {
+  //           return data!.isEmpty
+  //               ? "required feild"
+  //               : (data.length < 8
+  //                   ? 'the password must be more than 8 letters '
+  //                   : (!data.contains('@') &&
+  //                           !data.contains('*') &&
+  //                           !data.contains('_') &&
+  //                           !data.contains('#') &&
+  //                           !data.contains(r'$')
+  //                       ? 'weak password try add _ or special sing as # or *'
+  //                       : null));
+  //         },
+  //       )
+  //     ],
+  //   );
+  // }
 }
