@@ -4,7 +4,9 @@ import 'package:flutter/widgets.dart';
 import 'package:kutuku/constants.dart';
 import 'package:kutuku/features/Home/presentation/views/widgets/adds_list_view.dart';
 import 'package:kutuku/features/Home/presentation/views/widgets/home_appbar.dart';
+import 'package:kutuku/features/Home/presentation/views/widgets/home_footer_buttons.dart';
 import 'package:kutuku/features/Home/presentation/views/widgets/home_sections.dart';
+import 'package:kutuku/features/Home/presentation/views/widgets/home_view_body.dart';
 import 'package:kutuku/features/Home/presentation/views/widgets/product_card.dart';
 
 class HomeView extends StatelessWidget {
@@ -12,41 +14,11 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
+      persistentFooterButtons: [HomeViewPersistentFooterButtons()],
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: kPrimaryPadding),
-        child: ListView(
-          children: const [
-            HomeAppBar(),
-            SizedBox(
-              height: 10,
-            ),
-            HomeSections(),
-            SizedBox(
-              height: 15,
-            ),
-            AddsListView(),
-            SizedBox(
-              height: 15,
-            ),
-            Row(
-              children: [
-                ProductCard(),
-                ProductCard(),
-              ],
-            ),
-            Row(
-              children: [
-                ProductCard(),
-                ProductCard(),
-              ],
-            ),
-            // SizedBox(
-            //   height: 200,
-            //   child: Container(color: Colors.amber),
-            // )
-          ],
-        ),
+        padding: EdgeInsets.symmetric(horizontal: kPrimaryPadding),
+        child: HomeViewBody(),
       ),
     );
   }
