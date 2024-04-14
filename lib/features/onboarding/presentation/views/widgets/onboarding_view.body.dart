@@ -6,7 +6,7 @@ import 'package:kutuku/core/utils/app_routes.dart';
 import 'package:kutuku/core/utils/styles.dart';
 import 'package:kutuku/core/utils/widgets/custom_button.dart';
 import 'package:kutuku/features/onboarding/data/models/slider_model.dart';
-import 'package:kutuku/features/onboarding/presentation/views/widgets/build_dots.dart';
+import 'package:kutuku/core/utils/widgets/build_dots.dart';
 
 class OnboardingViewBody extends StatefulWidget {
   const OnboardingViewBody({super.key});
@@ -94,6 +94,7 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
         SizedBox(
           height: 40,
           child: BuildDots(
+            itemcount: 3,
             currentIndex: currentIndex,
           ),
         ),

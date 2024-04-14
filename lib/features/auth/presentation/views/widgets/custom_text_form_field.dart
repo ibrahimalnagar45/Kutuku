@@ -62,7 +62,7 @@ class _CustomFormTextFiledState extends State<CustomFormTextFiled> {
         borderRadius: BorderRadius.circular(kPrimaryPadding),
       ),
       child: TextFormField(
-        
+       
         onSaved: widget.onSaved,
         keyboardType: widget.keyboardType,
         obscureText: showPassword,

@@ -49,10 +49,9 @@ class _SplahViewBodyState extends State<SplahViewBody>
         Text(
           textAlign: TextAlign.center,
           'Any shopping just from here',
-          style: Styles.testStyle
-            ..copyWith(
-              color: Colors.white.withOpacity(.8),
-            ),
+          style: TextStyle(
+            color: Colors.white.withOpacity(.8),
+          ),
         ),
         const Spacer(
           flex: 4,
@@ -86,7 +85,7 @@ class _SplahViewBodyState extends State<SplahViewBody>
     Future.delayed(
       const Duration(seconds: 2),
       () {
-        GoRouter.of(context).push(AppRoutes.kONboarding);
+        GoRouter.of(context).push(AppRoutes.kHome);
       },
     );
   }

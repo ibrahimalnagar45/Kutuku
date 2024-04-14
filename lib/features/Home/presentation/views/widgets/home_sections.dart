@@ -1,5 +1,7 @@
- import 'package:flutter/material.dart';
- import 'package:kutuku/constants.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:kutuku/constants.dart';
+import 'package:kutuku/core/utils/app_routes.dart';
 import 'package:kutuku/core/utils/styles.dart';
 
 class HomeSections extends StatefulWidget {
@@ -10,8 +12,9 @@ class HomeSections extends StatefulWidget {
 }
 
 class _HomeSectionsState extends State<HomeSections> {
-  bool isSelected1 = true, isSelected2 = false;
+  int currentIndex = 0;
 
+  @override
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -20,7 +23,7 @@ class _HomeSectionsState extends State<HomeSections> {
         AnimatedContainer(
           duration: const Duration(milliseconds: 250),
           decoration: BoxDecoration(
-            border: isSelected1 == true
+            border: currentIndex == 0
                 ? const Border(
                     bottom: BorderSide(
                       color: kPrimaryColor,
@@ -35,17 +38,20 @@ class _HomeSectionsState extends State<HomeSections> {
               style: Styles.titleStyle,
             ),
             onPressed: () {
-              setState(() {
-                isSelected2 = false;
-                isSelected1 = true;
-              });
+              if (currentIndex != 0) {
+                GoRouter.of(context).push(AppRoutes.kHomeSectionBody);
+                currentIndex = 0;
+                setState(() {});
+              }
+
+              setState(() {});
             },
           ),
         ),
         AnimatedContainer(
           duration: const Duration(milliseconds: 250),
           decoration: BoxDecoration(
-            border: isSelected2 == true
+            border: currentIndex == 1
                 ? const Border(
                     bottom: BorderSide(
                       color: kPrimaryColor,
@@ -60,10 +66,13 @@ class _HomeSectionsState extends State<HomeSections> {
               style: Styles.titleStyle,
             ),
             onPressed: () {
-              setState(() {
-                isSelected1 = false;
-                isSelected2 = true;
-              });
+              if (currentIndex != 1) {
+                GoRouter.of(context).push(AppRoutes.kHomeCategory);
+                currentIndex = 1;
+                setState(() {});
+              }
+
+              setState(() {});
             },
           ),
         )

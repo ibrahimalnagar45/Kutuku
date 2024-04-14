@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import '../../../../../constants.dart';
+import '../../../constants.dart';
 
 class BuildDots extends StatelessWidget {
-  const BuildDots({super.key, required this.currentIndex});
+  const BuildDots(
+      {super.key, required this.currentIndex, required this.itemcount});
   final int currentIndex;
-
+  final int itemcount;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 24 + 18,
+      width: 14.0 * itemcount,
       child: ListView.builder(
-        itemCount: 3,
+        itemCount: itemcount,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) => Padding(
           padding: const EdgeInsets.symmetric(horizontal: 3.0),
@@ -27,3 +28,4 @@ class BuildDots extends StatelessWidget {
     );
   }
 }
+
