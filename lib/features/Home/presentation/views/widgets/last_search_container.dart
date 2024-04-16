@@ -8,10 +8,13 @@ class LastSearchContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
-        color: Colors.grey.withOpacity(.3),
+        // color: Colors.grey.withOpacity(.3),
         borderRadius: BorderRadius.circular(kPrimaryPadding),
+        border: Border.all(
+          color: Colors.grey.withOpacity(.2),
+        ),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -25,7 +28,8 @@ class LastSearchContainer extends StatelessWidget {
           ),
           Icon(
             Icons.close,
-            color: Colors.grey.withOpacity(.8),
+            color: Colors.grey.withOpacity(.5),
+            size: 20,
           )
         ],
       ),
