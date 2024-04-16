@@ -2,7 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:kutuku/collage_view.dart';
 import 'package:kutuku/features/Home/presentation/views/category_view.dart';
 import 'package:kutuku/features/Home/presentation/views/home_view.dart';
-import 'package:kutuku/features/Home/presentation/views/search_view.dart';
+import 'package:kutuku/features/search/presentation/views/search_view.dart';
 import 'package:kutuku/features/Home/presentation/views/widgets/home_section_body.dart';
 import 'package:kutuku/features/auth/presentation/views/register_view.dart';
 import 'package:kutuku/features/auth/presentation/views/login_view.dart';

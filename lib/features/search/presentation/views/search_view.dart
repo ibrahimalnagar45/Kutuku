@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kutuku/core/utils/styles.dart';
-import 'package:kutuku/features/Home/presentation/views/widgets/last_search_container.dart';
-import 'package:kutuku/features/Home/presentation/views/widgets/popular_search_container.dart';
+import 'package:kutuku/features/search/presentation/views/widgets/last_search_container.dart';
+import 'package:kutuku/features/search/presentation/views/widgets/popular_search_container.dart';
 
 import 'widgets/search_section.dart';
 
