@@ -86,7 +86,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                   password: password,
                   context: context,
                 );
-                GoRouter.of(context).push(AppRoutes.kHome);
+                GoRouter.of(context).push(AppRoutes.kHomeView);
               }
             },
           ),

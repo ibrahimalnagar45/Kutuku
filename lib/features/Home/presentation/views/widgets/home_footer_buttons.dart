@@ -15,58 +15,55 @@ class _HomeViewPersistentFooterButtonsState
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // color: Colors.grey.withOpacity(.3),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          IconButton(
-            highlightColor: kPrimaryColor.withOpacity(.5),
-            onPressed: () {
-              currentId = 0;
-              setState(() {});
-            },
-            icon: Icon(
-              Icons.home,
-              color: currentId == 0 ? kPrimaryColor : Colors.black,
-            ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        IconButton(
+          highlightColor: kPrimaryColor.withOpacity(.5),
+          onPressed: () {
+            currentId = 0;
+            setState(() {});
+          },
+          icon: Icon(
+            Icons.home,
+            color: currentId == 0 ? kPrimaryColor : Colors.black,
           ),
-          IconButton(
-            highlightColor: kPrimaryColor.withOpacity(.5),
-            onPressed: () {
-              currentId = 1;
-              setState(() {});
-            },
-            icon: Icon(
-              Icons.shopping_cart,
-              color: currentId == 1 ? kPrimaryColor : Colors.black,
-            ),
+        ),
+        IconButton(
+          highlightColor: kPrimaryColor.withOpacity(.5),
+          onPressed: () {
+            currentId = 1;
+            setState(() {});
+          },
+          icon: Icon(
+            Icons.shopping_cart,
+            color: currentId == 1 ? kPrimaryColor : Colors.black,
           ),
-          IconButton(
-            highlightColor: kPrimaryColor.withOpacity(.5),
-            onPressed: () {
-              currentId = 2;
-              setState(() {});
-            },
-            icon: Icon(
-              Icons.favorite_outline_outlined,
-              color: currentId == 2 ? kPrimaryColor : Colors.black,
-            ),
+        ),
+        IconButton(
+          highlightColor: kPrimaryColor.withOpacity(.5),
+          onPressed: () {
+            currentId = 2;
+            setState(() {});
+          },
+          icon: Icon(
+            Icons.favorite_outline_outlined,
+            color: currentId == 2 ? kPrimaryColor : Colors.black,
           ),
-          IconButton(
-            highlightColor: kPrimaryColor.withOpacity(.5),
-            onPressed: () {
-              currentId = 3;
-              setState(() {});
-            },
-            icon: Icon(
-              Icons.person_3_outlined,
-              color: currentId == 3 ? kPrimaryColor : Colors.black,
-            ),
+        ),
+        IconButton(
+          highlightColor: kPrimaryColor.withOpacity(.5),
+          onPressed: () {
+            currentId = 3;
+            setState(() {});
+          },
+          icon: Icon(
+            Icons.person_3_outlined,
+            color: currentId == 3 ? kPrimaryColor : Colors.black,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

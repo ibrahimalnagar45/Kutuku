@@ -85,7 +85,7 @@ class _SplahViewBodyState extends State<SplahViewBody>
     Future.delayed(
       const Duration(seconds: 2),
       () {
-        GoRouter.of(context).push(AppRoutes.kHome);
+        GoRouter.of(context).push(AppRoutes.kHomeView);
       },
     );
   }

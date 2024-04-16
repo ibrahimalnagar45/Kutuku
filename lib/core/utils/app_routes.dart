@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:kutuku/collage_view.dart';
 import 'package:kutuku/features/Home/presentation/views/category_view.dart';
 import 'package:kutuku/features/Home/presentation/views/home_view.dart';
+import 'package:kutuku/features/Home/presentation/views/search_view.dart';
 import 'package:kutuku/features/Home/presentation/views/widgets/home_section_body.dart';
 import 'package:kutuku/features/auth/presentation/views/register_view.dart';
 import 'package:kutuku/features/auth/presentation/views/login_view.dart';
@@ -12,25 +13,28 @@ import '../../features/splash/presentaion/views/splah_view.dart';
 
 abstract class AppRoutes {
   static const String kCollage = '/collageView';
-  static const String kONboarding = '/onboardingview';
-  static const String kRgister = '/registerView';
-  static const String kLogin = '/LoginView';
-  static const String kVerfication = '/verificationView';
-  static const String kHome = '/HomeView';
-  static const String kHomeSectionBody = '/HomeSection';
-  static const String kHomeCategory = '/HomeCategory';
-
-
+  static const String kONboardingView = '/onboardingview';
+  static const String kRgisterView = '/registerView';
+  static const String kLoginView = '/LoginView';
+  static const String kVerficationView = '/verificationView';
+  static const String kHomeView = '/HomeView';
+  static const String kHomeSectionBodyView = '/HomeSectionView';
+  static const String kHomeCategoryView = '/HomeCategoryView';
+  static const String kSearchView = '/SearchView';
 
   static final routes = GoRouter(
     initialLocation: '/splash',
     routes: [
-       GoRoute(
-        path: kHomeCategory,
+      GoRoute(
+        path: kSearchView,
+        builder: (context, state) => const HomeSearchView(),
+      ),
+      GoRoute(
+        path: kHomeCategoryView,
         builder: (context, state) => const CategoryView(),
       ),
-       GoRoute(
-        path: kHomeSectionBody,
+      GoRoute(
+        path: kHomeSectionBodyView,
         builder: (context, state) => const HomeSectionBody(),
       ),
       GoRoute(
@@ -42,23 +46,23 @@ abstract class AppRoutes {
         builder: (context, state) => const SplahView(),
       ),
       GoRoute(
-        path: kONboarding,
+        path: kONboardingView,
         builder: (context, state) => const OnboardingView(),
       ),
       GoRoute(
-        path: kRgister,
+        path: kRgisterView,
         builder: (context, state) => const Registerview(),
       ),
       GoRoute(
-        path: kLogin,
+        path: kLoginView,
         builder: (context, state) => const LoginView(),
       ),
       GoRoute(
-        path: kVerfication,
+        path: kVerficationView,
         builder: (context, state) => const VerificationView(),
       ),
       GoRoute(
-        path: kHome,
+        path: kHomeView,
         builder: (context, state) => const HomeView(),
       )
     ],

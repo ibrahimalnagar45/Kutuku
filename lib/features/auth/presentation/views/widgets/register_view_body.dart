@@ -63,7 +63,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                   context: context,
                 );
                 log('registeration success');
-                GoRouter.of(context).push(AppRoutes.kLogin);
+                GoRouter.of(context).push(AppRoutes.kLoginView);
               }
 
               log('registeration failed');
@@ -103,7 +103,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
           CustomButton(
             text: 'LogIn',
             onPressed: () {
-              GoRouter.of(context).push(AppRoutes.kLogin);
+              GoRouter.of(context).push(AppRoutes.kLoginView);
             },
           ),
         ],

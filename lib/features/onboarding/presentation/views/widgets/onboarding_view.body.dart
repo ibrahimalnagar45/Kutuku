@@ -1,4 +1,4 @@
-import 'dart:async'; 
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kutuku/constants.dart';
@@ -101,14 +101,14 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
         CustomButton(
           text: 'Create Acount',
           onPressed: () {
-            GoRouter.of(context).push(AppRoutes.kRgister);
+            GoRouter.of(context).push(AppRoutes.kRgisterView);
           },
         ),
         const SizedBox(
           height: 10,
         ),
         TextButton(
-          onPressed: () => GoRouter.of(context).push(AppRoutes.kLogin),
+          onPressed: () => GoRouter.of(context).push(AppRoutes.kLoginView),
           child: Text(
             'Already Have An Account?',
             textAlign: TextAlign.center,
@@ -150,4 +150,3 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
     );
   }
 }
- 

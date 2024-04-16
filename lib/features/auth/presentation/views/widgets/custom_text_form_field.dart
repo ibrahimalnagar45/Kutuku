@@ -13,6 +13,7 @@ class CustomFormTextFiled extends StatefulWidget {
     this.withSuffixIcon = false,
     this.keyboardType,
     this.onSaved,
+    this.padding = kPrimaryPadding,
   });
   final String? Function(String?)? validator;
   final String hintText;
@@ -21,6 +22,7 @@ class CustomFormTextFiled extends StatefulWidget {
   final bool withSuffixIcon;
   final TextInputType? keyboardType;
   final void Function(String?)? onSaved;
+  final double? padding;
 
   @override
   State<CustomFormTextFiled> createState() => _CustomFormTextFiledState();
@@ -59,10 +61,9 @@ class _CustomFormTextFiledState extends State<CustomFormTextFiled> {
     return Container(
       decoration: BoxDecoration(
         color: Colors.grey.withOpacity(.05),
-        borderRadius: BorderRadius.circular(kPrimaryPadding),
+        borderRadius: BorderRadius.circular(widget.padding!),
       ),
       child: TextFormField(
-       
         onSaved: widget.onSaved,
         keyboardType: widget.keyboardType,
         obscureText: showPassword,

@@ -1,4 +1,4 @@
- import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kutuku/core/utils/app_routes.dart';
 import 'package:kutuku/core/utils/widgets/custom_button.dart';
@@ -47,7 +47,7 @@ class CustomVerificationBottomModelSheet extends StatelessWidget {
           text: 'Go to Home',
           onPressed: () {
             GoRouter.of(context).pop();
-            GoRouter.of(context).push(AppRoutes.kLogin);
+            GoRouter.of(context).push(AppRoutes.kLoginView);
           },
         ),
         const SizedBox(

@@ -11,9 +11,9 @@ class HomeSections extends StatefulWidget {
   State<HomeSections> createState() => _HomeSectionsState();
 }
 
-class _HomeSectionsState extends State<HomeSections> {
-  int currentIndex = 0;
+ int? currentIndex;
 
+class _HomeSectionsState extends State<HomeSections> {
   @override
   @override
   Widget build(BuildContext context) {
@@ -39,12 +39,14 @@ class _HomeSectionsState extends State<HomeSections> {
             ),
             onPressed: () {
               if (currentIndex != 0) {
-                GoRouter.of(context).push(AppRoutes.kHomeSectionBody);
                 currentIndex = 0;
                 setState(() {});
+                GoRouter.of(context).push(
+                  AppRoutes.kHomeView,
+                );
               }
 
-              setState(() {});
+               
             },
           ),
         ),
@@ -67,12 +69,15 @@ class _HomeSectionsState extends State<HomeSections> {
             ),
             onPressed: () {
               if (currentIndex != 1) {
-                GoRouter.of(context).push(AppRoutes.kHomeCategory);
                 currentIndex = 1;
                 setState(() {});
+                GoRouter.of(context).push(
+                  AppRoutes.kHomeCategoryView,
+                );
+                
               }
 
-              setState(() {});
+              
             },
           ),
         )

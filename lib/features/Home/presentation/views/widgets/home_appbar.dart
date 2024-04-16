@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:kutuku/constants.dart';
+import 'package:kutuku/core/utils/app_routes.dart';
 import 'package:kutuku/core/utils/styles.dart';
 
 class HomeAppBar extends StatelessWidget {
@@ -8,8 +10,7 @@ class HomeAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-            vertical: kPrimaryPadding),
+      padding: const EdgeInsets.symmetric(vertical: kPrimaryPadding),
       child: SafeArea(
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -39,7 +40,10 @@ class HomeAppBar extends StatelessWidget {
             ),
             const Spacer(),
             GestureDetector(
-              child:const  Icon(Icons.search),
+              onTap: () {
+                GoRouter.of(context).pushReplacement(AppRoutes.kSearchView);
+              },
+              child: const Icon(Icons.search),
             ),
             IconButton(
               onPressed: () {},
