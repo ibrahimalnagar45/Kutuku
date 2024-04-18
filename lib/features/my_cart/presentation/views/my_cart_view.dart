@@ -11,7 +11,7 @@ class MyCartView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: myCarAppBar(),
+      appBar: myCartViewAppBar(context),
       persistentFooterButtons: const [
         PersistentFooterButtons(),
       ],

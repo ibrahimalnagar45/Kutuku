@@ -79,7 +79,7 @@ class _MyCartItemsListState extends State<MyCartItemsList> {
                         child: MyCartItem(
                           forceSelection: selectAll,
                           showAllPressed: showAllPressed,
-                          productModel: testProducts[0],
+                          productModel: testProducts[index],
                         ),
                       );
                     }),
@@ -103,7 +103,7 @@ class _MyCartItemsListState extends State<MyCartItemsList> {
                 },
                 child: MyCartItem(
                   showAllPressed: showAllPressed,
-                  productModel: testProducts[0],
+                  productModel: testProducts[index],
                 ),
               );
             });

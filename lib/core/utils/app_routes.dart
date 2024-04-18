@@ -2,6 +2,8 @@ import 'package:go_router/go_router.dart';
 import 'package:kutuku/collage_view.dart';
 import 'package:kutuku/features/Home/presentation/views/category_view.dart';
 import 'package:kutuku/features/Home/presentation/views/home_view.dart';
+import 'package:kutuku/features/my_cart/presentation/views/my_cart_view.dart';
+import 'package:kutuku/features/profile/presentation/views/profile_view.dart';
 import 'package:kutuku/features/search/presentation/views/search_view.dart';
 import 'package:kutuku/features/Home/presentation/views/widgets/home_section_body.dart';
 import 'package:kutuku/features/auth/presentation/views/register_view.dart';
@@ -18,9 +20,10 @@ abstract class AppRoutes {
   static const String kLoginView = '/LoginView';
   static const String kVerficationView = '/verificationView';
   static const String kHomeView = '/HomeView';
-  static const String kHomeSectionBodyView = '/HomeSectionView';
   static const String kHomeCategoryView = '/HomeCategoryView';
   static const String kSearchView = '/SearchView';
+  static const String kMyCartView = '/MyCartView';
+  static const String kProfileView = '/ProfileView';
 
   static final routes = GoRouter(
     initialLocation: '/splash',
@@ -30,12 +33,16 @@ abstract class AppRoutes {
         builder: (context, state) => const HomeSearchView(),
       ),
       GoRoute(
-        path: kHomeCategoryView,
-        builder: (context, state) => const CategoryView(),
+        path: kProfileView,
+        builder: (context, state) => const ProfileView(),
       ),
       GoRoute(
-        path: kHomeSectionBodyView,
-        builder: (context, state) => const HomeSectionBody(),
+        path: kMyCartView,
+        builder: (context, state) => const MyCartView(),
+      ),
+      GoRoute(
+        path: kHomeCategoryView,
+        builder: (context, state) => const CategoryView(),
       ),
       GoRoute(
         path: kCollage,

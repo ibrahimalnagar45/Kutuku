@@ -67,9 +67,14 @@ class _PersistentFooterButtonsState extends State<PersistentFooterButtons> {
             currentId = 3;
             setState(() {});
           },
-          icon: Icon(
-            Icons.person_3_outlined,
-            color: currentId == 3 ? kPrimaryColor : Colors.black,
+          icon: IconButton(
+            icon: Icon(
+              Icons.person_3_outlined,
+              color: currentId == 3 ? kPrimaryColor : Colors.black,
+            ),
+            onPressed: () {
+              GoRouter.of(context).push(AppRoutes.kProfileView);
+            },
           ),
         ),
       ],

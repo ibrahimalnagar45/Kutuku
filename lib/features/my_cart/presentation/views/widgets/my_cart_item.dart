@@ -36,12 +36,13 @@ class _MyCartItemState extends State<MyCartItem> {
                       GestureDetector(
                         onTap: () {
                           selected = !selected;
+                          // widget.forceSelection != widget.forceSelection;
                           setState(() {});
                         },
                         child: selected || widget.forceSelection
                             ? Container(
-                                height: 25,
-                                width: 25,
+                                height: 20,
+                                width: 20,
                                 decoration: BoxDecoration(
                                   color: kPrimaryColor,
                                   borderRadius: BorderRadius.circular(5),
@@ -49,12 +50,13 @@ class _MyCartItemState extends State<MyCartItem> {
                                 ),
                                 child: const Icon(
                                   Icons.check,
+                                  size: 15,
                                   color: Colors.white,
                                 ),
                               )
                             : Container(
-                                height: 25,
-                                width: 25,
+                                height: 20,
+                                width: 20,
                                 decoration: BoxDecoration(
                                     // color: Colors.amber,
                                     borderRadius: BorderRadius.circular(5),

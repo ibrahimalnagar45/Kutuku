@@ -8,8 +8,7 @@ import 'package:kutuku/core/utils/widgets/custom_button.dart';
 import 'package:kutuku/features/auth/presentation/views/widgets/forget_password_sheet.dart';
 import 'package:kutuku/features/auth/presentation/views/widgets/login_inputs_section.dart';
 import 'addtional_auth_function.dart';
-import 'input_section.dart';
-import 'view_title.dart';
+ import 'view_title.dart';
 
 class LoginViewBody extends StatefulWidget {
   const LoginViewBody({super.key});

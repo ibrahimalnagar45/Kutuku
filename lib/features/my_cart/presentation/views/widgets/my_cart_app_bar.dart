@@ -1,26 +1,30 @@
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-  import 'package:flutter/material.dart';
-
-AppBar myCarAppBar() {
-    return AppBar(
-      centerTitle: true,
-      leading: const Icon(
+AppBar myCartViewAppBar(context ) {
+  return AppBar(
+    centerTitle: true,
+    leading: IconButton(
+      icon: const Icon(
         Icons.arrow_back_ios,
       ),
-      title: const Text(
-        'My Cart',
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-        ),
+      onPressed: () {
+        GoRouter.of(context).pop();
+      },
+    ),
+    title: const Text(
+      'My Cart',
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
       ),
-      actions: [
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.shopping_bag_outlined,
-          ),
-        )
-      ],
-    );
-  }
-
+    ),
+    actions: [
+      IconButton(
+        onPressed: () {},
+        icon: const Icon(
+          Icons.shopping_bag_outlined,
+        ),
+      )
+    ],
+  );
+}
