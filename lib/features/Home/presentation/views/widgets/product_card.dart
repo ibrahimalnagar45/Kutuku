@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter/widgets.dart';
 import 'package:kutuku/constants.dart';
-import 'package:kutuku/core/utils/app_routes.dart';
+import 'package:kutuku/core/models/product_model.dart';
 
-class ProductCard extends StatelessWidget {
-  const ProductCard({super.key});
+class ProductCard extends StatefulWidget {
+  const ProductCard({super.key, required this.productModel});
+  final ProductModel productModel;
+
+  @override
+  State<ProductCard> createState() => _ProductCardState();
+}
+
+class _ProductCardState extends State<ProductCard> {
+  bool redFavoriteIcon = false;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +32,7 @@ class ProductCard extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(15),
                   child: Image.asset(
-                    'assets/images/onboarding1.jpeg',
+                    widget.productModel.image,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -34,12 +42,17 @@ class ProductCard extends StatelessWidget {
                   child: CircleAvatar(
                     backgroundColor: Colors.grey.withOpacity(.8),
                     child: IconButton(
-                      highlightColor: kPrimaryColor,
-                      icon: const Icon(
-                        Icons.favorite_border,
-                        color: Colors.white,
+                      highlightColor: Colors.red.withOpacity(.4),
+                      icon: Icon(
+                        redFavoriteIcon
+                            ? Icons.favorite
+                            : Icons.favorite_border,
+                        color: redFavoriteIcon ? Colors.red : Colors.white,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        redFavoriteIcon = !redFavoriteIcon;
+                        setState(() {});
+                      },
                     ),
                   ),
                 ),

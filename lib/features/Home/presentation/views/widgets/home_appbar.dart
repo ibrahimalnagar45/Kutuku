@@ -41,7 +41,7 @@ class HomeAppBar extends StatelessWidget {
             const Spacer(),
             GestureDetector(
               onTap: () {
-                GoRouter.of(context).pushReplacement(AppRoutes.kSearchView);
+                GoRouter.of(context).push(AppRoutes.kSearchView);
               },
               child: const Icon(Icons.search),
             ),

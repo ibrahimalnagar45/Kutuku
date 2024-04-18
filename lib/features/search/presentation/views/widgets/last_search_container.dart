@@ -9,9 +9,10 @@ class LastSearchContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      margin: const EdgeInsets.all(2),
       decoration: BoxDecoration(
         // color: Colors.grey.withOpacity(.3),
-        borderRadius: BorderRadius.circular(kPrimaryPadding),
+        borderRadius: BorderRadius.circular(10),
         border: Border.all(
           color: Colors.grey.withOpacity(.2),
         ),

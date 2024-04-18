@@ -1,18 +1,20 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:kutuku/constants.dart';
+import 'package:kutuku/core/utils/app_routes.dart';
 
-class HomeViewPersistentFooterButtons extends StatefulWidget {
-  const HomeViewPersistentFooterButtons({super.key});
-
+class PersistentFooterButtons extends StatefulWidget {
+  const PersistentFooterButtons({super.key});
   @override
-  State<HomeViewPersistentFooterButtons> createState() =>
-      _HomeViewPersistentFooterButtonsState();
+  State<PersistentFooterButtons> createState() =>
+      _PersistentFooterButtonsState();
 }
 
-class _HomeViewPersistentFooterButtonsState
-    extends State<HomeViewPersistentFooterButtons> {
-  int currentId = 0;
+int? currentId;
 
+class _PersistentFooterButtonsState extends State<PersistentFooterButtons> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -22,8 +24,12 @@ class _HomeViewPersistentFooterButtonsState
         IconButton(
           highlightColor: kPrimaryColor.withOpacity(.5),
           onPressed: () {
-            currentId = 0;
-            setState(() {});
+            if (currentId != 0) {
+              currentId = 0;
+              setState(() {});
+
+              GoRouter.of(context).push(AppRoutes.kHomeView);
+            }
           },
           icon: Icon(
             Icons.home,
@@ -33,8 +39,11 @@ class _HomeViewPersistentFooterButtonsState
         IconButton(
           highlightColor: kPrimaryColor.withOpacity(.5),
           onPressed: () {
-            currentId = 1;
-            setState(() {});
+            if (currentId != 1) {
+              currentId = 1;
+              setState(() {});
+              GoRouter.of(context).push(AppRoutes.kMyCartView);
+            }
           },
           icon: Icon(
             Icons.shopping_cart,

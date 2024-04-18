@@ -11,10 +11,9 @@ class HomeSections extends StatefulWidget {
   State<HomeSections> createState() => _HomeSectionsState();
 }
 
- int? currentIndex;
+  int? currentIndex;
 
 class _HomeSectionsState extends State<HomeSections> {
-  @override
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -23,7 +22,7 @@ class _HomeSectionsState extends State<HomeSections> {
         AnimatedContainer(
           duration: const Duration(milliseconds: 250),
           decoration: BoxDecoration(
-            border: currentIndex == 0
+            border: (currentIndex == 0 || currentIndex == null)
                 ? const Border(
                     bottom: BorderSide(
                       color: kPrimaryColor,
@@ -45,8 +44,6 @@ class _HomeSectionsState extends State<HomeSections> {
                   AppRoutes.kHomeView,
                 );
               }
-
-               
             },
           ),
         ),
@@ -74,10 +71,7 @@ class _HomeSectionsState extends State<HomeSections> {
                 GoRouter.of(context).push(
                   AppRoutes.kHomeCategoryView,
                 );
-                
               }
-
-              
             },
           ),
         )

@@ -9,7 +9,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      persistentFooterButtons: [HomeViewPersistentFooterButtons()],
+      persistentFooterButtons: [PersistentFooterButtons()],
       // floatingActionButton: HomeViewPersistentFooterButtons(),
       // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: Padding(
