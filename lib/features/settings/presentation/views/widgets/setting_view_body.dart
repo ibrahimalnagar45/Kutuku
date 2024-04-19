@@ -4,6 +4,7 @@ import 'package:kutuku/core/utils/app_routes.dart';
 import 'package:kutuku/features/settings/presentation/views/widgets/setting_item.dart';
 
 import '../../../../../core/utils/styles.dart';
+import '../../../../auth/presentation/views/widgets/forget_password_sheet.dart';
 
 class SettingsViewBody extends StatelessWidget {
   const SettingsViewBody({super.key});
@@ -27,30 +28,29 @@ class SettingsViewBody extends StatelessWidget {
           icon: const Icon(Icons.lock_outline),
           title: 'change Password',
           onPressed: () {
-            GoRouter.of(context).push(AppRoutes.kProfileView);
+            showModalBottomSheet(
+                isScrollControlled: true,
+                context: context,
+                builder: (context) {
+                  return const ForgetPasswordSheet();
+                });
           },
         ),
         SettingItem(
           icon: const Icon(Icons.notifications_outlined),
           title: 'Notification',
-          onPressed: () {
-            GoRouter.of(context).push(AppRoutes.kProfileView);
-          },
+          onPressed: () {},
         ),
         SettingItem(
           icon: const Icon(Icons.security_outlined),
           title: 'Security',
-          onPressed: () {
-            GoRouter.of(context).push(AppRoutes.kProfileView);
-          },
+          onPressed: () {},
         ),
         SettingItem(
           discreption: 'English',
           icon: const Icon(Icons.map),
           title: 'Language ',
-          onPressed: () {
-            GoRouter.of(context).push(AppRoutes.kProfileView);
-          },
+          onPressed: () {},
         ),
         const Text(
           'Preferencess ',
@@ -59,16 +59,12 @@ class SettingsViewBody extends StatelessWidget {
         SettingItem(
           icon: const Icon(Icons.shield_outlined),
           title: 'Legal and Policies ',
-          onPressed: () {
-            GoRouter.of(context).push(AppRoutes.kProfileView);
-          },
+          onPressed: () {},
         ),
         SettingItem(
           icon: const Icon(Icons.contact_support_outlined),
           title: 'Help and support',
-          onPressed: () {
-            GoRouter.of(context).push(AppRoutes.kProfileView);
-          },
+          onPressed: () {},
         ),
         SettingItem(
           color: Colors.red,
@@ -77,9 +73,7 @@ class SettingsViewBody extends StatelessWidget {
             color: Colors.red,
           ),
           title: 'Log Out',
-          onPressed: () {
-            GoRouter.of(context).push(AppRoutes.kProfileView);
-          },
+          onPressed: () {},
         ),
       ],
     );
