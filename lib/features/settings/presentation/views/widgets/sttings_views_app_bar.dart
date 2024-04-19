@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kutuku/core/utils/styles.dart';
 
 class SettingViewsAppBar extends StatelessWidget {
   const SettingViewsAppBar({
@@ -14,7 +15,10 @@ class SettingViewsAppBar extends StatelessWidget {
       // mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         const Spacer(),
-        Text(title),
+        Text(
+          title,
+          style: Styles.titleStyle,
+        ),
         const Spacer(),
         IconButton(
           onPressed: onPressed,

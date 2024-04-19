@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:go_router/go_router.dart';
+ import 'package:go_router/go_router.dart';
 import 'package:kutuku/constants.dart';
 import 'package:kutuku/core/utils/app_routes.dart';
-import 'package:kutuku/core/utils/widgets/custom_button.dart';
-import 'package:kutuku/features/settings/presentation/views/widgets/profile_view_body.dart';
-
+ import 'package:kutuku/features/settings/presentation/views/widgets/profile_view_body.dart';
 import 'widgets/sttings_views_app_bar.dart';
 
 class ProfileView extends StatelessWidget {

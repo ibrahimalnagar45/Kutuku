@@ -10,7 +10,7 @@ class SettingView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const SettingViewsAppBar(title: 'Setting'),
+        title: const SettingViewsAppBar(title: 'Settings',),
       ),
       body: const Padding(
         padding: EdgeInsets.all(kPrimaryPadding),

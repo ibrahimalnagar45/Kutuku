@@ -5,16 +5,17 @@ import 'package:kutuku/constants.dart';
 import 'package:kutuku/core/utils/styles.dart';
 
 class SettingItem extends StatelessWidget {
-  const SettingItem({
-    super.key,
-    required this.icon,
-    required this.title,
-    this.discreption,
-    this.onPressed,
-  });
+  const SettingItem(
+      {super.key,
+      required this.icon,
+      required this.title,
+      this.discreption,
+      this.onPressed,
+      this.color});
   final Widget icon;
   final String title;
   final String? discreption;
+  final Color? color;
   final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
@@ -27,26 +28,57 @@ class SettingItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(
             kPrimaryPadding,
           )),
-      child: Row(
-        children: [
-          icon,
-          const SizedBox(
-            width: 20,
-          ),
-          Text(
-            title,
-            style: Styles.textStyle15,
-          ),
-          const Spacer(),
-          IconButton(
-            icon: Icon(
-              Icons.arrow_forward_ios,
-              color: kSecondaryColor,
+      child: discreption != null
+          ? Row(
+              children: [
+                icon,
+                const SizedBox(
+                  width: 20,
+                ),
+                Text(
+                  title,
+                  style: color != null
+                      ? Styles.textStyle15.copyWith(color: color)
+                      : Styles.textStyle15,
+                ),
+                const Spacer(),
+                Text(
+                  discreption!,
+                  style: color != null
+                      ? Styles.textStyle15.copyWith(color: color)
+                      : Styles.desStyle,
+                ),
+                IconButton(
+                  icon: Icon(
+                    Icons.arrow_forward_ios,
+                    color: kSecondaryColor,
+                  ),
+                  onPressed: onPressed,
+                ),
+              ],
+            )
+          : Row(
+              children: [
+                icon,
+                const SizedBox(
+                  width: 20,
+                ),
+                Text(
+                  title,
+                  style: color != null
+                      ? Styles.textStyle15.copyWith(color: color)
+                      : Styles.textStyle15,
+                ),
+                const Spacer(),
+                IconButton(
+                  icon: Icon(
+                    Icons.arrow_forward_ios,
+                    color: kSecondaryColor,
+                  ),
+                  onPressed: onPressed,
+                ),
+              ],
             ),
-            onPressed: onPressed,
-          ),
-        ],
-      ),
     );
   }
 }
