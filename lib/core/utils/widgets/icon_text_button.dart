@@ -7,7 +7,7 @@ class IconTextButton extends StatelessWidget {
     super.key,
     required this.colored,
     required this.prefixIcon,
-    required this.onPressed,
+      this.onPressed,
     required this.text,
   });
 
