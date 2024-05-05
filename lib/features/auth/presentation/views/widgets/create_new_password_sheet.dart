@@ -60,6 +60,7 @@ class _CreateNewPasswordSheetState extends State<CreateNewPasswordSheet> {
                 height: 40,
               ),
               InputSection(
+                passowrdField: true,
                 isObscure: true,
                 onSaved: (data) {
                   newPassword1 = data;
@@ -82,9 +83,10 @@ class _CreateNewPasswordSheetState extends State<CreateNewPasswordSheet> {
                 title: 'New Password',
                 hintText: 'enter New Password',
                 prefixIicon: const Icon(Icons.password),
-                withSuffixicon: true,
+                suffixicon: Icons.remove_red_eye,
               ),
               InputSection(
+                passowrdField: true,
                 isObscure: true,
                 onSaved: (data) {
                   newPassword2 = data;
@@ -109,7 +111,8 @@ class _CreateNewPasswordSheetState extends State<CreateNewPasswordSheet> {
                 title: 'New Password',
                 hintText: 'Check the Password',
                 prefixIicon: const Icon(Icons.password_outlined),
-                withSuffixicon: true,
+                suffixicon: Icons.remove_red_eye,
+                suffixIconOnPressed: () {},
               ),
               const Spacer(
                 flex: 2,

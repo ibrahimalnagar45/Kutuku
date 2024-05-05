@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:kutuku/features/onboarding/data/models/slider_model.dart';
 
-import 'core/models/product_model.dart';
+import 'features/Home/data/models/prodcut_model.dart';
 
+int viewId = 0;
+const String baseurl = 'https://fakestoreapi.com/products';
+ 
+const String baseUrl = 'https://dummyjson.com/products';
+                        
 const String kAppName = "Kutuku";
 const Color kPrimaryColor = Color(0xff514eb7);
 Color kSecondaryColor = Colors.grey.withOpacity(.5);
 const double kPrimaryPadding = 20;
-
 const List<SliderModel> kSliders = [
   SliderModel(
       image: 'assets/images/onboarding1.jpeg',
@@ -25,153 +29,203 @@ const List<SliderModel> kSliders = [
       description:
           'Urna amet, suspendisse ullamcorper ac elit diam facilisis cursus vestibulum')
 ];
-const List<ProductModel> testProducts = [
+List<ProductModel> testProducts = [
   ProductModel(
-    name: 'Bag',
+    category: '',
+    id: 1,
+    title: 'Bag',
     description: 'Hand Bag',
     image: 'assets/images/onboarding3.jpeg',
     price: 122,
   ),
   ProductModel(
-    name: 'Shirts',
+    category: '',
+    id: 1,
+    title: 'Shirts',
     description: 'Colored Shirts ',
     image: 'assets/images/onboarding2.jpeg',
     price: 132,
   ),
   ProductModel(
-    name: 'MakeUp',
+    category: '',
+    id: 1,
+    title: 'MakeUp',
     description: 'Different Makup ',
     image: 'assets/images/onboarding3.jpeg',
     price: 132,
   ),
   ProductModel(
-    name: 'Bag',
+    category: '',
+    id: 1,
+    title: 'Bag',
     description: 'Hand Bag',
     image: 'assets/images/onboarding3.jpeg',
     price: 122,
   ),
   ProductModel(
-    name: 'Shirts',
+    category: '',
+    id: 1,
+    title: 'Shirts',
     description: 'Colored Shirts ',
     image: 'assets/images/onboarding2.jpeg',
     price: 132,
   ),
   ProductModel(
-    name: 'MakeUp',
+    category: '',
+    id: 1,
+    title: 'MakeUp',
     description: 'Different Makup ',
     image: 'assets/images/onboarding3.jpeg',
     price: 132,
   ),
   ProductModel(
-    name: 'Bag',
+    category: '',
+    id: 1,
+    title: 'Bag',
     description: 'Hand Bag',
     image: 'assets/images/onboarding3.jpeg',
     price: 122,
   ),
   ProductModel(
-    name: 'Shirts',
+    category: '',
+    id: 1,
+    title: 'Shirts',
     description: 'Colored Shirts ',
     image: 'assets/images/onboarding2.jpeg',
     price: 132,
   ),
   ProductModel(
-    name: 'MakeUp',
+    category: '',
+    id: 1,
+    title: 'MakeUp',
     description: 'Different Makup ',
     image: 'assets/images/onboarding3.jpeg',
     price: 132,
   ),
   ProductModel(
-    name: 'Bag',
+    category: '',
+    id: 1,
+    title: 'Bag',
     description: 'Hand Bag',
     image: 'assets/images/onboarding3.jpeg',
     price: 122,
   ),
   ProductModel(
-    name: 'Shirts',
+    category: '',
+    id: 1,
+    title: 'Shirts',
     description: 'Colored Shirts ',
     image: 'assets/images/onboarding2.jpeg',
     price: 132,
   ),
   ProductModel(
-    name: 'MakeUp',
+    category: '',
+    id: 1,
+    title: 'MakeUp',
     description: 'Different Makup ',
     image: 'assets/images/onboarding3.jpeg',
     price: 132,
   ),
   ProductModel(
-    name: 'Bag',
+    category: '',
+    id: 1,
+    title: 'Bag',
     description: 'Hand Bag',
     image: 'assets/images/onboarding3.jpeg',
     price: 122,
   ),
   ProductModel(
-    name: 'Shirts',
+    category: '',
+    id: 1,
+    title: 'Shirts',
     description: 'Colored Shirts ',
     image: 'assets/images/onboarding2.jpeg',
     price: 132,
   ),
   ProductModel(
-    name: 'MakeUp',
+    category: '',
+    id: 1,
+    title: 'MakeUp',
     description: 'Different Makup ',
     image: 'assets/images/onboarding3.jpeg',
     price: 132,
   ),
   ProductModel(
-    name: 'Bag',
+    category: '',
+    id: 1,
+    title: 'Bag',
     description: 'Hand Bag',
     image: 'assets/images/onboarding3.jpeg',
     price: 122,
   ),
   ProductModel(
-    name: 'Shirts',
+    category: '',
+    id: 1,
+    title: 'Shirts',
     description: 'Colored Shirts ',
     image: 'assets/images/onboarding2.jpeg',
     price: 132,
   ),
   ProductModel(
-    name: 'MakeUp',
+    category: '',
+    id: 1,
+    title: 'MakeUp',
     description: 'Different Makup ',
     image: 'assets/images/onboarding3.jpeg',
     price: 132,
   ),
   ProductModel(
-    name: 'Bag',
+    category: '',
+    id: 1,
+    title: 'Bag',
     description: 'Hand Bag',
     image: 'assets/images/onboarding3.jpeg',
     price: 122,
   ),
   ProductModel(
-    name: 'Shirts',
+    category: '',
+    id: 1,
+    title: 'Shirts',
     description: 'Colored Shirts ',
     image: 'assets/images/onboarding2.jpeg',
     price: 132,
   ),
   ProductModel(
-    name: 'MakeUp',
+    category: '',
+    id: 1,
+    title: 'MakeUp',
     description: 'Different Makup ',
     image: 'assets/images/onboarding3.jpeg',
     price: 132,
   ),
   ProductModel(
-    name: 'Bag',
+    title: 'Bag',
+    category: '',
+    id: 1,
     description: 'Hand Bag',
     image: 'assets/images/onboarding3.jpeg',
     price: 122,
   ),
   ProductModel(
-    name: 'Shirts',
+    title: 'Shirts',
+    category: '',
+    id: 1,
     description: 'Colored Shirts ',
     image: 'assets/images/onboarding2.jpeg',
     price: 132,
   ),
   ProductModel(
-    name: 'MakeUp',
+    title: 'MakeUp',
+    category: '',
+    id: 1,
     description: 'Different Makup ',
     image: 'assets/images/onboarding3.jpeg',
     price: 132,
   ),
   ProductModel(
-    name: 'MakeUp',
+    category: '',
+    id: 1,
+    title: 'MakeUp',
     description: 'Different Makup ',
     image: 'assets/images/onboarding3.jpeg',
     price: 132,

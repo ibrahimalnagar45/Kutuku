@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:kutuku/core/utils/styles.dart';
 import 'package:kutuku/features/Home/presentation/views/widgets/full_width_image.dart';
 
@@ -34,7 +33,7 @@ class CatrgoryCard extends StatelessWidget {
                 ),
                 Text(
                   description,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w500,
                   ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kutuku/constants.dart';
+import 'package:kutuku/features/auth/presentation/manager/cubits/Auth_cubit/auth_cubit.dart';
 import 'package:kutuku/features/auth/presentation/views/widgets/register_view_body.dart';
 
 class Registerview extends StatelessWidget {
@@ -7,12 +9,15 @@ class Registerview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
         body: Padding(
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         horizontal: kPrimaryPadding,
       ),
-      child: RegisterViewBody(),
+      child: BlocProvider(
+        create: (context) => AuthCubit(),
+        child: const RegisterViewBody(),
+      ),
     ));
   }
 }

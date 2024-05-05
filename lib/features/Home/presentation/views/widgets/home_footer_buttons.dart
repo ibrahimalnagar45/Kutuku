@@ -1,4 +1,4 @@
-import 'dart:developer';
+ 
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -12,7 +12,7 @@ class PersistentFooterButtons extends StatefulWidget {
       _PersistentFooterButtonsState();
 }
 
-int? currentId;
+ 
 
 class _PersistentFooterButtonsState extends State<PersistentFooterButtons> {
   @override
@@ -24,8 +24,8 @@ class _PersistentFooterButtonsState extends State<PersistentFooterButtons> {
         IconButton(
           highlightColor: kPrimaryColor.withOpacity(.5),
           onPressed: () {
-            if (currentId != 0) {
-              currentId = 0;
+            if (viewId != 0) {
+              viewId = 0;
               setState(() {});
 
               GoRouter.of(context).push(AppRoutes.kHomeView);
@@ -33,44 +33,45 @@ class _PersistentFooterButtonsState extends State<PersistentFooterButtons> {
           },
           icon: Icon(
             Icons.home,
-            color: currentId == 0 ? kPrimaryColor : Colors.black,
+            color: viewId == 0 ? kPrimaryColor : Colors.black,
           ),
         ),
         IconButton(
           highlightColor: kPrimaryColor.withOpacity(.5),
           onPressed: () {
-            if (currentId != 1) {
-              currentId = 1;
+            if (viewId != 1) {
+              viewId = 1;
               setState(() {});
               GoRouter.of(context).push(AppRoutes.kMyCartView);
             }
           },
           icon: Icon(
             Icons.shopping_cart,
-            color: currentId == 1 ? kPrimaryColor : Colors.black,
+            color: viewId == 1 ? kPrimaryColor : Colors.black,
           ),
         ),
         IconButton(
           highlightColor: kPrimaryColor.withOpacity(.5),
           onPressed: () {
-            currentId = 2;
+            viewId = 2;
+            GoRouter.of(context).push(AppRoutes.kFavoritesView);
             setState(() {});
           },
           icon: Icon(
             Icons.favorite_outline_outlined,
-            color: currentId == 2 ? kPrimaryColor : Colors.black,
+            color: viewId == 2 ? kPrimaryColor : Colors.black,
           ),
         ),
         IconButton(
           highlightColor: kPrimaryColor.withOpacity(.5),
           onPressed: () {
-            currentId = 3;
+            viewId = 3;
             setState(() {});
           },
           icon: IconButton(
             icon: Icon(
               Icons.person_3_outlined,
-              color: currentId == 3 ? kPrimaryColor : Colors.black,
+              color: viewId == 3 ? kPrimaryColor : Colors.black,
             ),
             onPressed: () {
               GoRouter.of(context).push(AppRoutes.kProfileView);

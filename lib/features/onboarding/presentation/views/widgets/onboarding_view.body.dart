@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kutuku/constants.dart';
 import 'package:kutuku/core/utils/app_routes.dart';
@@ -68,18 +69,20 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(
-          height: 25,
-        ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * .6,
-          width: MediaQuery.of(context).size.width * 3,
-          child: buildOnboardingPageViews(),
+        // SizedBox(
+        //   height: MediaQuery.of(context).size.height * .02,
+        // ),
+        SafeArea(
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height * .6,
+            width: MediaQuery.of(context).size.width * 3,
+            child: buildOnboardingPageViews(),
+          ),
         ),
         // OnboardingImageContainer(image: 'assets/images/onboarding1.jpeg'),
 
-        const SizedBox(
-          height: 20,
+        SizedBox(
+          height: MediaQuery.of(context).size.height * .02,
         ),
         Text(
           sliders![currentIndex].title,
@@ -92,7 +95,7 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
           style: Styles.desStyle,
         ),
         SizedBox(
-          height: 40,
+          height: MediaQuery.of(context).size.height * .04,
           child: BuildDots(
             itemcount: 3,
             currentIndex: currentIndex,
@@ -104,8 +107,8 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
             GoRouter.of(context).push(AppRoutes.kRgisterView);
           },
         ),
-        const SizedBox(
-          height: 10,
+        SizedBox(
+          height: MediaQuery.of(context).size.height * .01,
         ),
         TextButton(
           onPressed: () => GoRouter.of(context).push(AppRoutes.kLoginView),

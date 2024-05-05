@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kutuku/constants.dart';
-import 'package:kutuku/core/models/product_model.dart';
-
+ 
 import '../../../../../core/utils/styles.dart';
+import '../../../../Home/data/models/prodcut_model.dart';
 
 class MyCartItem extends StatefulWidget {
   const MyCartItem({
@@ -72,7 +72,7 @@ class _MyCartItemState extends State<MyCartItem> {
                           height: 100,
                           width: 90,
                           child: Image.asset(
-                            widget.productModel.image,
+                            widget.productModel.image!,
                             fit: BoxFit.fill,
                           ),
                         ),
@@ -85,11 +85,11 @@ class _MyCartItemState extends State<MyCartItem> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            widget.productModel.name,
+                            widget.productModel.title!,
                             style: Styles.titleStyle,
                           ),
                           Text(
-                            widget.productModel.description,
+                            widget.productModel.description!,
                             style: Styles.desStyle,
                           ),
                         ],
@@ -124,7 +124,7 @@ class _MyCartItemState extends State<MyCartItem> {
                           height: 100,
                           width: 90,
                           child: Image.asset(
-                            widget.productModel.image,
+                            widget.productModel.image!,
                             fit: BoxFit.fill,
                           ),
                         ),
@@ -137,11 +137,11 @@ class _MyCartItemState extends State<MyCartItem> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            widget.productModel.name,
+                            widget.productModel.title!,
                             style: Styles.titleStyle,
                           ),
                           Text(
-                            widget.productModel.description,
+                            widget.productModel.description!,
                             style: Styles.desStyle,
                           ),
                         ],

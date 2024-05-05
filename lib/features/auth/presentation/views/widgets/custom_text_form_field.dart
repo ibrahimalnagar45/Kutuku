@@ -4,25 +4,28 @@ import 'package:kutuku/constants.dart';
 import '../../../../../core/utils/helpers/build_outline_input_border.dart';
 
 class CustomFormTextFiled extends StatefulWidget {
-  const CustomFormTextFiled({
-    super.key,
-    this.validator,
-    required this.hintText,
-    required this.prefixIcon,
-    this.isObsucure = false,
-    this.withSuffixIcon = false,
-    this.keyboardType,
-    this.onSaved,
-    this.padding = kPrimaryPadding,
-  });
+  const CustomFormTextFiled(
+      {super.key,
+      this.validator,
+      required this.hintText,
+      required this.prefixIcon,
+      this.isObsucure = false,
+      this.suffixIcon,
+      this.keyboardType,
+      this.onSaved,
+      this.padding = kPrimaryPadding,
+      this.suffixIconOnPressed,
+      required this.passowrdField});
   final String? Function(String?)? validator;
   final String hintText;
   final Icon prefixIcon;
   final bool isObsucure;
-  final bool withSuffixIcon;
+  final IconData? suffixIcon;
   final TextInputType? keyboardType;
   final void Function(String?)? onSaved;
   final double? padding;
+  final Function()? suffixIconOnPressed;
+  final bool passowrdField;
 
   @override
   State<CustomFormTextFiled> createState() => _CustomFormTextFiledState();
@@ -78,7 +81,7 @@ class _CustomFormTextFiledState extends State<CustomFormTextFiled> {
           prefixIcon: widget.prefixIcon,
           prefixIconColor:
               isFocused ? kPrimaryColor : Colors.grey.withOpacity(.4),
-          suffixIcon: widget.withSuffixIcon
+          suffixIcon: widget.passowrdField
               ? GestureDetector(
                   onTap: () async {
                     setState(() {
@@ -94,12 +97,14 @@ class _CustomFormTextFiledState extends State<CustomFormTextFiled> {
                   },
                   onLongPress: () => showPassword = true,
                   onLongPressCancel: () => showPassword = false,
-                  child: Icon(
+                  child: const Icon(
                     Icons.remove_red_eye,
-                    color: Colors.grey.withOpacity(.4),
                   ),
                 )
-              : null,
+              : IconButton(
+                  icon: Icon(widget.suffixIcon),
+                  onPressed: widget.suffixIconOnPressed,
+                ),
           border: buildOutLineInputBorder(),
           focusedBorder:
               buildOutLineInputBorder(color: kPrimaryColor, enabled: true),

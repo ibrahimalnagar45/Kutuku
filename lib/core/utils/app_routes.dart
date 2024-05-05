@@ -1,7 +1,8 @@
 import 'package:go_router/go_router.dart';
-import 'package:kutuku/collage_view.dart';
+
 import 'package:kutuku/features/Home/presentation/views/category_view.dart';
 import 'package:kutuku/features/Home/presentation/views/home_view.dart';
+import 'package:kutuku/features/Home/presentation/views/widgets/favorites_view.dart';
 import 'package:kutuku/features/my_cart/presentation/views/my_cart_view.dart';
 import 'package:kutuku/features/settings/presentation/views/profile_view.dart';
 import 'package:kutuku/features/search/presentation/views/search_view.dart';
@@ -15,13 +16,13 @@ import 'package:kutuku/features/settings/presentation/views/setting_view.dart';
 import '../../features/splash/presentaion/views/splah_view.dart';
 
 abstract class AppRoutes {
-  static const String kCollage = '/collageView';
   static const String kONboardingView = '/onboardingview';
   static const String kRgisterView = '/registerView';
   static const String kLoginView = '/LoginView';
   static const String kVerficationView = '/verificationView';
   static const String kHomeView = '/HomeView';
   static const String kHomeCategoryView = '/HomeCategoryView';
+  static const String kFavoritesView = '/FavoritesView';
   static const String kSearchView = '/SearchView';
   static const String kMyCartView = '/MyCartView';
   static const String kProfileView = '/ProfileView';
@@ -47,12 +48,12 @@ abstract class AppRoutes {
         builder: (context, state) => const MyCartView(),
       ),
       GoRoute(
-        path: kHomeCategoryView,
-        builder: (context, state) => const CategoryView(),
+        path: kFavoritesView,
+        builder: (context, state) => const FavoritesView(),
       ),
       GoRoute(
-        path: kCollage,
-        builder: (context, state) => const CollageView(),
+        path: kHomeCategoryView,
+        builder: (context, state) => const CategoryView(),
       ),
       GoRoute(
         path: '/splash',

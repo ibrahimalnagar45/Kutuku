@@ -7,10 +7,10 @@ import 'package:kutuku/core/services/firebase_service.dart';
 import 'package:kutuku/core/utils/app_routes.dart';
 import 'package:kutuku/core/utils/styles.dart';
 import 'package:kutuku/core/utils/widgets/custom_button.dart';
-import 'package:kutuku/features/auth/presentation/views/register_inputs_sections.dart';
+import 'package:kutuku/features/auth/presentation/views/widgets/register_inputs_sections.dart';
 import 'package:kutuku/features/auth/presentation/views/widgets/addtional_auth_function.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
-import 'input_section.dart';
 import 'view_title.dart';
 
 class RegisterViewBody extends StatefulWidget {
@@ -22,91 +22,96 @@ class RegisterViewBody extends StatefulWidget {
 
 class _RegisterViewBodyState extends State<RegisterViewBody> {
   GlobalKey<FormState> globalFormKey = GlobalKey();
-  AutovalidateMode _autovalidateMode = AutovalidateMode.onUserInteraction;
+  AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
   String? email, password, name;
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: globalFormKey,
-      autovalidateMode: _autovalidateMode,
-      child: ListView(
-        children: [
-          const ViewTitle(
-              title: 'Create Acount',
-              subTitle: 'Start Shopping with an account'),
-          const SizedBox(
-            height: 30,
-          ),
-          // registerInputsTextFeilds(),
-          RegisterInputSections(
-            emailOnSaved: (data) {
-              email = data;
-            },
-            passwordOnSaved: (data) {
-              password = data;
-            },
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * .03,
-          ),
-          CustomButton(
-            text: 'Create Your Account',
-            onPressed: () {
-              globalFormKey.currentState!.save();
-              if (globalFormKey.currentState!.validate()) {
-                setState(() {
-                  _autovalidateMode = AutovalidateMode.onUserInteraction;
-                });
-                FirebaseService().registerUsingEmailAndPassword(
-                  email: email,
-                  password: password,
-                  context: context,
-                );
-                log('registeration success');
-                GoRouter.of(context).push(AppRoutes.kLoginView);
-              }
+    return ModalProgressHUD(
+      inAsyncCall: isLoading,
+      child: Form(
+        key: globalFormKey,
+        autovalidateMode: _autovalidateMode,
+        child: ListView(
+          children: [
+            const ViewTitle(
+                title: 'Create Acount',
+                subTitle: 'Start Shopping with an account'),
+            const SizedBox(
+              height: 30,
+            ),
+            RegisterInputSections(
+              emailOnSaved: (data) {
+                email = data;
+              },
+              passwordOnSaved: (data) {
+                password = data;
+              },
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * .03,
+            ),
+            CustomButton(
+              text: 'Create Your Account',
+              onPressed: () {
+                globalFormKey.currentState!.save();
+                if (globalFormKey.currentState!.validate()) {
+                  setState(() {
+                    _autovalidateMode = AutovalidateMode.always;
+                    isLoading = true;
+                  });
 
-              log('registeration failed');
-            },
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Expanded(
-            child: Center(
-              child: Text(
-                'Or using Other Methods',
-                style: Styles.desStyle,
+                  FirebaseService().registerUsingEmailAndPassword(
+                    email: email,
+                    password: password,
+                    context: context,
+                  );
+                  isLoading = false;
+                  GoRouter.of(context).push(AppRoutes.kLoginView);
+                }
+
+                log('registeration failed');
+              },
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const Expanded(
+              child: Center(
+                child: Text(
+                  'Or using Other Methods',
+                  style: Styles.desStyle,
+                ),
               ),
             ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const AddtionalAuthFunction(
-            text: 'Sing Up',
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Expanded(
-            child: Center(
-              child: Text(
-                'Already have an email !',
-                style: Styles.desStyle,
+            const SizedBox(
+              height: 10,
+            ),
+            const AddtionalAuthFunction(
+              text: 'Sing Up',
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const Expanded(
+              child: Center(
+                child: Text(
+                  'Already have an email !',
+                  style: Styles.desStyle,
+                ),
               ),
             ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          CustomButton(
-            text: 'LogIn',
-            onPressed: () {
-              GoRouter.of(context).push(AppRoutes.kLoginView);
-            },
-          ),
-        ],
+            const SizedBox(
+              height: 10,
+            ),
+            CustomButton(
+              text: 'LogIn',
+              onPressed: () {
+                GoRouter.of(context).push(AppRoutes.kLoginView);
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

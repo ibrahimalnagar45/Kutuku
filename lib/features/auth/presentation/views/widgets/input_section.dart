@@ -3,25 +3,27 @@ import 'package:kutuku/core/utils/styles.dart';
 import 'package:kutuku/features/auth/presentation/views/widgets/custom_text_form_field.dart';
 
 class InputSection extends StatelessWidget {
-  const InputSection({
-    super.key,
-    required this.title,
-    required this.hintText,
-    this.validator,
-    required this.prefixIicon,
-    this.isObscure = false,
-    this.withSuffixicon = false,
-    this.keyboardType,
-    this.onSaved,
-  });
+  const InputSection(
+      {super.key,
+      required this.title,
+      required this.hintText,
+      this.validator,
+      required this.prefixIicon,
+      this.isObscure = false,
+      this.suffixicon,
+      this.keyboardType,
+      this.onSaved,
+      this.suffixIconOnPressed, required this.passowrdField});
   final String title;
   final String hintText;
   final String? Function(String?)? validator;
   final Icon prefixIicon;
   final bool isObscure;
-  final bool withSuffixicon;
+  final IconData? suffixicon;
   final void Function(String?)? onSaved;
+  final Function()? suffixIconOnPressed;
   final TextInputType? keyboardType;
+  final bool passowrdField;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -39,19 +41,18 @@ class InputSection extends StatelessWidget {
             height: 5,
           ),
           CustomFormTextFiled(
-            
             onSaved: onSaved,
             keyboardType: keyboardType,
             isObsucure: isObscure,
             hintText: hintText,
             validator: validator,
             prefixIcon: prefixIicon,
-            withSuffixIcon: withSuffixicon,
+            suffixIcon: suffixicon,
+            suffixIconOnPressed: suffixIconOnPressed,
+            passowrdField: passowrdField,
           )
         ],
       ),
     );
   }
-
-  
 }

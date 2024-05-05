@@ -5,38 +5,47 @@ import 'package:kutuku/core/utils/widgets/icon_text_button.dart';
 import 'package:kutuku/features/auth/presentation/views/widgets/input_section.dart';
 
 class ProfileViewBody extends StatelessWidget {
-  const ProfileViewBody({super.key});
+  const ProfileViewBody({super.key, this.image, this.userName, this.emial});
+  final String? image;
+  final String? userName, emial;
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      // crossAxisAlignment: CrossAxisAlignment.start,
+    return ListView(
       children: [
-        Divider(
+        const Divider(
           thickness: .5,
         ),
         CircleAvatar(
           radius: 50,
-          foregroundImage: AssetImage(
-            'assets/images/onboarding1.jpeg',
-          ),
+          foregroundImage: image == null
+              ? const AssetImage(
+                  'assets/images/no_image.jpg',
+                )
+              : AssetImage(
+                  image!,
+                ),
         ),
         SizedBox(
-          height: 20,
+          height: MediaQuery.of(context).size.height * .02,
         ),
         InputSection(
+          suffixicon: Icons.edit,
+          passowrdField: false,
           title: 'Username',
-          hintText: 'hintText',
-          prefixIicon: Icon(Icons.person),
+          hintText: userName ?? 'None',
+          prefixIicon: const Icon(Icons.person),
         ),
-        SizedBox(height: 15),
+        const SizedBox(height: 15),
         InputSection(
+          suffixicon: Icons.edit,
+          passowrdField: false,
           title: 'Email',
-          hintText: 'hintText',
-          prefixIicon: Icon(Icons.email),
+          hintText: emial ?? 'None',
+          prefixIicon: const Icon(Icons.email),
         ),
-        SizedBox(height: 15),
-        Align(
+        const SizedBox(height: 15),
+        const Align(
           alignment: Alignment.centerLeft,
           child: Text(
             'Account Linked With',
@@ -44,17 +53,16 @@ class ProfileViewBody extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 15,
+          height: MediaQuery.of(context).size.height * .02,
         ),
-        IconTextButton(
+        const IconTextButton(
             colored: false,
             prefixIcon: 'assets/icons/googleIcon.jpeg',
             text: 'Google'),
-        Spacer(),
-        CustomButton(text: 'Save Changes'),
         SizedBox(
-          height: 50,
+          height: MediaQuery.of(context).size.height * .1,
         ),
+        const CustomButton(text: 'Save Changes'),
       ],
     );
   }

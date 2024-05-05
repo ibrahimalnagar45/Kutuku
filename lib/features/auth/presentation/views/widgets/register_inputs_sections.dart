@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
- 
-import 'widgets/input_section.dart';
+
+import 'input_section.dart';
 
 class RegisterInputSections extends StatelessWidget {
-  const RegisterInputSections({super.key, this.emailOnSaved, this.passwordOnSaved});
-final   Function(String?)? emailOnSaved, passwordOnSaved;
+  const RegisterInputSections(
+      {super.key, this.emailOnSaved, this.passwordOnSaved});
+  final Function(String?)? emailOnSaved, passwordOnSaved;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         InputSection(
+            passowrdField: false,
             prefixIicon: const Icon(Icons.person),
             title: 'Username',
             hintText: 'Create your name',
@@ -19,12 +21,11 @@ final   Function(String?)? emailOnSaved, passwordOnSaved;
               } else if (data.length < 3) {
                 return "the name must be more than 3 letters";
               } else {
-                return '';
+                return null;
               }
-
-              // validator: (value) => value ?? 'please enter your name',
             }),
         InputSection(
+          passowrdField: false,
           onSaved: emailOnSaved,
           prefixIicon: const Icon(Icons.email_outlined),
           title: 'Email or Phone Number',
@@ -46,9 +47,9 @@ final   Function(String?)? emailOnSaved, passwordOnSaved;
           // validator: (value) => value ?? 'please enter your name',
         ),
         InputSection(
+          passowrdField: true,
           onSaved: passwordOnSaved,
           prefixIicon: const Icon(Icons.password),
-          withSuffixicon: true,
           title: 'Password',
           isObscure: true,
           hintText: 'Create your Password',

@@ -3,12 +3,13 @@ import 'package:go_router/go_router.dart';
 import 'package:kutuku/constants.dart';
 import 'package:kutuku/core/services/firebase_service.dart';
 import 'package:kutuku/core/utils/app_routes.dart';
+import 'package:kutuku/core/utils/helpers/show_snake_bar.dart';
 import 'package:kutuku/core/utils/styles.dart';
 import 'package:kutuku/core/utils/widgets/custom_button.dart';
 import 'package:kutuku/features/auth/presentation/views/widgets/forget_password_sheet.dart';
 import 'package:kutuku/features/auth/presentation/views/widgets/login_inputs_section.dart';
 import 'addtional_auth_function.dart';
- import 'view_title.dart';
+import 'view_title.dart';
 
 class LoginViewBody extends StatefulWidget {
   const LoginViewBody({super.key});
@@ -22,7 +23,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
 
   AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
 
-  String? email, password, name;
+  String? email, password;
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +39,6 @@ class _LoginViewBodyState extends State<LoginViewBody> {
           const SizedBox(
             height: 30,
           ),
-          // const LoginInputSections(),
-          // loginInputsTextFeilds(),
           LoginInputSections(
             emailOnSaved: (data) {
               email = data;
@@ -70,9 +69,6 @@ class _LoginViewBodyState extends State<LoginViewBody> {
           ),
           CustomButton(
             text: 'Login',
-            // onPressed: () {
-            //   GoRouter.of(context).push(AppRoutes.kHome);
-            // },
             onPressed: () {
               globalFormKey.currentState!.save();
               if (globalFormKey.currentState!.validate()) {
@@ -80,12 +76,16 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                   _autovalidateMode = AutovalidateMode.always;
                 });
 
-                FirebaseService().singinWithEmailAndPasswordP(
-                  email: email,
-                  password: password,
-                  context: context,
-                );
-                GoRouter.of(context).push(AppRoutes.kHomeView);
+                try {
+                  FirebaseService().singinWithEmailAndPassword(
+                    email: email,
+                    password: password,
+                    context: context,
+                  );
+                  GoRouter.of(context).push(AppRoutes.kHomeView);
+                } on Exception catch (e) {
+                  showSnakeBar(context: context, message: e.toString());
+                }
               }
             },
           ),

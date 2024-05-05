@@ -1,5 +1,13 @@
+import 'package:dio/dio.dart';
+import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kutuku/constants.dart';
+import 'package:kutuku/core/services/api_service.dart';
+import 'package:kutuku/features/Home/data/repos/product_repo_impl.dart';
+import 'package:kutuku/features/Home/presentation/managar/cubits/product_cubit/product_cubit.dart';
+import 'package:kutuku/features/Home/presentation/views/widgets/home_appbar.dart';
 import 'package:kutuku/features/Home/presentation/views/widgets/home_footer_buttons.dart';
 import 'package:kutuku/features/Home/presentation/views/widgets/home_view_body.dart';
 
@@ -8,13 +16,24 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      persistentFooterButtons: [PersistentFooterButtons()],
-      // floatingActionButton: HomeViewPersistentFooterButtons(),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+    return Scaffold(
+      // bottomNavigationBar:  CurvedNavigationBar(),
+      persistentFooterButtons: const [PersistentFooterButtons()],
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: kPrimaryPadding),
-        child: HomeViewBody(),
+        padding: const EdgeInsets.symmetric(horizontal: kPrimaryPadding),
+        child: MultiBlocProvider(
+          providers: [
+            BlocProvider(
+                create: (context) => ProductCubit(
+                      ProcutRepoImpl(
+                        api: ApiService(
+                          dio: Dio(),
+                        ),
+                      ),
+                    )..fetchAllProducts()),
+          ],
+          child: const HomeViewBody(),
+        ),
       ),
     );
   }

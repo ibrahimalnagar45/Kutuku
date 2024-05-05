@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:kutuku/core/utils/styles.dart';
 
 class SettingViewsAppBar extends StatelessWidget {
@@ -14,6 +15,12 @@ class SettingViewsAppBar extends StatelessWidget {
     return Row(
       // mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+        IconButton(
+            onPressed: () {
+              GoRouter.of(context).pop();
+              GoRouter.of(context).pop();
+            },
+            icon: const Icon(Icons.arrow_back_ios_new_outlined)),
         const Spacer(),
         Text(
           title,

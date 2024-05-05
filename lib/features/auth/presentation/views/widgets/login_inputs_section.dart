@@ -2,28 +2,15 @@ import 'package:flutter/material.dart';
 import 'input_section.dart';
 
 class LoginInputSections extends StatelessWidget {
-  const LoginInputSections({super.key, this.emailOnSaved, this.passwordOnSaved});
-final   Function(String?)? emailOnSaved, passwordOnSaved;
+  const LoginInputSections(
+      {super.key, this.emailOnSaved, this.passwordOnSaved});
+  final Function(String?)? emailOnSaved, passwordOnSaved;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // InputSection(
-        //     prefixIicon: const Icon(Icons.person),
-        //     title: 'Username',
-        //     hintText: 'Create your name',
-        //     validator: (data) {
-        //       if (data!.isEmpty || data == "") {
-        //         return "required feild";
-        //       } else if (data.length < 3) {
-        //         return "the name must be more than 3 letters";
-        //       } else {
-        //         return '';
-        //       }
-
-        //       // validator: (value) => value ?? 'please enter your name',
-        //     }),
         InputSection(
+          passowrdField: false,
           onSaved: emailOnSaved,
           prefixIicon: const Icon(Icons.email_outlined),
           title: 'Email or Phone Number',
@@ -45,12 +32,13 @@ final   Function(String?)? emailOnSaved, passwordOnSaved;
           // validator: (value) => value ?? 'please enter your name',
         ),
         InputSection(
+          passowrdField: true,
           onSaved: passwordOnSaved,
           prefixIicon: const Icon(Icons.password),
-          withSuffixicon: true,
+          suffixicon: Icons.remove_red_eye,
           title: 'Password',
           isObscure: true,
-          hintText: 'Create your Password',
+          hintText: 'Enter your Password',
           validator: (data) {
             if (data!.isEmpty) {
               return "required feild";

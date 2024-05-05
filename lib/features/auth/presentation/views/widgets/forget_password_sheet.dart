@@ -59,21 +59,22 @@ class _ForgetPasswordSheetState extends State<ForgetPasswordSheet> {
                 height: 40,
               ),
               InputSection(
+                passowrdField: true,
                 onSaved: (data) {
                   emial = data;
                 },
                 validator: (data) {
-                   if (data!.isEmpty || data == "") {
-              return "required feild";
-            }
-            String pattern =
-                r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-            RegExp regex = RegExp(pattern);
-            if (!regex.hasMatch(data)) {
-              return 'Enter Valid Email';
-            } else {
-              return null;
-            }
+                  if (data!.isEmpty || data == "") {
+                    return "required feild";
+                  }
+                  String pattern =
+                      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                  RegExp regex = RegExp(pattern);
+                  if (!regex.hasMatch(data)) {
+                    return 'Enter Valid Email';
+                  } else {
+                    return null;
+                  }
                 },
                 title: 'Email or Phone Numeber',
                 hintText: 'enter you email or phone',
