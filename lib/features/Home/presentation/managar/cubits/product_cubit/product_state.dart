@@ -22,8 +22,10 @@ final class CategoryLoading extends ProductState {}
 
 final class CategorySuccess extends ProductState {
   final List<String> categoris;
-
-  CategorySuccess({required this.categoris});
+// List<ProductModel>? products ;
+  CategorySuccess({
+    required this.categoris,
+  });
 }
 
 final class CategoryFaluire extends ProductState {

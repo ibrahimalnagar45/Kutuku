@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 
 import '../../features/Home/data/models/prodcut_model.dart';
@@ -8,8 +10,9 @@ class ApiService {
   List<ProductModel> procucts = [];
 
   ApiService({required this.dio});
-  Future<Map<String, dynamic>> get({required String endPoint}) async {
+  Future<dynamic> get({required String endPoint}) async {
     Response data = await dio.get(endPoint);
-    return data.data;
+    log(data.data.toString());
+    return data.data  ;
   }
 }

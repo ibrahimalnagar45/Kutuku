@@ -14,8 +14,8 @@ class FullWidthImage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(right: 8.0),
           child: Image.asset(
-           image,
-            fit: BoxFit.fill,
+            image,
+            fit: BoxFit.cover,
           ),
         ),
       ),

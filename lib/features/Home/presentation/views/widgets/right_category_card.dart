@@ -19,7 +19,8 @@ class CatrgoryCard extends StatelessWidget {
         children: [
           SizedBox(
             height: 100,
-            child: FullWidthImage(image: image),
+            child: FullWidthImage(image: image,
+            ),
           ),
           Positioned(
             right: isRightText ? 0 : 200,

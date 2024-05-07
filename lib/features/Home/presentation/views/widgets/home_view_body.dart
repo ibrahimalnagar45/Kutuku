@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
- import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kutuku/features/Home/presentation/managar/cubits/product_cubit/product_cubit.dart';
 import 'package:kutuku/features/Home/presentation/managar/cubits/product_cubit/product_state.dart';
 import 'package:kutuku/features/Home/presentation/views/widgets/category_title.dart';
 import 'package:kutuku/features/Home/presentation/views/widgets/main_home_widgetd.dart';
- 
+
 import 'adds_list_view.dart';
 
 import 'product_card.dart';
@@ -17,7 +17,7 @@ class HomeViewBody extends StatelessWidget {
     return BlocBuilder<ProductCubit, ProductState>(
       builder: (context, state) {
         if (state is ProductLoading) {
-          return const CircularProgressIndicator();
+          return const Center(child: CircularProgressIndicator());
         } else if (state is ProductSuccess) {
           return ListView.builder(
               itemCount: state.products.length - 1,
