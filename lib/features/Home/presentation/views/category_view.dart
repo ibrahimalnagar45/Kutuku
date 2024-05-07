@@ -37,16 +37,14 @@ class CategoryView extends StatelessWidget {
                   itemCount: state.categoris.length,
 
                   itemBuilder: (context, index) {
-                    if (index == 1) {
+                    if (index == 0) {
                       return const MainHomeViewWidgets();
-                    } else
-                    {
+                    } else {
                       return CatrgoryCard(
-                      
-                        image: kCategoris[index],
-                        title: state.categoris[index],
-                        description: state.categoris[index],
-                        isRightText: index % 2 == 0 ? false : true,
+                        // image: kCategoris[index - 1],
+                        title: state.categoris[index - 1],
+                        description: state.categoris[index - 1],
+                        isRightText: index % 2 != 0 ? false : true,
                       );
                     }
                   },
@@ -69,13 +67,20 @@ class CategoryView extends StatelessWidget {
                   //   )
                   // ],
                 );
-              } else if (state is ProductFaluire) {
+              } else if (state is ProductsFaluire) {
                 return Center(child: Text(state.errorMessage));
-              } else if (state is ProductInitial) {
-                return const Center(child: Text('something went wrong'));
-              } else {
+              }   else {
                 return const Center(
-                  child: CircularProgressIndicator(),
+                  child: Column(
+                    children: [
+                      MainHomeViewWidgets(),
+                      Spacer(),
+                      Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                      Spacer(),
+                    ],
+                  ),
                 );
               }
             },

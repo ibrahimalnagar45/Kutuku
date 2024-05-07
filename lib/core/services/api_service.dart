@@ -12,7 +12,7 @@ class ApiService {
   ApiService({required this.dio});
   Future<dynamic> get({required String endPoint}) async {
     Response data = await dio.get(endPoint);
-    log(data.data.toString());
-    return data.data  ;
+    // log(" data :::  ${data.data}");
+    return data.data;
   }
 }

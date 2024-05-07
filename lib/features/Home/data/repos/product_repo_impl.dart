@@ -14,18 +14,26 @@ class ProcutRepoImpl implements ProductRepo {
       {required String endpoint}) async {
     try {
       var data = await api.get(endPoint: endpoint);
+      // log('data from the reop : $data');
       List<ProductModel> products = [];
-      for (int i = 0; i <= data.length; i++) {
+      for (var item in data) {
         products.add(
           ProductModel.fromJson(
-            data['products'][i],
+            item,
           ),
         );
       }
+      // for (int i = 0; i <= data.length; i++) {
+      //   products.add(
+      //     ProductModel.fromJson(
+      //       data[i],
+      //     ),
+      //   );
+      // }
 
       return products;
     } on DioException catch (e) {
-      // log(ServerFailure.fromDiorError(e).toString());
+      log(ServerFailure.fromDiorError(e).toString());
       throw (ServerFailure.fromDiorError(e));
     } catch (e) {
       log(e.toString());
@@ -57,19 +65,16 @@ class ProcutRepoImpl implements ProductRepo {
     }
   }
 
-  Future<List<ProductModel>> fetchProduct({required String endpoint}) async {
+  @override
+  Future<ProductModel> fetchProduct({required String endpoint}) async {
     try {
       var data = await api.get(endPoint: endpoint);
-      List<ProductModel> products = [];
-      for (int i = 0; i <= 1; i++) {
-        products.add(
-          ProductModel.fromJson(
-            data['products'][0],
-          ),
-        );
-      }
 
-      return products;
+      ProductModel productModel;
+
+      productModel = ProductModel.fromJson(data);
+
+      return productModel;
     } on DioException catch (e) {
       // log(ServerFailure.fromDiorError(e).toString());
       throw (ServerFailure.fromDiorError(e));

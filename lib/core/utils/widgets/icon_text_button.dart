@@ -6,7 +6,7 @@ class IconTextButton extends StatelessWidget {
   const IconTextButton({
     super.key,
     required this.colored,
-    required this.prefixIcon,
+      required this.prefixIcon,
       this.onPressed,
     required this.text,
   });
@@ -34,6 +34,7 @@ class IconTextButton extends StatelessWidget {
           Image.asset(
             prefixIcon!,
             scale: 7,
+            
           ),
           Center(
             child: IconButton(
