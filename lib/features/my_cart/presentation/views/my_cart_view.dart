@@ -10,17 +10,12 @@ class MyCartView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: customAppBar(
-        context,
-        title: 'My Cart',
-        icon: Icons.shopping_bag_outlined,
-        leadingOnPressed: () => Navigator.pop(context),
-      ),
-      persistentFooterButtons: const [
+    return const  Scaffold(
+        
+      persistentFooterButtons:   [
         PersistentFooterButtons(),
-      ],
-      body: const Padding(
+      ], 
+      body:   Padding(
         padding: EdgeInsets.all(kPrimaryPadding),
         child: MyCartViewBody(),
       ),

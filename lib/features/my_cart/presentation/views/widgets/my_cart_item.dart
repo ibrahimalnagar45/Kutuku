@@ -20,10 +20,17 @@ class MyCartItem extends StatefulWidget {
 
 class _MyCartItemState extends State<MyCartItem> {
   // final void Function()? onLongPress;
-  bool selected = false;
+  bool selected = true;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      // onTap: () {
+      //   Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+      //     return DetailsView(
+      //       product: widget.productModel,
+      //     );
+      //   }));
+      // },
       child: widget.showAllPressed == true
           ? SizedBox(
               height: 116,
@@ -36,22 +43,30 @@ class _MyCartItemState extends State<MyCartItem> {
                       GestureDetector(
                         onTap: () {
                           selected = !selected;
-                          // widget.forceSelection != widget.forceSelection;
+                          widget.forceSelection != widget.forceSelection;
                           setState(() {});
                         },
                         child: selected || widget.forceSelection
-                            ? Container(
-                                height: 20,
-                                width: 20,
-                                decoration: BoxDecoration(
-                                  color: kPrimaryColor,
-                                  borderRadius: BorderRadius.circular(5),
-                                  border: Border.all(color: kPrimaryColor),
-                                ),
-                                child: const Icon(
-                                  Icons.check,
-                                  size: 15,
-                                  color: Colors.white,
+                            ? GestureDetector(
+                                onTap: () {
+                                  selected = !selected;
+                                  setState(() {});
+                                },
+                                child: Container(
+                                  height: 20,
+                                  width: 20,
+                                  decoration: BoxDecoration(
+                                    color: selected && widget.forceSelection
+                                        ? kPrimaryColor
+                                        : Colors.white,
+                                    borderRadius: BorderRadius.circular(5),
+                                    border: Border.all(color: kPrimaryColor),
+                                  ),
+                                  child: const Icon(
+                                    Icons.check,
+                                    size: 15,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               )
                             : Container(

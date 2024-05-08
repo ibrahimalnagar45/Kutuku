@@ -67,13 +67,13 @@ class _MyCartItemsListState extends State<MyCartItemsList> {
                         onDoubleTap: () {
                           showAllPressed = true;
                           showSelectAll = true;
-                          log('message1');
+                    
                           setState(() {});
                         },
                         onTap: () {
                           showAllPressed = false;
                           showSelectAll = false;
-                          log('message2');
+                          
                           setState(() {});
                         },
                         child: MyCartItem(

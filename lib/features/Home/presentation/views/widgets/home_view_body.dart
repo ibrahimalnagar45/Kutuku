@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,7 +49,6 @@ class HomeViewBody extends StatelessWidget {
               : ListView.builder(
                   itemCount: state.products.length - 1,
                   itemBuilder: (context, index) {
-                    
                     return index == 0
                         ? const Column(
                             children: [
@@ -59,7 +60,7 @@ class HomeViewBody extends StatelessWidget {
                               SizedBox(
                                 height: 15,
                               ),
-                              CategoryTitle(categoryTitle: 'New Affrails🔥'),
+                              // CategoryTitle(categoryTitle: 'New Affrails🔥'),
                               SizedBox(
                                 height: 15,
                               ),
@@ -72,7 +73,20 @@ class HomeViewBody extends StatelessWidget {
                   },
                 );
         } else if (state is ProductsFaluire) {
-          return Center(child: Text(state.errorMessage));
+          log(state.errorMessage.toString());
+          return Column(
+            children: [
+              const MainHomeViewWidgets(),
+              const SizedBox(
+                height: 15,
+              ),
+              const AddsListView(),
+              const SizedBox(
+                height: 15,
+              ),
+              Center(child: Text(state.errorMessage),),
+            ],
+          );
         } else {
           return const Text('Something went wrong');
         }

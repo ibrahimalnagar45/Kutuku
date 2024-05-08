@@ -51,7 +51,7 @@ class _ProductCardState extends State<ProductCard> {
             ),
           ),
           Text(
-            widget.productModel.title ?? 'Bag',
+            widget.productModel.title !,
             style: Styles.textStyle15,
           ),
           const Text(

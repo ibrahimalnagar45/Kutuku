@@ -2,6 +2,7 @@ import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kutuku/core/utils/app_routes.dart';
 import 'package:kutuku/core/utils/styles.dart';
 import 'package:kutuku/core/utils/widgets/icon_text_button.dart';
 import 'package:kutuku/features/Home/data/models/prodcut_model.dart';
@@ -23,6 +24,8 @@ class DetailsViewBody extends StatelessWidget {
         customAppBar(
           context,
           leadingOnPressed: () => GoRouter.of(context).pop(),
+          actionOnpressed: () =>
+              GoRouter.of(context).push(AppRoutes.kMyCartView),
           title: 'Detail Product',
           icon: Icons.shopping_bag,
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:kutuku/core/utils/styles.dart';
 import 'package:kutuku/core/utils/widgets/custom_button.dart';
 import 'package:kutuku/core/utils/widgets/icon_text_button.dart';
@@ -62,7 +63,12 @@ class ProfileViewBody extends StatelessWidget {
         SizedBox(
           height: MediaQuery.of(context).size.height * .1,
         ),
-        const CustomButton(text: 'Save Changes'),
+        CustomButton(
+          text: 'Save Changes',
+          onPressed: () {
+            GoRouter.of(context).pop();
+          },
+        ),
       ],
     );
   }

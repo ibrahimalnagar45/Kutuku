@@ -28,6 +28,7 @@ customAppBar(
         onPressed: actionOnpressed,
         icon: Icon(
           icon,
+          color: Colors.black,
         ),
       )
     ],

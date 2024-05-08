@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kutuku/constants.dart';
 import 'package:kutuku/features/Home/data/models/prodcut_model.dart';
@@ -15,6 +16,12 @@ class ProductCubit extends Cubit<ProductState> {
       var products = await procutRepoImpl.fetchAllProducts(endpoint: baseurl);
       // products.insert(0, _productModel!);
       emit(ProductsSuccess(products: products));
+    } on DioException catch (e) {
+      emit(
+        ProductsFaluire(
+          errorMessage: e.toString(),
+        ),
+      );
     } catch (e) {
       emit(
         ProductsFaluire(
@@ -61,5 +68,4 @@ class ProductCubit extends Cubit<ProductState> {
       );
     }
   }
-   
 }
