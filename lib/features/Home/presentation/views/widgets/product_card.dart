@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:kutuku/constants.dart';
+ import 'package:kutuku/constants.dart';
 import 'package:kutuku/core/utils/styles.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:kutuku/features/Home/presentation/views/detials_view.dart';
-import '../../../../../core/utils/app_routes.dart';
-import '../../../../../core/models/prodcut_model.dart';
+ import '../../../../../core/models/prodcut_model.dart';
 import 'custom_favorite_icon.dart';
 
 class ProductCard extends StatefulWidget {
