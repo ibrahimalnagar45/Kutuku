@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kutuku/features/Home/data/models/prodcut_model.dart';
+import 'package:kutuku/core/models/prodcut_model.dart';
 import 'package:kutuku/features/Home/presentation/managar/cubits/product_cubit/product_cubit.dart';
 import 'package:kutuku/features/Home/presentation/managar/cubits/product_cubit/product_state.dart';
 import 'package:kutuku/features/Home/presentation/views/widgets/category_title.dart';
@@ -60,7 +60,7 @@ class HomeViewBody extends StatelessWidget {
                               SizedBox(
                                 height: 15,
                               ),
-                              // CategoryTitle(categoryTitle: 'New Affrails🔥'),
+                              CategoryTitle(categoryTitle: 'New Affrails🔥'),
                               SizedBox(
                                 height: 15,
                               ),
@@ -84,7 +84,9 @@ class HomeViewBody extends StatelessWidget {
               const SizedBox(
                 height: 15,
               ),
-              Center(child: Text(state.errorMessage),),
+              Center(
+                child: Text(state.errorMessage),
+              ),
             ],
           );
         } else {

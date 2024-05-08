@@ -1,4 +1,4 @@
-import '../models/prodcut_model.dart';
+import '../../../../core/models/prodcut_model.dart';
 
 abstract class ProductRepo {
   Future<List<ProductModel>> fetchAllProducts({required String endpoint});

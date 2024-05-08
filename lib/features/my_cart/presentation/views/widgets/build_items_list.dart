@@ -1,22 +1,32 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:kutuku/constants.dart';
 import 'package:kutuku/core/utils/styles.dart';
 import 'package:kutuku/features/my_cart/presentation/views/widgets/my_cart_item.dart';
 
-class MyCartItemsList extends StatefulWidget {
-  const MyCartItemsList({super.key});
+import '../../../../../core/models/prodcut_model.dart';
 
+class BuildItemsList extends StatefulWidget {
+  const BuildItemsList({super.key, required this.products});
+  final List<ProductModel> products;
   @override
-  State<MyCartItemsList> createState() => _MyCartItemsListState();
+  State<BuildItemsList> createState() => _BuildItemsListState();
 }
 
-class _MyCartItemsListState extends State<MyCartItemsList> {
+class _BuildItemsListState extends State<BuildItemsList> {
+  @override
+  @override
   bool showAllPressed = false;
   bool showSelectAll = false;
   bool selectAll = false;
   @override
   Widget build(BuildContext context) {
+    if (widget.products.isEmpty) {
+      return const Center(
+        child: Text('No items yet'),
+      );
+    }
     return showSelectAll
         ? Column(
             // crossAxisAlignment: CrossAxisAlignment.end,
@@ -61,25 +71,25 @@ class _MyCartItemsListState extends State<MyCartItemsList> {
               ),
               Expanded(
                 child: ListView.builder(
-                    itemCount: 10,
+                    itemCount: widget.products.length,
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onDoubleTap: () {
                           showAllPressed = true;
                           showSelectAll = true;
-                    
+
                           setState(() {});
                         },
                         onTap: () {
                           showAllPressed = false;
                           showSelectAll = false;
-                          
+
                           setState(() {});
                         },
                         child: MyCartItem(
                           forceSelection: selectAll,
                           showAllPressed: showAllPressed,
-                          productModel: testProducts[index],
+                          productModel: widget.products[index],
                         ),
                       );
                     }),
@@ -87,7 +97,7 @@ class _MyCartItemsListState extends State<MyCartItemsList> {
             ],
           )
         : ListView.builder(
-            itemCount: 10,
+            itemCount: widget.products.length,
             itemBuilder: (context, index) {
               return GestureDetector(
                 onDoubleTap: () {
@@ -103,10 +113,9 @@ class _MyCartItemsListState extends State<MyCartItemsList> {
                 },
                 child: MyCartItem(
                   showAllPressed: showAllPressed,
-                  productModel: testProducts[index],
+                  productModel: widget.products[index],
                 ),
               );
             });
   }
 }
- 

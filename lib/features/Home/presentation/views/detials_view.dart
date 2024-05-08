@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kutuku/constants.dart';
 import 'package:kutuku/features/Home/presentation/views/widgets/detials_view_body.dart';
 
-import '../../data/models/prodcut_model.dart';
+import '../../../../core/models/prodcut_model.dart';
 
 class DetailsView extends StatelessWidget {
   const DetailsView({

@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:kutuku/core/services/api_service.dart';
 import 'package:kutuku/core/utils/failure/failure.dart';
 import 'package:kutuku/features/Home/data/repos/product_repo.dart';
-import '../models/prodcut_model.dart';
+import '../../../../core/models/prodcut_model.dart';
 
 class ProcutRepoImpl implements ProductRepo {
   final ApiService api;

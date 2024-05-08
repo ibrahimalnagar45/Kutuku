@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kutuku/constants.dart';
-import 'package:kutuku/features/Home/data/models/prodcut_model.dart';
+import 'package:kutuku/core/models/prodcut_model.dart';
 import 'package:kutuku/features/Home/data/repos/product_repo_impl.dart';
 import 'product_state.dart';
 

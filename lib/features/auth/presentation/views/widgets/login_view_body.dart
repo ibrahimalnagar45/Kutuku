@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kutuku/constants.dart';
@@ -82,8 +84,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                     password: password,
                     context: context,
                   );
-                  GoRouter.of(context).push(AppRoutes.kHomeView);
+                  // GoRouter.of(context).push(AppRoutes.kHomeView);
                 } on Exception catch (e) {
+                  log(e.toString());
                   showSnakeBar(context: context, message: e.toString());
                 }
               }

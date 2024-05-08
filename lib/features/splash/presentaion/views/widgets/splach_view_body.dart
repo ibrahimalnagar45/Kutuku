@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kutuku/constants.dart';
 import 'package:kutuku/core/utils/app_routes.dart';
- 
+
 class SplahViewBody extends StatefulWidget {
   const SplahViewBody({super.key});
 
@@ -84,7 +84,7 @@ class _SplahViewBodyState extends State<SplahViewBody>
     Future.delayed(
       const Duration(seconds: 2),
       () {
-        GoRouter.of(context).push(AppRoutes.kHomeView);
+        GoRouter.of(context).push(AppRoutes.kONboardingView);
       },
     );
   }

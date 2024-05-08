@@ -2,10 +2,11 @@ import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:kutuku/core/utils/app_routes.dart';
 import 'package:kutuku/core/utils/styles.dart';
 import 'package:kutuku/core/utils/widgets/icon_text_button.dart';
-import 'package:kutuku/features/Home/data/models/prodcut_model.dart';
+import 'package:kutuku/core/models/prodcut_model.dart';
 import 'package:kutuku/features/Home/presentation/views/widgets/custom_favorite_icon.dart';
 import 'package:kutuku/features/my_cart/presentation/views/widgets/custom_app_bar.dart';
 
@@ -47,11 +48,13 @@ class DetailsViewBody extends StatelessWidget {
           product.title!,
           style: Styles.titleStyle,
         ),
-        const Align(
+        Align(
           alignment: Alignment.centerRight,
           child: SizedBox(
             height: 35,
-            child: CustomFavoriteIcon(),
+            child: CustomFavoriteIcon(
+              productModel: product,
+            ),
           ),
         ),
         const SizedBox(
@@ -85,10 +88,16 @@ class DetailsViewBody extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(
+            SizedBox(
               width: 250,
               height: 60,
               child: IconTextButton(
+                onPressed: () {
+                  var box = Hive.box<ProductModel>('myCart');
+                  if (!box.containsKey(product.id)) {
+                    box.put(product.id, product);
+                  }
+                },
                 text: 'Add to Chart',
                 colored: true,
                 prefixIcon: 'assets/images/Shopping_bag.jpeg',

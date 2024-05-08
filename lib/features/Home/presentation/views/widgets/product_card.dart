@@ -5,7 +5,7 @@ import 'package:kutuku/core/utils/styles.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:kutuku/features/Home/presentation/views/detials_view.dart';
 import '../../../../../core/utils/app_routes.dart';
-import '../../../data/models/prodcut_model.dart';
+import '../../../../../core/models/prodcut_model.dart';
 import 'custom_favorite_icon.dart';
 
 class ProductCard extends StatefulWidget {
@@ -42,16 +42,18 @@ class _ProductCardState extends State<ProductCard> {
                   imageUrl: widget.productModel.image ?? networkImageError,
                   errorWidget: Image.asset('assets/images/no_image.jpg'),
                 ),
-                const Positioned(
+                Positioned(
                   right: 10,
                   top: 15,
-                  child: CustomFavoriteIcon(),
+                  child: CustomFavoriteIcon(
+                    productModel: widget.productModel,
+                  ),
                 ),
               ],
             ),
           ),
           Text(
-            widget.productModel.title !,
+            widget.productModel.title!,
             style: Styles.textStyle15,
           ),
           const Text(

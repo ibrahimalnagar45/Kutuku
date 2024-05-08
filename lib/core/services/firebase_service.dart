@@ -1,9 +1,9 @@
 import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:kutuku/core/utils/app_routes.dart';
 import 'package:kutuku/core/utils/helpers/show_snake_bar.dart';
-
-import 'package:google_sign_in/google_sign_in.dart';
 
 class FirebaseService {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
@@ -19,6 +19,7 @@ class FirebaseService {
           email: email!, password: password!);
       showSnakeBar(
           context: context, message: 'the registeration process success');
+      GoRouter.of(context).push(AppRoutes.kLoginView);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         showSnakeBar(
@@ -44,17 +45,34 @@ class FirebaseService {
     try {
       final credential = await firebaseAuth.signInWithEmailAndPassword(
           email: email!, password: password!);
+      GoRouter.of(context).push(AppRoutes.kHomeView);
       showSnakeBar(context: context, message: 'the login process success');
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        print('No user found for that email.');
+        log('No user found for that email.');
+        showSnakeBar(
+            context: context, message: 'No user found for that email.');
+        // throw 'No user found for that email.';
       } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
+        log('Wrong password provided for that user.');
+        showSnakeBar(
+            context: context,
+            message: 'Wrong password provided for that user.');
+        // throw 'Wrong password provided for that user.';
+      } else {
+        log(e.toString());
+
+        showSnakeBar(context: context, message: e.toString());
+        // throw e.toString();
       }
     } catch (e) {
       log(e.toString());
       showSnakeBar(context: context, message: e.toString());
     }
+  }
+
+  Future<void> singout() async {
+    await FirebaseAuth.instance.signOut();
   }
 
   // Future<void> singinWithGoogle() async {

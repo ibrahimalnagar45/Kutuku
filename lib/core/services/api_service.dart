@@ -1,8 +1,7 @@
-import 'dart:developer';
-
+ 
 import 'package:dio/dio.dart';
 
-import '../../features/Home/data/models/prodcut_model.dart';
+import '../models/prodcut_model.dart';
 
 class ApiService {
   final Dio dio;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kutuku/features/onboarding/data/models/slider_model.dart';
 
-import 'features/Home/data/models/prodcut_model.dart';
+import 'core/models/prodcut_model.dart';
 
 int viewId = 0;
 const String baseurl = 'https://fakestoreapi.com/products';

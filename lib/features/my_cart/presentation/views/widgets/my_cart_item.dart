@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kutuku/constants.dart';
- 
+
 import '../../../../../core/utils/styles.dart';
-import '../../../../Home/data/models/prodcut_model.dart';
+import '../../../../../core/models/prodcut_model.dart';
+import '../../../../Home/presentation/views/detials_view.dart';
 
 class MyCartItem extends StatefulWidget {
   const MyCartItem({
@@ -24,13 +25,13 @@ class _MyCartItemState extends State<MyCartItem> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      // onTap: () {
-      //   Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-      //     return DetailsView(
-      //       product: widget.productModel,
-      //     );
-      //   }));
-      // },
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+          return DetailsView(
+            product: widget.productModel,
+          );
+        }));
+      },
       child: widget.showAllPressed == true
           ? SizedBox(
               height: 116,
@@ -86,7 +87,7 @@ class _MyCartItemState extends State<MyCartItem> {
                         child: SizedBox(
                           height: 100,
                           width: 90,
-                          child: Image.asset(
+                          child: Image.network(
                             widget.productModel.image!,
                             fit: BoxFit.fill,
                           ),
@@ -131,14 +132,14 @@ class _MyCartItemState extends State<MyCartItem> {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     // mainAxisAlignment: MainAxisAlignment.spa,
-                    // mainAxisSize: MainAxisSize.max,
+                    mainAxisSize: MainAxisSize.max,
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(12),
                         child: SizedBox(
                           height: 100,
                           width: 90,
-                          child: Image.asset(
+                          child: Image.network(
                             widget.productModel.image!,
                             fit: BoxFit.fill,
                           ),
@@ -151,21 +152,31 @@ class _MyCartItemState extends State<MyCartItem> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            widget.productModel.title!,
-                            style: Styles.titleStyle,
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * .5,
+                            child: Text(
+                              widget.productModel.title!,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: Styles.titleStyle,
+                            ),
                           ),
-                          Text(
-                            widget.productModel.description!,
-                            style: Styles.desStyle,
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * .5,
+                            child: Text(
+                              widget.productModel.description!,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: Styles.desStyle,
+                            ),
                           ),
                         ],
                       ),
                       const Spacer(
                         flex: 4,
                       ),
-                      const Text(
-                        r'$1992',
+                      Text(
+                        '\$${widget.productModel.price}',
                         style: Styles.titleStyle,
                       ),
                     ],

@@ -67,10 +67,9 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                     context: context,
                   );
                   isLoading = false;
-                  GoRouter.of(context).push(AppRoutes.kLoginView);
+                  // GoRouter.of(context).push(AppRoutes.kLoginView);
                 }
-
-                log('registeration failed');
+ 
               },
             ),
             const SizedBox(

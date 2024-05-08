@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../data/models/prodcut_model.dart';
+import '../../../../../core/models/prodcut_model.dart';
 import 'product_card.dart';
 
 class ProductsList extends StatelessWidget {
