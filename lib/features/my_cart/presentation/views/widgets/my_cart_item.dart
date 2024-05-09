@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kutuku/constants.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 
 import '../../../../../core/utils/styles.dart';
 import '../../../../../core/models/prodcut_model.dart';
@@ -87,9 +88,9 @@ class _MyCartItemState extends State<MyCartItem> {
                         child: SizedBox(
                           height: 100,
                           width: 90,
-                          child: Image.network(
-                            widget.productModel.image!,
-                            fit: BoxFit.fill,
+                          child: FancyShimmerImage (
+                       imageUrl:      widget.productModel.image!,
+                             
                           ),
                         ),
                       ),

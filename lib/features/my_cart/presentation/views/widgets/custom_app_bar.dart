@@ -11,12 +11,12 @@ customAppBar(
   return AppBar(
     automaticallyImplyLeading: false,
     centerTitle: true,
-    leading: IconButton(
-      icon: const Icon(
-        Icons.arrow_back_ios_new_outlined,
-      ),
-      onPressed: leadingOnPressed,
-    ),
+    // leading: IconButton(
+    //   icon: const Icon(
+    //     Icons.arrow_back_ios_new_outlined,
+    //   ),
+    //   onPressed: leadingOnPressed,
+    // ),
     title: Text(
       title,
       style: const TextStyle(

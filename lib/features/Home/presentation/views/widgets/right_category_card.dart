@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kutuku/core/utils/app_routes.dart';
 import 'package:kutuku/core/utils/styles.dart';
+import 'package:kutuku/features/Home/presentation/views/home_view.dart';
 import 'package:kutuku/features/Home/presentation/views/widgets/full_width_image.dart';
 
 import '../../../../../constants.dart';
@@ -19,7 +20,11 @@ class CatrgoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRoutes.kHomeView );
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+          return HomeView(
+            catrgory: title,
+          );
+        }));
       },
       child: Padding(
         padding: const EdgeInsets.only(bottom: 10.0),

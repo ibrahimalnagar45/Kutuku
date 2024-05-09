@@ -10,10 +10,10 @@ import 'product_state.dart';
 class ProductCubit extends Cubit<ProductState> {
   ProductCubit(this.procutRepoImpl) : super(ProductsInitial());
   final ProcutRepoImpl procutRepoImpl;
-  fetchAllProducts() async {
+  fetchAllProducts({String? category}) async {
     try {
       emit(ProductsLoading());
-      var products = await procutRepoImpl.fetchAllProducts(endpoint: baseurl);
+      var products = await procutRepoImpl.fetchAllProducts(endpoint:  (category==null || category=='') ? baseurl:'$baseurl/category/$category');
       // products.insert(0, _productModel!);
       emit(ProductsSuccess(products: products));
     } on DioException catch (e) {

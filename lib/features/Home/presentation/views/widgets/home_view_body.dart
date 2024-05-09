@@ -73,24 +73,7 @@ class HomeViewBody extends StatelessWidget {
                         height: 15,
                       ),
                     ),
-                    // const SliverToBoxAdapter(
-                    //   child: Column(
-                    //     children: [
-                    //       // MainHomeViewWidgets(),
-                    //       // SizedBox(
-                    //       //   height: 15,
-                    //       // ),
-                    //       // AddsListView(),
-                    //       // SizedBox(
-                    //       //   height: 15,
-                    //       // ),
-                    //       CategoryTitle(categoryTitle: 'New Affrails🔥'),
-                    //       SizedBox(
-                    //         height: 15,
-                    //       ),
-                    //     ],
-                    //   ),
-                    // ),
+                 
                     ProductsList(
                       products: state.products,
                     ),
