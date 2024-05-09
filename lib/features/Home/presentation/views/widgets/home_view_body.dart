@@ -19,7 +19,7 @@ import 'product_card.dart';
 import 'products_list.dart';
 
 class HomeViewBody extends StatelessWidget {
- const  HomeViewBody({super.key});
+  const HomeViewBody({super.key});
   // final ScrollController _scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
@@ -51,22 +51,6 @@ class HomeViewBody extends StatelessWidget {
                   child: Text('No items Found'),
                 )
               : CustomScrollView(
-                  // controller: _scrollController,
-                  physics: const BouncingScrollPhysics(),
-                  // slivers: [
-                  //   SliverList(
-                  //       delegate: SliverChildListDelegate([
-                  //     MainHomeViewWidgets(),
-                  //     AddsListView(),
-                  //     SliverGrid.count(
-                  //       crossAxisCount: 2,
-                  //       children: List.generate(
-                  //           state.products.length,
-                  //           (index) => ProductCard(
-                  //               productModel: state.products[index])),
-                  //     )
-                  //   ]))
-                  // ],
                   slivers: [
                     const SliverToBoxAdapter(
                       child: MainHomeViewWidgets(),
@@ -76,35 +60,35 @@ class HomeViewBody extends StatelessWidget {
                         height: 15,
                       ),
                     ),
+                    const SliverToBoxAdapter(
+                      child: AddsListView(),
+                    ),
+                    const SliverToBoxAdapter(
+                      child: SizedBox(
+                        height: 15,
+                      ),
+                    ),
+                    const SliverToBoxAdapter(
+                      child: CategoryTitle(categoryTitle: 'New Affrails🔥'),
+                    ),
                     SliverToBoxAdapter(
-                      child: SizedBox(
-                          height: MediaQuery.of(context).size.height * .3,
-                          child: const AddsListView()),
-                    ),
-                    const SliverToBoxAdapter(
-                      child: SizedBox(
-                        height: 15,
-                      ),
-                    ),
-                    const SliverToBoxAdapter(
-                        child: CategoryTitle(categoryTitle: 'New Affrails🔥')),
-                    const SliverToBoxAdapter(
-                      child: SizedBox(
-                        height: 15,
-                      ),
-                    ),
-                    SliverFillRemaining(
-                      // fillOverscroll: true,
-
-                       
-                        child: Expanded(
-                          child: ProductsList(
-                            products: state.products,
-                          ),
-                        ),
-                    ),
+                      child: ProductsList(products: state.products),
+                    )
                   ],
-                );
+                ); // ListView(
+          //     children: [
+          //       const MainHomeViewWidgets(),
+          //       const SizedBox(
+          //         height: 15,
+          //       ),
+          //       const AddsListView(),
+          //       const SizedBox(
+          //         height: 15,
+          //       ),
+          //       const CategoryTitle(categoryTitle: 'New Affrails🔥'),
+          //       SizedBox(child: ProductsList(products: state.products)),
+          //     ],
+          //   );
         } else if (state is ProductsFaluire) {
           log(state.errorMessage.toString());
           return Column(

@@ -14,7 +14,8 @@ class ProductsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MasonryGridView.count(
-        // physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
         // scrollDirection: Axis.horizontal,
         itemCount: products.length,
         crossAxisCount: 2,
