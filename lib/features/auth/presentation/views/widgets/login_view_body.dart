@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kutuku/constants.dart';
 import 'package:kutuku/core/services/firebase_service.dart';
@@ -8,6 +9,7 @@ import 'package:kutuku/core/utils/app_routes.dart';
 import 'package:kutuku/core/utils/helpers/show_snake_bar.dart';
 import 'package:kutuku/core/utils/styles.dart';
 import 'package:kutuku/core/utils/widgets/custom_button.dart';
+import 'package:kutuku/features/auth/presentation/manager/cubits/Auth_cubit/auth_cubit.dart';
 import 'package:kutuku/features/auth/presentation/views/widgets/forget_password_sheet.dart';
 import 'package:kutuku/features/auth/presentation/views/widgets/login_inputs_section.dart';
 import 'addtional_auth_function.dart';
@@ -69,26 +71,52 @@ class _LoginViewBodyState extends State<LoginViewBody> {
           const SizedBox(
             height: 30,
           ),
-          CustomButton(
-            text: 'Login',
-            onPressed: () {
-              globalFormKey.currentState!.save();
-              if (globalFormKey.currentState!.validate()) {
-                setState(() {
-                  _autovalidateMode = AutovalidateMode.always;
-                });
-
-                try {
-                  FirebaseService().singinWithEmailAndPassword(
-                    email: email,
-                    password: password,
-                    context: context,
-                  );
-                  // GoRouter.of(context).push(AppRoutes.kHomeView);
-                } on Exception catch (e) {
-                  log(e.toString());
-                  showSnakeBar(context: context, message: e.toString());
-                }
+          BlocBuilder<AuthCubit, AuthState>(
+            builder: (context, state) {
+              if (state is AuthLoginLoading) {
+                return Container(
+                  height: 50,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: kPrimaryColor,
+                  ),
+                  child: const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+              } else if (state is AuthLoginFailure) {
+                return Container(
+                  height: 50,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: kPrimaryColor,
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'Login Failed',
+                    ),
+                  ),
+                );
+              } else {
+                return CustomButton(
+                  text: 'Login',
+                  onPressed: () {
+                    globalFormKey.currentState!.save();
+                    if (globalFormKey.currentState!.validate()) {
+                      setState(() {
+                        _autovalidateMode = AutovalidateMode.always;
+                      });
+                      BlocProvider.of<AuthCubit>(context)
+                          .signinWithEmailAndPassword(
+                              email: email,
+                              password: password,
+                              context: context);
+                      FirebaseService().getUserInfo();
+                    }
+                  },
+                );
               }
             },
           ),

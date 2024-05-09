@@ -6,7 +6,8 @@ part 'auth_state.dart';
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthLoginInitial());
   final FirebaseService _firebaseService = FirebaseService();
-  void signinWithEmailAndPassword({String? email, String? password, context}) {
+  void signinWithEmailAndPassword(
+      {required String? email, required String? password, required context}) {
     try {
       emit(AuthLoginLoading());
       _firebaseService.singinWithEmailAndPassword(
@@ -24,10 +25,10 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  void signupWithEmailAndPassword({String? email, String? password, context}) {
+  void signupWithEmailAndPassword({required String? email,required String? password,required context}) {
     try {
       emit(AuthSingupLoading());
-      _firebaseService.singinWithEmailAndPassword(
+      _firebaseService.registerUsingEmailAndPassword(
         email: email,
         password: password,
         context: context,

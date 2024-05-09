@@ -13,21 +13,15 @@ class ProductsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverList(
-      delegate: SliverChildBuilderDelegate(
-        childCount: 1,
-        (context, index) => SizedBox(
-          height: MediaQuery.of(context).size.height * .885,
-          child: MasonryGridView.count(
-              itemCount: products.length,
-              crossAxisCount: 2,
-              mainAxisSpacing: 1,
-              crossAxisSpacing: 1,
-              itemBuilder: (context, index) {
-                return ProductCard(productModel: products[index]);
-              }),
-        ),
-      ),
-    );
+    return MasonryGridView.count(
+        // physics: const NeverScrollableScrollPhysics(),
+        // scrollDirection: Axis.horizontal,
+        itemCount: products.length,
+        crossAxisCount: 2,
+        mainAxisSpacing: 1,
+        crossAxisSpacing: 1,
+        itemBuilder: (context, index) {
+          return ProductCard(productModel: products[index]);
+        });
   }
 }

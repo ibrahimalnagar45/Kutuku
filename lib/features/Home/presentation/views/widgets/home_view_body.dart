@@ -2,9 +2,12 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/physics.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:kutuku/features/Home/presentation/managar/cubits/product_cubit/product_cubit.dart';
 import 'package:kutuku/features/Home/presentation/managar/cubits/product_cubit/product_state.dart';
 import 'package:kutuku/features/Home/presentation/views/widgets/category_title.dart';
@@ -12,11 +15,12 @@ import 'package:kutuku/features/Home/presentation/views/widgets/main_home_widget
 
 import 'adds_list_view.dart';
 
+import 'product_card.dart';
 import 'products_list.dart';
 
 class HomeViewBody extends StatelessWidget {
-  const HomeViewBody({super.key});
-
+ const  HomeViewBody({super.key});
+  // final ScrollController _scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ProductCubit, ProductState>(
@@ -47,7 +51,22 @@ class HomeViewBody extends StatelessWidget {
                   child: Text('No items Found'),
                 )
               : CustomScrollView(
+                  // controller: _scrollController,
                   physics: const BouncingScrollPhysics(),
+                  // slivers: [
+                  //   SliverList(
+                  //       delegate: SliverChildListDelegate([
+                  //     MainHomeViewWidgets(),
+                  //     AddsListView(),
+                  //     SliverGrid.count(
+                  //       crossAxisCount: 2,
+                  //       children: List.generate(
+                  //           state.products.length,
+                  //           (index) => ProductCard(
+                  //               productModel: state.products[index])),
+                  //     )
+                  //   ]))
+                  // ],
                   slivers: [
                     const SliverToBoxAdapter(
                       child: MainHomeViewWidgets(),
@@ -57,8 +76,10 @@ class HomeViewBody extends StatelessWidget {
                         height: 15,
                       ),
                     ),
-                    const SliverToBoxAdapter(
-                      child: AddsListView(),
+                    SliverToBoxAdapter(
+                      child: SizedBox(
+                          height: MediaQuery.of(context).size.height * .3,
+                          child: const AddsListView()),
                     ),
                     const SliverToBoxAdapter(
                       child: SizedBox(
@@ -66,16 +87,21 @@ class HomeViewBody extends StatelessWidget {
                       ),
                     ),
                     const SliverToBoxAdapter(
-                      child: CategoryTitle(categoryTitle: 'New Affrails🔥'),
-                    ),
+                        child: CategoryTitle(categoryTitle: 'New Affrails🔥')),
                     const SliverToBoxAdapter(
                       child: SizedBox(
                         height: 15,
                       ),
                     ),
-                 
-                    ProductsList(
-                      products: state.products,
+                    SliverFillRemaining(
+                      // fillOverscroll: true,
+
+                       
+                        child: Expanded(
+                          child: ProductsList(
+                            products: state.products,
+                          ),
+                        ),
                     ),
                   ],
                 );

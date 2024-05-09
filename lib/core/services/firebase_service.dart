@@ -2,8 +2,10 @@ import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:kutuku/core/utils/app_routes.dart';
 import 'package:kutuku/core/utils/helpers/show_snake_bar.dart';
+import 'package:kutuku/features/auth/data/models/user_model.dart';
 
 class FirebaseService {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
@@ -16,7 +18,9 @@ class FirebaseService {
   }) async {
     try {
       final credential = await firebaseAuth.createUserWithEmailAndPassword(
-          email: email!, password: password!);
+        email: email!,
+        password: password!,
+      );
       showSnakeBar(
           context: context, message: 'the registeration process success');
       GoRouter.of(context).push(AppRoutes.kLoginView);
@@ -28,6 +32,8 @@ class FirebaseService {
         showSnakeBar(
             context: context,
             message: 'The account already exists for that email.');
+      } else {
+        showSnakeBar(context: context, message: e.message!.toString());
       }
     } catch (e) {
       showSnakeBar(
@@ -60,9 +66,9 @@ class FirebaseService {
             message: 'Wrong password provided for that user.');
         // throw 'Wrong password provided for that user.';
       } else {
-        log(e.toString());
+        log(e.message!.toString());
 
-        showSnakeBar(context: context, message: e.toString());
+        showSnakeBar(context: context, message: e.message!.toString());
         // throw e.toString();
       }
     } catch (e) {
@@ -73,6 +79,18 @@ class FirebaseService {
 
   Future<void> singout() async {
     await FirebaseAuth.instance.signOut();
+  }
+
+  Future<void> getUserInfo() async {
+    final user = firebaseAuth.currentUser;
+    var box = Hive.box<UserModel>('User');
+    if (user != null) {
+      if (!box.containsKey(0)) {
+        box.put(0, UserModel.fromFirebase(user));
+      }
+      box.deleteAll([0]);
+      box.put(0, UserModel.fromFirebase(user));
+    }
   }
 
   // Future<void> singinWithGoogle() async {

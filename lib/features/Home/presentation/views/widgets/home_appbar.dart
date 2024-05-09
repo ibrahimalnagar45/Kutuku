@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hive/hive.dart';
 import 'package:kutuku/constants.dart';
 import 'package:kutuku/core/utils/app_routes.dart';
 import 'package:kutuku/core/utils/styles.dart';
 
-class HomeAppBar extends StatelessWidget {
+import '../../../../auth/data/models/user_model.dart';
+
+class HomeAppBar extends StatefulWidget {
   const HomeAppBar({super.key});
+
+  @override
+  State<HomeAppBar> createState() => _HomeAppBarState();
+}
+
+class _HomeAppBarState extends State<HomeAppBar> {
+  var user = Hive.box<UserModel>('user');
 
   @override
   Widget build(BuildContext context) {
@@ -24,15 +34,15 @@ class HomeAppBar extends StatelessWidget {
             const SizedBox(
               width: 12,
             ),
-            const Column(
+            Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Hi,Ibrahim',
+                  'Hi,${user.values.first.name}',
                   style: Styles.titleStyle,
                 ),
-                Text(
+                const Text(
                   'Lets\'s go shopping',
                   style: Styles.desStyle,
                 ),
