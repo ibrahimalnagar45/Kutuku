@@ -7,10 +7,12 @@ class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthLoginInitial());
   final FirebaseService _firebaseService = FirebaseService();
   void signinWithEmailAndPassword(
-      {required String? email, required String? password, required context}) {
+      {required String? email,
+      required String? password,
+      required context}) async {
     try {
       emit(AuthLoginLoading());
-      _firebaseService.singinWithEmailAndPassword(
+      await _firebaseService.singinWithEmailAndPassword(
         email: email,
         password: password,
         context: context,
@@ -25,10 +27,14 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  void signupWithEmailAndPassword({required String? email,required String? password,required context}) {
+  void signupWithEmailAndPassword({
+    required String? email,
+    required String? password,
+    required context,
+  }) async {
     try {
       emit(AuthSingupLoading());
-      _firebaseService.registerUsingEmailAndPassword(
+      await _firebaseService.registerUsingEmailAndPassword(
         email: email,
         password: password,
         context: context,

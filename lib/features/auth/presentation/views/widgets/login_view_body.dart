@@ -1,5 +1,5 @@
- 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kutuku/constants.dart';
@@ -25,11 +25,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
   GlobalKey<FormState> globalFormKey = GlobalKey();
 
   AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
- 
+
   String? email, password;
   @override
-   
-
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -77,14 +75,15 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             builder: (context, state) {
               if (state is AuthLoginLoading) {
                 return Container(
-                  height: 50,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
                     color: kPrimaryColor,
                   ),
                   child: const Center(
-                    child: CircularProgressIndicator(),
+                    child: CircularProgressIndicator(
+                      color: Colors.white,
+                    ),
                   ),
                 );
               } else if (state is AuthLoginFailure) {
@@ -115,11 +114,12 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                               email: email,
                               password: password,
                               context: context);
-                      FirebaseService().getUserInfo();
+                      // FirebaseService().getUserInfo();
                     }
                   },
                 );
               }
+              
             },
           ),
           const SizedBox(

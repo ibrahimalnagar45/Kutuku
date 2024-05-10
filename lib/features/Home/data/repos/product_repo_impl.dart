@@ -23,13 +23,6 @@ class ProcutRepoImpl implements ProductRepo {
           ),
         );
       }
-      // for (int i = 0; i <= data.length; i++) {
-      //   products.add(
-      //     ProductModel.fromJson(
-      //       data[i],
-      //     ),
-      //   );
-      // }
 
       return products;
     } on DioException catch (e) {
