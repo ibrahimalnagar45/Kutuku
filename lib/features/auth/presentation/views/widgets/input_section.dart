@@ -13,7 +13,7 @@ class InputSection extends StatelessWidget {
       this.suffixicon,
       this.keyboardType,
       this.onSaved,
-      this.suffixIconOnPressed, required this.passowrdField});
+      this.suffixIconOnPressed, required this.passowrdField, this.textInputAction});
   final String title;
   final String hintText;
   final String? Function(String?)? validator;
@@ -24,6 +24,7 @@ class InputSection extends StatelessWidget {
   final Function()? suffixIconOnPressed;
   final TextInputType? keyboardType;
   final bool passowrdField;
+  final TextInputAction? textInputAction;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -41,6 +42,7 @@ class InputSection extends StatelessWidget {
             height: 5,
           ),
           CustomFormTextFiled(
+            textInputAction: textInputAction,
             onSaved: onSaved,
             keyboardType: keyboardType,
             isObsucure: isObscure,

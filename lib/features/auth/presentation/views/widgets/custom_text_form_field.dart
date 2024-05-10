@@ -15,7 +15,7 @@ class CustomFormTextFiled extends StatefulWidget {
       this.onSaved,
       this.padding = kPrimaryPadding,
       this.suffixIconOnPressed,
-      required this.passowrdField});
+      required this.passowrdField, this.textInputAction});
   final String? Function(String?)? validator;
   final String hintText;
   final Icon prefixIcon;
@@ -26,6 +26,7 @@ class CustomFormTextFiled extends StatefulWidget {
   final double? padding;
   final Function()? suffixIconOnPressed;
   final bool passowrdField;
+  final TextInputAction? textInputAction;
 
   @override
   State<CustomFormTextFiled> createState() => _CustomFormTextFiledState();
@@ -67,8 +68,10 @@ class _CustomFormTextFiledState extends State<CustomFormTextFiled> {
         borderRadius: BorderRadius.circular(widget.padding!),
       ),
       child: TextFormField(
+        // onFieldSubmitted: widget.onSaved,
         onSaved: widget.onSaved,
         keyboardType: widget.keyboardType,
+        textInputAction: widget.textInputAction,
         obscureText: showPassword,
         obscuringCharacter: '*',
         focusNode: _focusNode,

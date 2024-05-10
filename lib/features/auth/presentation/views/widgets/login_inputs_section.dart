@@ -10,6 +10,7 @@ class LoginInputSections extends StatelessWidget {
     return Column(
       children: [
         InputSection(
+          textInputAction: TextInputAction.next,
           passowrdField: false,
           onSaved: emailOnSaved,
           prefixIicon: const Icon(Icons.email_outlined),
@@ -32,6 +33,7 @@ class LoginInputSections extends StatelessWidget {
           // validator: (value) => value ?? 'please enter your name',
         ),
         InputSection(
+          textInputAction: TextInputAction.done,
           passowrdField: true,
           onSaved: passwordOnSaved,
           prefixIicon: const Icon(Icons.password),
