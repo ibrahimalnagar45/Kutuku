@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:kutuku/core/services/firebase_service.dart';
-
 import '../../../../../core/utils/widgets/custom_button.dart';
 
 class AddtionalAuthFunction extends StatelessWidget {
@@ -16,7 +14,7 @@ class AddtionalAuthFunction extends StatelessWidget {
           text: '$text With Google',
           prefixIcon: 'assets/icons/1.png',
           onPressed: () {
-            
+            FirebaseService().singinWithGoogle();
             // FirebaseService().singinWithGoogle();
           },
         ),
