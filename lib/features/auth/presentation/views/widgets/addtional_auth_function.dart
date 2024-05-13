@@ -1,5 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:kutuku/core/services/firebase_service.dart';
+import 'package:kutuku/core/utils/app_routes.dart';
 import '../../../../../core/utils/widgets/custom_button.dart';
 
 class AddtionalAuthFunction extends StatelessWidget {
@@ -13,8 +17,15 @@ class AddtionalAuthFunction extends StatelessWidget {
           colored: false,
           text: '$text With Google',
           prefixIcon: 'assets/icons/google.png',
-          onPressed: () {
-            FirebaseService().singinWithGoogle();
+          onPressed: () async {
+            try {
+              await FirebaseService().singinWithGoogle();
+              GoRouter.of(context).push(AppRoutes.kHomeView);
+            } on Exception catch (e) {
+              log(e.toString());
+              // TODO
+            }
+
             // FirebaseService().singinWithGoogle();
           },
         ),

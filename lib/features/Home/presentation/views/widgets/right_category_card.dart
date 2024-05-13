@@ -22,7 +22,7 @@ class CatrgoryCard extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
           return HomeView(
-            catrgory: title,
+            category: title,
           );
         }));
       },

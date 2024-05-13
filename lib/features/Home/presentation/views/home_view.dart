@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kutuku/constants.dart';
@@ -9,8 +10,8 @@ import 'package:kutuku/features/Home/presentation/views/widgets/home_footer_butt
 import 'package:kutuku/features/Home/presentation/views/widgets/home_view_body.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({super.key,   this.catrgory=''});
-  final String catrgory ;
+  const HomeView({super.key, this.category = ''});
+  final String? category;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,9 +28,7 @@ class HomeView extends StatelessWidget {
                     dio: Dio(),
                   ),
                 ),
-              )
-               
-                ..fetchAllProducts(category: catrgory),
+              )..fetchAllProducts(category: category),
             ),
           ],
           child: const HomeViewBody(),

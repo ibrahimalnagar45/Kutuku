@@ -10,10 +10,12 @@ class CustomButton extends StatelessWidget {
     this.onPressed,
     this.colored = true,
     this.prefixIcon,
+    this.scale
   });
   final String text;
   final void Function()? onPressed;
   final bool colored;
+  final double? scale;
 
   final String? prefixIcon;
   @override
@@ -32,6 +34,7 @@ class CustomButton extends StatelessWidget {
                 colored: colored,
                 prefixIcon: prefixIcon,
                 onPressed: onPressed,
+                
                 text: text,
               )
             : IconButton(
