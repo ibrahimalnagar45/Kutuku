@@ -13,23 +13,26 @@ class ProductCubit extends Cubit<ProductState> {
   fetchAllProducts({String? category}) async {
     try {
       emit(ProductsLoading());
-      var products = await procutRepoImpl.fetchAllProducts(
-        endpoint: (category == null || category == '')
+      List<ProductModel> products = await procutRepoImpl.fetchAllProducts(
+        endpoint: (category == null || category.isEmpty)
             ? baseurl
             : '$baseurl/category/$category',
       );
 
       emit(ProductsSuccess(products: products));
     } on DioException catch (e) {
+      log('Error cubit ${e.toString()}');
       emit(
         ProductsFaluire(
-          errorMessage: e.toString(),
+          errorMessage: 'Error cubit ${e.toString()}',
         ),
       );
     } catch (e) {
+      log('Error cubit ${e.toString()}');
+
       emit(
         ProductsFaluire(
-          errorMessage: e.toString(),
+          errorMessage: 'Error cubit ${e.toString()}',
         ),
       );
     }

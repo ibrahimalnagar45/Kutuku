@@ -14,7 +14,7 @@ class ProcutRepoImpl implements ProductRepo {
       {required String endpoint}) async {
     try {
       var data = await api.get(endPoint: endpoint);
-      // log('data from the reop : $data');
+
       List<ProductModel> products = [];
       for (var item in data) {
         products.add(
@@ -23,13 +23,12 @@ class ProcutRepoImpl implements ProductRepo {
           ),
         );
       }
-
       return products;
     } on DioException catch (e) {
-      log(ServerFailure.fromDiorError(e).toString());
+      log('error repo ${ServerFailure.fromDiorError(e).toString()}');
       throw (ServerFailure.fromDiorError(e));
     } catch (e) {
-      log(e.toString());
+      log('error repo ${e.toString()}');
       throw (
         ServerFailure(
           e.toString(),

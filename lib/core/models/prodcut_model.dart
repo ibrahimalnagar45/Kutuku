@@ -24,9 +24,9 @@ class ProductModel extends HiveObject {
     required this.id,
   });
 
-  ProductModel.fromJson(Map<String, dynamic> json) {
+  ProductModel.fromJson( dynamic json) {
     title = json['title'];
-    image = json['image'];
+    image = json['image'][0];
     category = json['category'];
     price = json['price'];
     description = json['description'];

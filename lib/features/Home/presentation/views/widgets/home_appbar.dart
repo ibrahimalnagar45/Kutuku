@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive/hive.dart';
 import 'package:kutuku/constants.dart';
@@ -38,9 +39,14 @@ class _HomeAppBarState extends State<HomeAppBar> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Hi,${user.values.first.name}',
-                  style: Styles.titleStyle,
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * .5,
+                  child: const Text(
+                    'Hi,{user.values.first.name}',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Styles.titleStyle,
+                  ),
                 ),
                 const Text(
                   'Lets\'s go shopping',

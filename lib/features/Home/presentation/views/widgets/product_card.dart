@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
- import 'package:kutuku/constants.dart';
+import 'package:kutuku/constants.dart';
 import 'package:kutuku/core/utils/styles.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:kutuku/features/Home/presentation/views/detials_view.dart';
- import '../../../../../core/models/prodcut_model.dart';
+import '../../../../../core/models/prodcut_model.dart';
 import 'custom_favorite_icon.dart';
 
 class ProductCard extends StatefulWidget {
@@ -36,9 +36,18 @@ class _ProductCardState extends State<ProductCard> {
             padding: const EdgeInsets.only(right: 16.0),
             child: Stack(
               children: [
+                //  Image.network(
+                //   widget.productModel.image ?? networkImageError,
+                // ),
+                // Image.asset(
+                //   'assets/images/women-jewellery.jpg',
+                // ),
+
                 FancyShimmerImage(
-                  imageUrl: widget.productModel.image ?? networkImageError,
-                  errorWidget: Image.asset('assets/images/no_image.jpg'),
+                  imageUrl:
+                      'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
+                  errorWidget: Image.asset('assets/images/no_image.jpg',
+                      fit: BoxFit.fill),
                 ),
                 Positioned(
                   right: 10,

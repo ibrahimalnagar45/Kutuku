@@ -14,9 +14,9 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(ProductModelAdapter());
   Hive.registerAdapter(UserModelAdapter());
-  var myCart = await Hive.openBox<ProductModel>('myCart');
-  var user = await Hive.openBox<UserModel>('user');
-  var favourites = await Hive.openBox<ProductModel>('favourites');
+   await Hive.openBox<ProductModel>('myCart');
+   await Hive.openBox<UserModel>('user');
+   await Hive.openBox<ProductModel>('favourites');
   Bloc.observer = MyBlocObserver();
   runApp(const Kutuku());
 }

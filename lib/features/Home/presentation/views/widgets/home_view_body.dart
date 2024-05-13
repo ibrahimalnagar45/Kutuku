@@ -76,19 +76,7 @@ class HomeViewBody extends StatelessWidget {
                     )
                   ],
                 ); // ListView(
-          //     children: [
-          //       const MainHomeViewWidgets(),
-          //       const SizedBox(
-          //         height: 15,
-          //       ),
-          //       const AddsListView(),
-          //       const SizedBox(
-          //         height: 15,
-          //       ),
-          //       const CategoryTitle(categoryTitle: 'New Affrails🔥'),
-          //       SizedBox(child: ProductsList(products: state.products)),
-          //     ],
-          //   );
+          
         } else if (state is ProductsFaluire) {
           log(state.errorMessage.toString());
           return Column(
