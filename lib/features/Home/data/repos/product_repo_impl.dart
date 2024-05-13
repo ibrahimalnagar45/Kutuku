@@ -16,7 +16,7 @@ class ProcutRepoImpl implements ProductRepo {
       var data = await api.get(endPoint: endpoint);
 
       List<ProductModel> products = [];
-      for (var item in data) {
+      for (var item in data['products']) {
         products.add(
           ProductModel.fromJson(
             item,

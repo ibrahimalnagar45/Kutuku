@@ -44,8 +44,7 @@ class _ProductCardState extends State<ProductCard> {
                 // ),
 
                 FancyShimmerImage(
-                  imageUrl:
-                      'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
+                  imageUrl: widget.productModel.image ?? networkImageError,
                   errorWidget: Image.asset('assets/images/no_image.jpg',
                       fit: BoxFit.fill),
                 ),

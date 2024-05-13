@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
- import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kutuku/constants.dart';
 import 'package:kutuku/core/services/api_service.dart';
@@ -27,10 +27,12 @@ class HomeView extends StatelessWidget {
                     dio: Dio(),
                   ),
                 ),
-              )..fetchAllProducts(),
+              )..fetchAllProducts(category: category),
             ),
           ],
-          child: const HomeViewBody(),
+          child: HomeViewBody(
+            category: category,
+          ),
         ),
       ),
     );

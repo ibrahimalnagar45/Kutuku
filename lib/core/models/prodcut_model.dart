@@ -15,21 +15,26 @@ class ProductModel extends HiveObject {
   String? description;
   @HiveField(5)
   int? id;
-  ProductModel({
-    required this.description,
-    required this.title,
-    required this.category,
-    required this.image,
-    required this.price,
-    required this.id,
-  });
+  @HiveField(6)
+  List<dynamic>? images;
+  ProductModel(
+      {required this.description,
+      required this.title,
+      required this.category,
+      required this.image,
+      required this.price,
+      required this.id,
+      required this.images});
 
-  ProductModel.fromJson( dynamic json) {
-    title = json['title'];
-    image = json['image'][0];
-    category = json['category'];
-    price = json['price'];
-    description = json['description'];
-    id = json['id'];
+  factory ProductModel.fromJson(Map<String, dynamic> json) {
+    return ProductModel(
+      title: json['title'],
+      image: json['thumbnail'],
+      category: json['category'],
+      price: json['price'],
+      description: json['description'],
+      id: json['id'],
+      images: json['images'],
+    );
   }
 }

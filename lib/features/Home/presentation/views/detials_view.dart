@@ -18,6 +18,8 @@ class DetailsView extends StatelessWidget {
         child: DetailsViewBody(
           product: product ??
               ProductModel(
+    images: [],
+                
                   description: 'description',
                   title: 'title',
                   category: 'category',
