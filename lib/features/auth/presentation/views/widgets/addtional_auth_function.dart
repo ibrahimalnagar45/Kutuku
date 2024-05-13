@@ -12,7 +12,7 @@ class AddtionalAuthFunction extends StatelessWidget {
         CustomButton(
           colored: false,
           text: '$text With Google',
-          prefixIcon: 'assets/icons/1.png',
+          prefixIcon: 'assets/icons/google.png',
           onPressed: () {
             FirebaseService().singinWithGoogle();
             // FirebaseService().singinWithGoogle();

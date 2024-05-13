@@ -94,23 +94,28 @@ class FirebaseService {
   }
 
   Future<void> singinWithGoogle() async {
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-    final GoogleSignInAuthentication? googleAuth =
-        await googleUser?.authentication;
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
-    );
-    // GoogleSignInAccount? googleSignInAccount = await   _googleSignIn.signIn();
-    // GoogleSignInAuthentication googleSignInAuthentication =
-    //     await googleSignInAccount!.authentication;
-    // AuthCredential credential = GoogleAuthProvider.credential(
-    //     idToken: googleSignInAuthentication.idToken,
-    //     accessToken: googleSignInAuthentication.accessToken);
-    // UserCredential userAuth =
-    //     await firebaseAuth.signInWithCredential(credential);
-    // User? user = userAuth.user;
-    // log(user!.email.toString());
+    // final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    // final GoogleSignInAuthentication? googleAuth =
+    //     await googleUser?.authentication;
+    // final credential = GoogleAuthProvider.credential(
+    //   accessToken: googleAuth?.accessToken,
+    //   idToken: googleAuth?.idToken,
+    // );
+    try {
+  GoogleSignInAccount? googleSignInAccount = await   _googleSignIn.signIn();
+  GoogleSignInAuthentication googleSignInAuthentication =
+      await googleSignInAccount!.authentication;
+  AuthCredential credential = GoogleAuthProvider.credential(
+      idToken: googleSignInAuthentication.idToken,
+      accessToken: googleSignInAuthentication.accessToken);
+  UserCredential userAuth =
+      await firebaseAuth.signInWithCredential(credential);
+  User? user = userAuth.user;
+  log(user!.email.toString());
+} on Exception catch (e) {
+ 
+  log(e.toString());
+}
   }
 
 /**
