@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:kutuku/constants.dart';
-import 'package:kutuku/core/services/firebase_service.dart';
-import 'package:kutuku/core/utils/app_routes.dart';
-import 'package:kutuku/core/utils/helpers/show_snake_bar.dart';
-import 'package:kutuku/core/utils/styles.dart';
-import 'package:kutuku/core/utils/widgets/custom_button.dart';
-import 'package:kutuku/features/auth/presentation/manager/cubits/Auth_cubit/auth_cubit.dart';
-import 'package:kutuku/features/auth/presentation/views/widgets/forget_password_sheet.dart';
-import 'package:kutuku/features/auth/presentation/views/widgets/login_inputs_section.dart';
-import 'addtional_auth_function.dart';
-import 'view_title.dart';
 
+import '../../../../../core/widgets/custom_circular_indecator.dart';
+import '../../../../services/firebase_service.dart';
+import '../../manager/cubits/Auth_cubit/auth_cubit.dart';
+import '../forget_password_view.dart';
+import '../register_view.dart';
+import 'custom_text_form_field.dart';
+import 'signin_with_google_button.dart'; 
 class LoginViewBody extends StatefulWidget {
   const LoginViewBody({super.key});
 
@@ -35,64 +29,97 @@ class _LoginViewBodyState extends State<LoginViewBody> {
       autovalidateMode: _autovalidateMode,
       child: ListView(
         children: [
-          const ViewTitle(
-            title: 'Login Account',
-            subTitle: 'Login with your email',
-          ),
           const SizedBox(
-            height: 30,
+            height: 70,
           ),
-          LoginInputSections(
-            emailOnSaved: (data) {
-              email = data;
-            },
-            passwordOnSaved: (data) {
-              password = data;
-              //  FocusScope.of(context).requestFocus(_passwordFocusNode);
-            },
-          ),
-          Align(
-            alignment: Alignment.centerRight,
-            child: TextButton(
-              onPressed: () {
-                showModalBottomSheet(
-                    isScrollControlled: true,
-                    context: context,
-                    builder: (context) {
-                      return const ForgetPasswordSheet();
-                    });
-              },
-              child: const Text(
-                'Forgot Password?',
-                style: TextStyle(color: kPrimaryColor),
-              ),
+          const Text(
+            'Ecommerce',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Color.fromARGB(255, 67, 29, 148),
+              fontWeight: FontWeight.bold,
+              fontSize: 30,
             ),
           ),
           const SizedBox(
             height: 30,
           ),
+          const SizedBox(
+            height: 20,
+          ),
+          CustomTextFormField(
+            hintText: 'Enter Your Email',
+            validator: (data) {
+              if (data!.isEmpty || data == "") {
+                return "required feild";
+              }
+              String pattern =
+                  r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+              RegExp regex = RegExp(pattern);
+              if (!regex.hasMatch(data)) {
+                return 'Enter Valid Email';
+              } else {
+                return null;
+              }
+            },
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          CustomTextFormField(
+            isPassword: true,
+            hintText: 'Enter Your Password',
+            validator: (data) {
+              if (data!.isEmpty) {
+                return "required feild";
+              } else if (data.length < 8) {
+                return "the password must be more than 8 letters ";
+              } else if (!data.contains('@') &&
+                  !data.contains('*') &&
+                  !data.contains('_') &&
+                  !data.contains('#') &&
+                  !data.contains(r'$')) {
+                return "weak password the password must contain _ or special sing as # or * ";
+              } else {
+                return null;
+              }
+              // validator: (value) => value ?? 'please enter your name',
+            },
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const StoreForgetPasswordView(),
+              ));
+            },
+            child: const Text(
+              'Forgot Password?',
+              textAlign: TextAlign.right,
+              style: TextStyle(
+                fontStyle: FontStyle.italic,
+                decoration: TextDecoration.underline,
+                decorationColor: Colors.red,
+                color: Colors.red,
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
           BlocBuilder<AuthCubit, AuthState>(
             builder: (context, state) {
               if (state is AuthLoginLoading) {
-                return Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: kPrimaryColor,
-                  ),
-                  child: const Center(
-                    child: CircularProgressIndicator(
-                      color: Colors.white,
-                    ),
-                  ),
-                );
+                return const CustomCircularProgressIndicator();
               } else if (state is AuthLoginFailure) {
                 return Container(
                   height: 50,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
-                    color: kPrimaryColor,
+                    color: const Color.fromARGB(255, 67, 29, 148),
                   ),
                   child: const Center(
                     child: Text(
@@ -101,44 +128,119 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                   ),
                 );
               } else {
-                return CustomButton(
-                  text: 'Login',
-                  onPressed: () {
-                    globalFormKey.currentState!.save();
-                    if (globalFormKey.currentState!.validate()) {
-                      setState(() {
+                return Container(
+                  height: 65,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: IconButton(
+                    onPressed: () {
+                      if (globalFormKey.currentState!.validate()) {
                         _autovalidateMode = AutovalidateMode.always;
-                      });
-                      BlocProvider.of<AuthCubit>(context)
-                          .signinWithEmailAndPassword(
-                              email: email,
-                              password: password,
-                              context: context);
-                      // FirebaseService().getUserInfo();
-                    }
-                  },
+                        setState(() {});
+                        FirebaseService().singinWithEmailAndPassword(
+                          email: email,
+                          password: password,
+                          context: context,
+                        );
+                      }
+
+                      _autovalidateMode = AutovalidateMode.disabled;
+                      setState(() {});
+                    },
+                    icon: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: const Color.fromARGB(255, 104, 59, 202),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          'Sing In',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20),
+                        ),
+                      ),
+                    ),
+                  ),
                 );
               }
-              
             },
           ),
           const SizedBox(
-            height: 15,
+            height: 20,
           ),
-          const Align(
-            alignment: Alignment.center,
-            child: Text(
-              'or using other methods',
-              style: Styles.desStyle,
-            ),
+          const Row(
+            children: [
+              Expanded(
+                child: Divider(
+                  thickness: 1,
+                  color: Color.fromARGB(255, 67, 29, 148),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 2.0),
+                child: Text(
+                  'or continue with',
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Expanded(
+                child: Divider(
+                  thickness: 1,
+                  color: Color.fromARGB(255, 67, 29, 148),
+                ),
+              ),
+            ],
           ),
           const SizedBox(
             height: 15,
           ),
-          const AddtionalAuthFunction(
-            text: 'LogIn',
+          const SignInWithGoogleButton(),
+          const SizedBox(
+            height: 20,
+          ),
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Don\'t have an account? ',
+              ),
+              CustomAuthTextButton(
+                title: 'SingUp',
+                toNavigatToWidget: StoreRegisterview(),
+              )
+            ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+class CustomAuthTextButton extends StatelessWidget {
+  const CustomAuthTextButton(
+      {super.key, required this.title, required this.toNavigatToWidget});
+  final String title;
+  final Widget toNavigatToWidget;
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+          return toNavigatToWidget;
+        }));
+      },
+      child: Text(
+        title,
+        style: const TextStyle(
+            fontSize: 20,
+            color: Color.fromARGB(255, 67, 29, 148),
+            fontStyle: FontStyle.italic,
+            decoration: TextDecoration.underline,
+            decorationColor: Color.fromARGB(255, 67, 29, 148)),
       ),
     );
   }

@@ -1,5 +1,7 @@
-import 'package:bloc/bloc.dart';
-import 'package:kutuku/core/services/firebase_service.dart';
+ 
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../../services/firebase_service.dart';
 
 part 'auth_state.dart';
 

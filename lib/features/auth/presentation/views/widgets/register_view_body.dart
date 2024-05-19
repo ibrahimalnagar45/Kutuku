@@ -1,209 +1,202 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:go_router/go_router.dart';
-import 'package:kutuku/core/services/firebase_service.dart';
-import 'package:kutuku/core/utils/app_routes.dart';
-import 'package:kutuku/core/utils/styles.dart';
-import 'package:kutuku/core/utils/widgets/custom_button.dart';
-import 'package:kutuku/features/auth/presentation/manager/cubits/Auth_cubit/auth_cubit.dart';
-import 'package:kutuku/features/auth/presentation/views/widgets/register_inputs_sections.dart';
-import 'package:kutuku/features/auth/presentation/views/widgets/addtional_auth_function.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-
-import '../../../../../constants.dart';
-import 'view_title.dart';
-
+import '../../../../../core/widgets/custom_circular_indecator.dart';
+import '../../../../services/firebase_service.dart';
+import '../../manager/cubits/Auth_cubit/auth_cubit.dart';
+import '../login_view.dart';
+import 'custom_text_form_field.dart';
+import 'login_view_body.dart';
+import 'signin_with_google_button.dart'; 
 class RegisterViewBody extends StatefulWidget {
   const RegisterViewBody({super.key});
 
   @override
-  State<RegisterViewBody> createState() => _RegisterViewBodyState();
+  State<RegisterViewBody> createState() => _LoginViewBodyState();
 }
 
-class _RegisterViewBodyState extends State<RegisterViewBody> {
+class _LoginViewBodyState extends State<RegisterViewBody> {
   GlobalKey<FormState> globalFormKey = GlobalKey();
-  AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
-  String? email, password, name;
 
+  String? email, password;
+  @override
   @override
   Widget build(BuildContext context) {
     return Form(
       key: globalFormKey,
-      autovalidateMode: _autovalidateMode,
       child: ListView(
         children: [
-          const ViewTitle(
-              title: 'Create Acount',
-              subTitle: 'Start Shopping with an account'),
           const SizedBox(
-            height: 30,
+            height: 70,
           ),
-          RegisterInputSections(
-            emailOnSaved: (data) {
-              email = data;
-            },
-            passwordOnSaved: (data) {
-              password = data;
+          const Text(
+            'Ecommerce',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Color.fromARGB(255, 67, 29, 148),
+              fontWeight: FontWeight.bold,
+              fontSize: 30,
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          CustomTextFormField(
+            hintText: 'Enter Your UserName',
+            validator: (data) {
+              return data == '' ? 'required field' : null;
             },
           ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * .03,
+          const SizedBox(
+            height: 15,
+          ),
+          CustomTextFormField(
+            hintText: 'Enter Your Email',
+            validator: (data) {
+              if (data!.isEmpty || data == "") {
+                return "required feild";
+              }
+              String pattern =
+                  r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+              RegExp regex = RegExp(pattern);
+              if (!regex.hasMatch(data)) {
+                return 'Enter Valid Email';
+              } else {
+                return null;
+              }
+            },
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          CustomTextFormField(
+            isPassword: true,
+            hintText: 'Enter Your Password',
+            validator: (data) {
+              if (data!.isEmpty) {
+                return "required feild";
+              } else if (data.length < 8) {
+                return "the password must be more than 8 letters ";
+              } else if (!data.contains('@') &&
+                  !data.contains('*') &&
+                  !data.contains('_') &&
+                  !data.contains('#') &&
+                  !data.contains(r'$')) {
+                return "weak password the password must contain _ or special sing as # or * ";
+              } else {
+                return null;
+              }
+              // validator: (value) => value ?? 'please enter your name',
+            },
+          ),
+          const SizedBox(
+            height: 15,
           ),
           BlocBuilder<AuthCubit, AuthState>(
             builder: (context, state) {
-              if (state is AuthSingupLoading) {
+              if (state is AuthLoginLoading) {
+                return const CustomCircularProgressIndicator();
+              } else if (state is AuthLoginFailure) {
                 return Container(
                   height: 50,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
-                    color: kPrimaryColor,
+                    color: const Color.fromARGB(255, 67, 29, 148),
                   ),
                   child: const Center(
-                    child: CircularProgressIndicator(),
+                    child: Text(
+                      'Login Failed',
+                    ),
                   ),
                 );
-              } else if (state is AuthSingupFailure) {
+              } else {
                 return Container(
-                  height: 50,
+                  height: 65,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: kPrimaryColor,
+                    borderRadius: BorderRadius.circular(12),
                   ),
-                  child: const Center(
-                    child: Text('Error creating account'),
+                  child: IconButton(
+                    onPressed: () {
+                      if (globalFormKey.currentState!.validate()) {
+                        FirebaseService().registerUsingEmailAndPassword(
+                          email: email,
+                          password: password,
+                          context: context,
+                        );
+                      }
+                    },
+                    icon: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: const Color.fromARGB(255, 104, 59, 202),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          'Sing Up',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20),
+                        ),
+                      ),
+                    ),
                   ),
                 );
               }
-
-              return CustomButton(
-                text: 'Create Your Account',
-                onPressed: () {
-                  globalFormKey.currentState!.save();
-                  if (globalFormKey.currentState!.validate()) {
-                    setState(() {
-                      _autovalidateMode = AutovalidateMode.always;
-                    });
-
-                    BlocProvider.of<AuthCubit>(context)
-                        .signupWithEmailAndPassword(
-                      email: email,
-                      password: password,
-                      context: context,
-                    );
-
-                    // GoRouter.of(context).push(AppRoutes.kLoginView);
-                  }
-                },
-              );
             },
           ),
           const SizedBox(
-            height: 10,
+            height: 20,
           ),
-          const Expanded(
-            child: Center(
-              child: Text(
-                'Or using Other Methods',
-                style: Styles.desStyle,
+          const Row(
+            children: [
+              Expanded(
+                child: Divider(
+                  thickness: 1,
+                  color: Color.fromARGB(255, 67, 29, 148),
+                ),
               ),
-            ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const AddtionalAuthFunction(
-            text: 'Sing Up',
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Expanded(
-            child: Center(
-              child: Text(
-                'Already have an email !',
-                style: Styles.desStyle,
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 2.0),
+                child: Text(
+                  'or continue with',
+                  textAlign: TextAlign.center,
+                ),
               ),
-            ),
+              Expanded(
+                child: Divider(
+                  thickness: 1,
+                  color: Color.fromARGB(255, 67, 29, 148),
+                ),
+              ),
+            ],
           ),
           const SizedBox(
-            height: 10,
+            height: 15,
           ),
-          CustomButton(
-            text: 'LogIn',
-            onPressed: () {
-              GoRouter.of(context).push(AppRoutes.kLoginView);
-            },
+          const SignInWithGoogleButton(),
+          const SizedBox(
+            height: 20,
+          ),
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Already have an account? ',
+              ),
+              CustomAuthTextButton(
+                title: 'SignIn',
+                toNavigatToWidget: StoreLoginView(),
+              ),
+            ],
           ),
         ],
       ),
     );
   }
-
-  // Column registerInputsTextFeilds() {
-  //   return Column(
-  //     children: [
-  //       InputSection(
-  //           keyboardType: TextInputType.text,
-  //           prefixIicon: const Icon(Icons.person),
-  //           title: 'Username',
-  //           hintText: 'Create your name',
-  //           validator: (data) {
-  //             return (data!.isEmpty)
-  //                 ? "required feild"
-  //                 : (data.length < 3
-  //                     ? 'the name must be more than 3 letters'
-  //                     : null);
-  //           }),
-  //       InputSection(
-  //         onSaved: (value) {
-  //           email = value;
-  //         },
-  //         keyboardType: TextInputType.emailAddress,
-  //         prefixIicon: const Icon(Icons.email_outlined),
-  //         title: 'Email or Phone Number',
-  //         hintText: 'Enter your email or Phome Number',
-
-  //         validator: (data) {
-  //           String pattern =
-  //               r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-  //           RegExp regex = RegExp(pattern);
-
-  //           return data!.isEmpty
-  //               ? "required feild"
-  //               : (!regex.hasMatch(data) ? 'Enter Valid Email' : null);
-  //         },
-  //         // validator: (value) => value ?? 'please enter your name',
-  //       ),
-  //       InputSection(
-  //         onSaved: (value) {
-  //           password = value;
-  //         },
-  //         keyboardType: TextInputType.visiblePassword,
-  //         prefixIicon: const Icon(Icons.password),
-  //         withSuffixicon: true,
-  //         title: 'Password',
-  //         isObscure: true,
-  //         hintText: 'Create your Password',
-  //         validator: (data) {
-  //           return data!.isEmpty
-  //               ? "required feild"
-  //               : (data.length < 8
-  //                   ? 'the password must be more than 8 letters '
-  //                   : (!data.contains('@') &&
-  //                           !data.contains('*') &&
-  //                           !data.contains('_') &&
-  //                           !data.contains('#') &&
-  //                           !data.contains(r'$')
-  //                       ? 'weak password try add _ or special sing as # or *'
-  //                       : null));
-  //         },
-  //       )
-  //     ],
-  //   );
-  // }
 }
